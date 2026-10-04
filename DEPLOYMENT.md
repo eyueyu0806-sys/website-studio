@@ -1,6 +1,6 @@
-# sitekobo.studio
+# pageatelier.jp
 
-完成版の公開先は GitHub Pages、独自ドメインは `sitekobo.studio` です。
+完成版の公開先は GitHub Pages、独自ドメインは `pageatelier.jp` です。
 
 公開ファイルは `gh-pages` ブランチにあります。ルートの `CNAME` に独自ドメインを指定しています。ドメインの取得・DNS設定・GitHub Pagesの有効化が完了するまでは、公開済みとは扱いません。
 
@@ -24,10 +24,10 @@
 
 1. Source: `Deploy from a branch`
 2. Branch: `gh-pages`、Folder: `/(root)`、Save
-3. Custom domain: `sitekobo.studio`。ブランチの `CNAME` と一致させます。
+3. Custom domain: `pageatelier.jp`。ブランチの `CNAME` と一致させます。
 4. DNSの確認と証明書の発行が完了したら、`Enforce HTTPS` を有効にします。
 
-公開後のURLは `https://sitekobo.studio/` です。`www.sitekobo.studio` も設定した場合は、GitHub Pagesが指定した正規ドメインへ転送します。
+公開後のURLは `https://pageatelier.jp/` です。`www.pageatelier.jp` も設定した場合は、GitHub Pagesが指定した正規ドメインへ転送します。
 
 DNS、HTTPS証明書、ページ本体、同梱フォント・画像、業種選択、Builderの生成と相談添付を確認してから公開完了とします。
 
