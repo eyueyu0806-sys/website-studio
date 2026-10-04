@@ -1,32 +1,50 @@
-# Editorial × digital product — デザイン確認
+# Working proof — a website taking shape
 
-ファーストビューと業種選択体験を再設計しました。以下は実装をブラウザで撮影した画像です。
+This iteration refines the header, hero, industry selector and live preview. A Japanese serif display face, staggered headline, italic industry lettering and clean UI type give the studio a consistent editorial identity. Neutral paper tones and a muted ink-blue accent replace the bright orange treatment.
 
-- PC：業種にホバーすると仮のプレビューに切り替わり、クリックで選択が確定します。離れると元の選択に戻ります。
-- スマホ：業種をタップすると、背景・大きな業種名・プレビューの構図が切り替わります。
-- スクロールするとプレビューの幅と位置が変わります。「動きを減らす」設定では移動・傾きを抑えます。
-- 選択した業種は既存のサイト制作体験に引き継がれます。
+The interaction uses the actual website preview:
 
-操作する場合は、[変更版ZIPをダウンロード](https://github.com/eyueyu0806-sys/website-studio/archive/refs/heads/design/editorial-first-view-20261004.zip)して展開し、ルートの `index.html` をブラウザで開いてください。
+- Hover an industry to try its design; click to select it. Moving away restores the selected industry. On touch devices, tap to select.
+- Industry changes update the page immediately and blend between the two designs. The hero and builder previews have no generation overlay, glow or spinner.
+- Enter a business name below the preview to see it appear in the hero, builder and completed website. The name also carries into the consultation summary.
+- Scrolling gently changes the preview's width and position. Reduced-motion settings remove these movements and the preview crossfade.
 
-## PC — 初期表示（1440px）
+Both original Japanese copy lines, the rule-based generator, builder steps and contact logic are preserved. Other sections retain their previous layout and styles.
 
-![PC：巨大な見出しと画面外へ広がるプレビュー](desktop.png)
+## Try the full bundle
 
-## PC — 飲食を選択
+[Download the review branch ZIP](https://github.com/eyueyu0806-sys/website-studio/archive/refs/heads/design/editorial-first-view-20261004.zip), extract it, and keep the `assets` folder beside `index.html`.
 
-![PC：黒背景と飲食サイトの構図](desktop-food.png)
+For the verified local workflow, run the following from the extracted repository folder:
 
-## PC — スクロール後
+```sh
+python3 -m http.server 8000
+```
 
-![PC：スクロールによる位置と幅の変化](desktop-scrolled.png)
+Then open `http://127.0.0.1:8000` in your browser. No package installation or API credentials are needed. The display font is bundled locally; its attribution and SIL OFL license are in `assets/fonts/OFL.txt`.
 
-## スマホ — 初期表示（390px）
+## Desktop — the studio composition
 
-![スマホ：初期表示](mobile.png)
+![Desktop hero](desktop.png)
 
-## スマホ — 飲食を選択
+## Desktop — your business name in the proof
 
-![スマホ：タップによる黒背景への切替](mobile-food.png)
+![Desktop personalized preview](desktop-personalized.png)
 
-320・390・768・1024・1440px幅で、選択・キーボード操作・スクロール・生成・屋号変更・相談フォームへの構成添付を検証済みです。JavaScript例外はありません。その他のセクション、生成ロジック、フォーム処理は維持しています。
+## Mobile — your business name in the proof
+
+![Mobile personalized preview](mobile-personalized.png)
+
+## Industry transformation — food
+
+![Food website proof](desktop-food.png)
+
+## The live preview in the existing builder
+
+![Builder preview](builder-preview.png)
+
+## Validation
+
+Browser checks passed at 320, 390, 768, 1024 and 1440px: font loading, responsive layout, hover and touch selection, keyboard navigation, rapid switching, reduced motion, business-name synchronization and escaping, generation, and consultation attachment. No JavaScript exceptions occurred. Unrelated section styles match the baseline.
+
+Checks used a local HTTP server with external font requests blocked. Direct `file://` navigation could not be tested because the managed browser blocks it; the HTTP workflow above was verified.
