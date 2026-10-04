@@ -741,11 +741,151 @@ h1,h2,h3,.hero-sub,.ot,.point b,.ways b,.r-name span{word-break:keep-all;overflo
 .ft-legal nav{font-size:13px;gap:10px 22px}
 
 /* =========================================================
+   Editorial direction — header and first-view experience only
+   ========================================================= */
+.hdr,.hero{
+  --editor-paper:#F6F5F1;--editor-ink:#252521;--editor-muted:#73736B;
+  --editor-rule:#D9D9D1;--editor-accent:#626D58;
+  color:var(--editor-ink);color-scheme:light;
+}
+.hdr{padding:env(safe-area-inset-top,0px) 0 0;background:var(--editor-paper);border-bottom:1px solid var(--editor-rule)}
+.hdr-in,.hdr.scrolled .hdr-in{width:min(1440px,100% - 96px);height:88px;padding:0;gap:36px;background:transparent;border:0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.hdr .brand{gap:14px;font-size:17px;letter-spacing:.06em;font-weight:600}
+.hdr .brand-mark{width:23px;height:26px;background:none;border:1.5px solid currentColor;border-radius:0;box-shadow:none}
+.hdr .brand-mark::after{inset:5px;border:1px solid currentColor;border-top:0;border-bottom:0;border-radius:0;background:none}
+.hdr .nav{gap:28px;font-size:13px}
+.hdr .nav a{color:var(--editor-muted)}
+.hdr .nav a:hover{color:var(--editor-ink)}
+.hdr .btn,.hero .btn{border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;transition:background .2s,color .2s,border-color .2s;transform:none}
+.hdr .btn{min-height:40px;padding:0 0 0 24px;border:0;border-left:1px solid var(--editor-rule);background:none;color:var(--editor-ink);font-size:13px;font-weight:500}
+.hdr .btn::after,.hero #hero-start::after{content:"↗";font-size:18px;font-weight:400;transition:transform .2s}
+.hdr .btn:hover::after,.hero #hero-start:hover::after{transform:translate(2px,-2px)}
+.hdr .btn:hover{color:var(--editor-accent);background:none;box-shadow:none;transform:none}
+.hdr :focus-visible,.hero :focus-visible{outline:2px solid var(--editor-accent);outline-offset:5px;border-radius:0}
+.hero{background:var(--editor-paper);padding:calc(env(safe-area-inset-top,0px) + 160px) 0 80px;overflow:hidden;border-bottom:1px solid var(--editor-rule)}
+.hero>.glows{display:none}
+.hero .wrap{width:min(1440px,100% - 96px)}
+.hero-grid{grid-template-columns:220px minmax(0,1fr);grid-template-areas:"copy copy" "pick stage";gap:64px 64px;align-items:start}
+.hero-copy{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:12px 64px;align-items:end}
+.hero .kicker{grid-column:1/-1;margin:0 0 16px;padding:0;border:0;border-radius:0;background:none;color:var(--editor-muted);font-size:12px;font-weight:500;letter-spacing:.09em;animation:editor-enter .7s var(--ease) both}
+.hero .kicker::before{content:"01 /";font-family:"Geist",sans-serif;color:var(--editor-accent);margin-right:4px}
+.hero .pulse{display:none}
+.hero-title{font-size:clamp(38px,5.2vw,80px);font-weight:500;line-height:1.3;letter-spacing:-.045em}
+.hero-title .ln{padding-bottom:.05em}
+.hero-title .ln>span{filter:none;animation:editor-type .9s var(--ease) forwards;animation-delay:var(--d,.1s)}
+@keyframes editor-type{to{transform:translateY(0)}}
+@keyframes editor-enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hero-intro{padding-bottom:8px;animation:editor-enter .8s var(--ease) .25s both}
+.hero-sub{margin:0 0 28px;font-size:15px;line-height:2;color:#55564F;animation:none}
+.hero-cta{gap:20px;align-items:center;animation:none}
+.hero .hero-cta .btn{min-height:48px;padding:0 18px;font-size:13px;font-weight:500;flex:none}
+.hero .btn-primary{background:var(--editor-ink);color:#fff;border:1px solid var(--editor-ink)}
+.hero .btn-primary:hover{background:#45483F;border-color:#45483F;box-shadow:none;transform:none}
+.hero .btn-glass{background:none;border:0;border-bottom:1px solid var(--editor-rule);padding:0!important;color:var(--editor-ink)}
+.hero .btn-glass:hover{border-color:var(--editor-ink);box-shadow:none;transform:none}
+.hero .line-dot{display:none}
+.hero-note{margin:15px 0 0;font-size:11px;letter-spacing:.03em;color:var(--editor-muted);animation:none}
+.hero-pick{padding-top:14px;animation:editor-enter .8s var(--ease) .35s both}
+.hero .pick-heading{margin:0 0 22px;font-size:19px;line-height:1.5;font-weight:500;letter-spacing:-.02em}
+.hero .pick-label{margin:0 0 28px;font-size:11px;font-weight:400;line-height:1.9;color:var(--editor-muted)}
+.hero .seg{display:flex;flex-direction:column;gap:0;padding:0;border:0;border-top:1px solid var(--editor-rule);border-radius:0;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;counter-reset:industry}
+.hero .seg-ind{display:none}
+.hero .seg button{counter-increment:industry;justify-content:flex-start;gap:16px;min-height:54px;padding:0 6px 0 0;border-radius:0;border-bottom:1px solid var(--editor-rule);font-size:14px;font-weight:400;color:var(--editor-muted);transition:color .2s,background .2s}
+.hero .seg button::before{content:"0" counter(industry);font-family:"Geist",sans-serif;font-size:10px;color:var(--editor-muted)}
+.hero .seg button::after{content:"↗";margin-left:auto;font-size:16px;opacity:0;transform:translate(-3px,3px);transition:opacity .2s,transform .2s}
+.hero .seg button .ico{display:none}
+.hero .seg button:hover{color:var(--editor-ink);background:#EEEDE7}
+.hero .seg button[aria-checked="true"]{color:var(--editor-ink);font-weight:600}
+.hero .seg button[aria-checked="true"]::before{color:var(--editor-accent)}
+.hero .seg button[aria-checked="true"]::after,.hero .seg button:hover::after{opacity:1;transform:none}
+.hero-stage{perspective:none;min-width:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 22px;animation:editor-enter 1s var(--ease) .3s both}
+.preview-caption{grid-column:1/-1;display:flex;justify-content:space-between;gap:12px;margin:0 0 14px;color:var(--editor-muted);font-size:10px;letter-spacing:.08em}
+.preview-caption span:first-child{font-family:"Geist",sans-serif;letter-spacing:.14em}
+.hero-stage .tilt{grid-column:1/-1;transform:none;transform-style:flat;animation:none;transition:none}
+.hero-stage .floaty{animation:none}
+.hero .device{border:1px solid #CECEC6;border-radius:2px;background:#fff;box-shadow:0 18px 42px -30px rgba(37,37,33,.2)}
+.hero .device-bar{height:38px;background:#EEEDE7;border-color:#D9D9D1;gap:5px;padding:0 14px}
+.hero .device-bar .dt{width:5px;height:5px;background:#AAA99F}
+.hero .url{background:none;border-radius:0;color:#74746C;font-size:10px;height:24px}
+.hero .url svg{display:none}
+.hero .bar-sp{width:25px}
+.hero .device-screen{aspect-ratio:16/9.8}
+.hero .device-screen .site{--s-r:.15em}
+.hero .device-screen .s-btn{border-radius:.1em}
+.hero .gen{place-items:end center;padding:0 0 18px}
+.hero .gen-beam{display:none}
+.hero .gen-pill{border:1px solid #D9D9D1;border-radius:0;background:#F6F5F1;box-shadow:none;transform:none;padding:10px 14px;font-size:10px;font-weight:400;color:#55564F}
+.hero .spin{display:none}
+.hero .gen-text,.hero .gen-text.out{filter:none}
+.hero .device.is-gen .site{filter:none;transform:translateY(3px);opacity:.25}
+.hero .site.is-built [data-mod],.hero .site [data-mod].is-new{animation:editor-enter .45s var(--ease) both;animation-delay:0s}
+.hero .site [data-mod].is-new::after{display:none}
+.hero .note{position:static;align-items:flex-start;gap:8px;padding:16px 0 0;margin-top:18px;border:0;border-top:1px solid var(--editor-rule);border-radius:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;animation:none;font-size:11px;font-weight:400;line-height:1.7;white-space:normal;color:var(--editor-muted);transition:opacity .25s}
+.hero .note.swap{opacity:0;filter:none}
+.hero .note i{width:13px;height:18px;border-radius:0;background:none}
+.hero .note i svg{width:11px;height:11px;stroke:var(--editor-accent);stroke-width:1.5}
+@media(min-width:1600px){.hero-grid{grid-template-columns:240px minmax(0,1fr);column-gap:88px}}
+@media(max-width:1180px){
+  .hero-copy{grid-template-columns:minmax(0,1fr) 300px;column-gap:40px}
+  .hero-grid{grid-template-columns:180px minmax(0,1fr);column-gap:40px}
+  .hero .hero-cta{gap:12px}
+  .hero .hero-cta .btn{font-size:12px;padding-inline:12px}
+}
+@media(max-width:980px){
+  .hdr-in,.hdr.scrolled .hdr-in,.hero .wrap{width:calc(100% - 48px)}
+  .hdr-in,.hdr.scrolled .hdr-in{height:72px}
+  .hero{padding-top:120px;padding-bottom:56px}
+  .hero-copy{grid-template-columns:1fr;gap:24px;margin:0}
+  .hero .kicker{margin:0;font-size:11px}
+  .hero-title{font-size:clamp(34px,7.5vw,68px)}
+  .hero-intro{max-width:480px;padding:0}
+  .hero-sub{font-size:15px;margin-bottom:20px}
+  .hero-sub br{display:none}
+  .hero-grid{grid-template-columns:1fr;grid-template-areas:"copy" "pick" "stage";row-gap:40px}
+  .hero-pick{padding:0}
+  .hero .pick-heading{margin-bottom:8px;font-size:16px}
+  .hero .pick-label{margin-bottom:18px;font-size:11px}
+  .hero .seg{flex-direction:row;flex-wrap:nowrap;border-top:0;border-bottom:1px solid var(--editor-rule)}
+  .hero .seg button{flex:1 1 0;min-width:0;min-height:48px;justify-content:center;padding:0 4px;border-bottom:2px solid transparent;margin-bottom:-1px;font-size:13px;gap:0}
+  .hero .seg button::before,.hero .seg button::after{display:none}
+  .hero .seg button[aria-checked="true"]{border-bottom-color:var(--editor-ink)}
+  .hero-stage{gap:0 16px}
+  .hero .note{display:flex}
+}
+@media(max-width:520px){
+  .hdr-in,.hdr.scrolled .hdr-in,.hero .wrap{width:calc(100% - 40px)}
+  .hdr-in,.hdr.scrolled .hdr-in{height:68px;gap:12px}
+  .hdr .brand{font-size:14px;gap:9px;letter-spacing:.02em}
+  .hdr .brand-mark{width:18px;height:21px}
+  .hdr .brand-mark::after{inset:4px}
+  .hdr .btn{padding-left:12px;min-height:32px;font-size:11px;gap:5px}
+  .hdr .btn::after{font-size:15px}
+  .hero{padding-top:112px;padding-bottom:40px}
+  .hero-title{font-size:clamp(28px,8.4vw,43px);line-height:1.4;letter-spacing:-.055em}
+  .hero-copy{gap:20px}
+  .hero .kicker{font-size:9px;letter-spacing:.04em}
+  .hero-intro{max-width:100%}
+  .hero-sub{font-size:13px;line-height:1.95;max-width:25em}
+  .hero-grid{row-gap:32px}
+  .hero .hero-cta{gap:18px;flex-wrap:wrap}
+  .hero .hero-cta .btn{min-height:46px;font-size:12px;padding-inline:14px}
+  .hero-note{font-size:10px;margin-top:12px}
+  .hero .device-screen{aspect-ratio:4/3.8}
+  .hero .device-bar{height:30px;padding-inline:10px}
+  .hero .url{font-size:9px;padding-inline:0}
+  .preview-caption{font-size:9px;margin-bottom:10px;letter-spacing:.01em}
+  .hero-stage{grid-template-columns:1fr;gap:0}
+  .hero .note{margin-top:0;padding:9px 0;font-size:10px;align-items:center}
+  .hero .note.n1{margin-top:18px}
+}
+
+/* =========================================================
    Reveal + motion preferences
    ========================================================= */
 html.js .rv{opacity:0;transform:translateY(22px);filter:blur(8px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease);transition-delay:var(--rd,0s)}
 html.js .rv.in{opacity:1;transform:none;filter:none}
 @media (prefers-reduced-motion:reduce){
+  .hero *,.hero *::before,.hero *::after{animation-delay:0s!important}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
   html{scroll-behavior:auto}
   html.js .rv{opacity:1;transform:none;filter:none}
@@ -903,20 +1043,24 @@ html.js .rv.in{opacity:1;transform:none;filter:none}
           <span class="ln"><span>まだ見えていない、</span></span>
           <span class="ln"><span style="--d:.3s">あなたのサイトを。</span></span>
         </h1>
-        <p class="hero-sub">業種と目的を<wbr>選ぶだけで、<br>あなたに合う<wbr>サイト設計を<wbr>その場で<wbr>体験できます。</p>
+        <div class="hero-intro">
+        <p class="hero-sub">業種と目的を選ぶだけで、<br>あなたに合うサイト設計をその場で体験できます。</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#build" id="hero-start">サイトをつくってみる</a>
           <a class="btn btn-glass" data-line><span class="line-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4C6.5 4 2 7.6 2 12c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5 1.1-.5 5.9-3.5 8-6C21.3 15.2 22 13.7 22 12c0-4.4-4.5-8-10-8z"/></svg></span>LINEで相談する</a>
         </div>
         <p class="hero-note">相談と設計図づくりは無料です</p>
+        </div>
       </div>
 
       <div class="hero-pick">
+        <h2 class="pick-heading">業種から、はじめる。</h2>
         <p class="pick-label"><span class="d">業種を選ぶと、右のサイトが変わります</span><span class="m">業種を選ぶと、下のサイトが変わります</span></p>
         <div class="seg" role="radiogroup" aria-label="業種を選ぶ" id="hero-seg"><span class="seg-ind" aria-hidden="true"></span></div>
       </div>
 
       <div class="hero-stage" id="hero-stage">
+        <p class="preview-caption"><span>LIVE PREVIEW</span><span>選択に合わせて、設計が変わります。</span></p>
         <div class="tilt" id="tilt"><div class="floaty"><div id="pv-hero"></div></div></div>
         <div class="note n1" aria-hidden="true"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span></span></div>
         <div class="note n2" aria-hidden="true"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span></span></div>
@@ -1225,7 +1369,6 @@ const CONFIG = {
 const PLANS = [];
 
 const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const FINE = matchMedia('(pointer: fine)').matches;
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const wait = ms => new Promise(r => setTimeout(r, ms));
@@ -1608,7 +1751,11 @@ function syncNotes() {
   });
 }
 function syncOptions() {
-  $$('#hero-seg button').forEach(b => b.setAttribute('aria-checked', String(b.dataset.k === state.industry)));
+  $$('#hero-seg button').forEach(b => {
+    const selected = b.dataset.k === state.industry;
+    b.setAttribute('aria-checked', String(selected));
+    b.tabIndex = selected ? 0 : -1;
+  });
   moveSeg();
   $$('#opt-ind .opt').forEach(b => b.setAttribute('aria-checked', String(b.dataset.k === state.industry)));
   $$('#opt-pur .opt').forEach(b => b.setAttribute('aria-checked', String(b.dataset.k === state.purpose)));
@@ -1668,6 +1815,18 @@ function toggleFeature(k) {
 }
 
 seg.addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (b) setIndustry(b.dataset.k); });
+// Keep the industry selector usable as a radio group with a keyboard.
+seg.addEventListener('keydown', e => {
+  const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+  const b = e.target.closest('button[data-k]');
+  if (!b || !keys.includes(e.key)) return;
+  e.preventDefault();
+  const i = HERO_INDS.indexOf(b.dataset.k);
+  const next = e.key === 'Home' ? 0 : e.key === 'End' ? HERO_INDS.length - 1 :
+    (i + (e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 1) + HERO_INDS.length) % HERO_INDS.length;
+  setIndustry(HERO_INDS[next]);
+  $(`button[data-k="${HERO_INDS[next]}"]`, seg).focus();
+});
 
 /* =========================================================
    Builder steps
@@ -1867,18 +2026,6 @@ $$('.story').forEach(story => {
   const sio = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && set(e.target.dataset.beat)), { rootMargin: '-45% 0px -45% 0px' });
   beats.forEach(b => sio.observe(b));
 });
-
-// hero tilt
-if (FINE && !REDUCE) {
-  const stage = $('#hero-stage'), tilt = $('#tilt');
-  stage.addEventListener('pointermove', e => {
-    const r = stage.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-    tilt.style.setProperty('--ry', (x * 6).toFixed(2) + 'deg');
-    tilt.style.setProperty('--rx', (y * -4).toFixed(2) + 'deg');
-  });
-  stage.addEventListener('pointerleave', () => { tilt.style.setProperty('--ry', '0deg'); tilt.style.setProperty('--rx', '0deg'); });
-}
 
 // hero start → focus builder
 $('#hero-start').addEventListener('click', () => setTimeout(() => $('.step.is-active h3')?.focus({ preventScroll: true }), REDUCE ? 0 : 700));
