@@ -741,11 +741,11 @@ h1,h2,h3,.hero-sub,.ot,.point b,.ways b,.r-name span{word-break:keep-all;overflo
 .ft-legal nav{font-size:13px;gap:10px 22px}
 
 /* =========================================================
-   Editorial direction — header and first-view experience only
+   Editorial × digital product — first-view experience
    ========================================================= */
 .hdr,.hero{
-  --editor-paper:#F6F5F1;--editor-ink:#252521;--editor-muted:#73736B;
-  --editor-rule:#D9D9D1;--editor-accent:#626D58;
+  --editor-paper:#FFFFFF;--editor-ink:#111111;--editor-muted:#777777;
+  --editor-rule:#DDDDDD;--editor-accent:#FF4D2A;
   color:var(--editor-ink);color-scheme:light;
 }
 .hdr{padding:env(safe-area-inset-top,0px) 0 0;background:var(--editor-paper);border-bottom:1px solid var(--editor-rule)}
@@ -762,122 +762,149 @@ h1,h2,h3,.hero-sub,.ot,.point b,.ways b,.r-name span{word-break:keep-all;overflo
 .hdr .btn:hover::after,.hero #hero-start:hover::after{transform:translate(2px,-2px)}
 .hdr .btn:hover{color:var(--editor-accent);background:none;box-shadow:none;transform:none}
 .hdr :focus-visible,.hero :focus-visible{outline:2px solid var(--editor-accent);outline-offset:5px;border-radius:0}
-.hero{background:var(--editor-paper);padding:calc(env(safe-area-inset-top,0px) + 160px) 0 80px;overflow:hidden;border-bottom:1px solid var(--editor-rule)}
+/* The hero is a live composition; the rest of the page keeps its own design. */
+.hero{
+  --scene-bg:#FFFFFF;--scene-ink:#111111;--scene-muted:#767676;--scene-rule:#DCDCDC;
+  --scene-left:39%;--scene-top:220px;--scene-width:79%;--scene-angle:-2deg;
+  --mobile-left:6%;--mobile-width:112%;
+  padding:calc(env(safe-area-inset-top,0px) + 132px) 0 0;min-height:1030px;
+  background:var(--scene-bg);color:var(--scene-ink);overflow:hidden;
+  transition:background .65s var(--ease),color .5s;
+}
+.hero[data-scene="beauty"]{--scene-left:32%;--scene-top:245px;--scene-width:80%;--scene-angle:2deg;--mobile-left:-8%;--mobile-width:110%}
+.hero[data-scene="food"]{--scene-bg:#111111;--scene-ink:#FFFFFF;--scene-muted:#A3A3A3;--scene-rule:#363636;--scene-left:43%;--scene-top:205px;--scene-width:73%;--scene-angle:-1deg;--mobile-left:8%;--mobile-width:112%}
+.hero[data-scene="pro"]{--scene-left:36%;--scene-top:255px;--scene-width:77%;--scene-angle:1deg;--mobile-left:-4%;--mobile-width:108%}
+.hero[data-scene="ec"]{--scene-bg:#111111;--scene-ink:#FFFFFF;--scene-muted:#A3A3A3;--scene-rule:#363636;--scene-left:31%;--scene-top:230px;--scene-width:83%;--scene-angle:-2deg;--mobile-left:4%;--mobile-width:116%}
 .hero>.glows{display:none}
-.hero .wrap{width:min(1440px,100% - 96px)}
-.hero-grid{grid-template-columns:220px minmax(0,1fr);grid-template-areas:"copy copy" "pick stage";gap:64px 64px;align-items:start}
-.hero-copy{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:12px 64px;align-items:end}
-.hero .kicker{grid-column:1/-1;margin:0 0 16px;padding:0;border:0;border-radius:0;background:none;color:var(--editor-muted);font-size:12px;font-weight:500;letter-spacing:.09em;animation:editor-enter .7s var(--ease) both}
-.hero .kicker::before{content:"01 /";font-family:"Geist",sans-serif;color:var(--editor-accent);margin-right:4px}
+.hero .wrap{width:calc(100% - 96px);max-width:1680px}
+.hero-grid{display:block;position:relative;min-height:920px;isolation:isolate;background:var(--scene-bg);transition:background .65s var(--ease)}
+.hero-copy{display:block;position:static;z-index:auto;padding-top:106px;pointer-events:none}
+.hero .kicker{margin:0 0 26px;padding:0;border:0;background:none;border-radius:0;font-size:11px;font-weight:500;color:var(--scene-muted);letter-spacing:.05em;animation:editor-enter .7s var(--ease) both}
+.hero .kicker::before{content:"DESIGN IN MOTION /";font-family:"Geist",sans-serif;color:var(--editor-accent);font-size:10px;margin-right:10px;letter-spacing:.08em}
 .hero .pulse{display:none}
-.hero-title{font-size:clamp(38px,5.2vw,80px);font-weight:500;line-height:1.3;letter-spacing:-.045em}
-.hero-title .ln{padding-bottom:.05em}
+.hero-title{position:relative;z-index:4;max-width:1180px;font-size:clamp(60px,7.35vw,118px);font-weight:500;line-height:1.22;letter-spacing:-.065em;color:var(--scene-ink);mix-blend-mode:normal;transform:translateY(var(--type-y,0px));transition:transform .45s var(--ease)}
+.hero-title .ln{overflow:hidden;padding-bottom:.06em}
 .hero-title .ln>span{filter:none;animation:editor-type .9s var(--ease) forwards;animation-delay:var(--d,.1s)}
 @keyframes editor-type{to{transform:translateY(0)}}
 @keyframes editor-enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.hero-intro{padding-bottom:8px;animation:editor-enter .8s var(--ease) .25s both}
-.hero-sub{margin:0 0 28px;font-size:15px;line-height:2;color:#55564F;animation:none}
-.hero-cta{gap:20px;align-items:center;animation:none}
-.hero .hero-cta .btn{min-height:48px;padding:0 18px;font-size:13px;font-weight:500;flex:none}
-.hero .btn-primary{background:var(--editor-ink);color:#fff;border:1px solid var(--editor-ink)}
-.hero .btn-primary:hover{background:#45483F;border-color:#45483F;box-shadow:none;transform:none}
-.hero .btn-glass{background:none;border:0;border-bottom:1px solid var(--editor-rule);padding:0!important;color:var(--editor-ink)}
-.hero .btn-glass:hover{border-color:var(--editor-ink);box-shadow:none;transform:none}
+.hero-intro{position:relative;width:320px;margin-top:52px;pointer-events:auto;animation:editor-enter .8s var(--ease) .3s both}
+.hero-sub{margin:0 0 24px;font-size:14px;line-height:2;color:var(--scene-ink);animation:none}
+.hero-cta{gap:16px;align-items:center;animation:none}
+.hero .hero-cta .btn{min-height:48px;padding:0 16px;font-size:12px;font-weight:500;flex:none;white-space:nowrap}
+.hero .btn-primary{background:var(--editor-accent);border:1px solid var(--editor-accent);color:#111;box-shadow:none}
+.hero .btn-primary:hover{background:var(--scene-ink);border-color:var(--scene-ink);color:var(--scene-bg);transform:none;box-shadow:none}
+.hero .btn-glass{padding:0!important;background:none;color:var(--scene-ink);border:0;border-bottom:1px solid var(--scene-rule);backdrop-filter:none;box-shadow:none}
+.hero .btn-glass:hover{border-color:var(--scene-ink);transform:none;box-shadow:none}
 .hero .line-dot{display:none}
-.hero-note{margin:15px 0 0;font-size:11px;letter-spacing:.03em;color:var(--editor-muted);animation:none}
-.hero-pick{padding-top:14px;animation:editor-enter .8s var(--ease) .35s both}
-.hero .pick-heading{margin:0 0 22px;font-size:19px;line-height:1.5;font-weight:500;letter-spacing:-.02em}
-.hero .pick-label{margin:0 0 28px;font-size:11px;font-weight:400;line-height:1.9;color:var(--editor-muted)}
-.hero .seg{display:flex;flex-direction:column;gap:0;padding:0;border:0;border-top:1px solid var(--editor-rule);border-radius:0;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;counter-reset:industry}
+.hero-note{margin:14px 0 0;font-size:10px;color:var(--scene-muted);animation:none}
+.hero-pick{position:absolute;z-index:5;top:0;left:0;width:100%;padding:0;display:grid;grid-template-columns:1fr auto;gap:14px 24px;animation:editor-enter .8s var(--ease) .15s both}
+.hero .pick-heading{font-size:11px;font-weight:500;line-height:1.6;margin:0;letter-spacing:.08em}
+.hero .pick-label{margin:0;font-size:10px;line-height:1.6;font-weight:400;color:var(--scene-muted)}
+.hero .pick-label .d{display:inline}.hero .pick-label .m{display:none}
+.hero .seg{grid-column:1/-1;display:flex;flex-direction:row;flex-wrap:nowrap;gap:0;padding:0;border:0;border-top:1px solid var(--scene-rule);border-bottom:1px solid var(--scene-rule);border-radius:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;counter-reset:industry}
 .hero .seg-ind{display:none}
-.hero .seg button{counter-increment:industry;justify-content:flex-start;gap:16px;min-height:54px;padding:0 6px 0 0;border-radius:0;border-bottom:1px solid var(--editor-rule);font-size:14px;font-weight:400;color:var(--editor-muted);transition:color .2s,background .2s}
-.hero .seg button::before{content:"0" counter(industry);font-family:"Geist",sans-serif;font-size:10px;color:var(--editor-muted)}
-.hero .seg button::after{content:"↗";margin-left:auto;font-size:16px;opacity:0;transform:translate(-3px,3px);transition:opacity .2s,transform .2s}
+.hero .seg button{counter-increment:industry;position:relative;justify-content:flex-start;flex:1 1 0;gap:18px;min-width:0;min-height:58px;padding:0 18px;border-radius:0;border:0;border-right:1px solid var(--scene-rule);font-size:20px;font-weight:500;color:var(--scene-muted);background:none;transition:flex-grow .5s var(--ease),background .25s,color .25s,padding .5s}
+.hero .seg button:first-of-type{padding-left:0}
+.hero .seg button:last-child{border-right:0}
+.hero .seg button::before{content:"0" counter(industry);font-size:10px;font-weight:400;font-family:"Geist",sans-serif;color:var(--scene-muted)}
+.hero .seg button::after{content:"↗";margin-left:auto;opacity:0;transform:translate(-4px,4px);transition:opacity .25s,transform .25s;color:var(--editor-accent);font-size:24px}
 .hero .seg button .ico{display:none}
-.hero .seg button:hover{color:var(--editor-ink);background:#EEEDE7}
-.hero .seg button[aria-checked="true"]{color:var(--editor-ink);font-weight:600}
+.hero .seg button[aria-checked="true"]{color:var(--scene-ink);flex-grow:1.2}
 .hero .seg button[aria-checked="true"]::before{color:var(--editor-accent)}
-.hero .seg button[aria-checked="true"]::after,.hero .seg button:hover::after{opacity:1;transform:none}
-.hero-stage{perspective:none;min-width:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 22px;animation:editor-enter 1s var(--ease) .3s both}
-.preview-caption{grid-column:1/-1;display:flex;justify-content:space-between;gap:12px;margin:0 0 14px;color:var(--editor-muted);font-size:10px;letter-spacing:.08em}
-.preview-caption span:first-child{font-family:"Geist",sans-serif;letter-spacing:.14em}
-.hero-stage .tilt{grid-column:1/-1;transform:none;transform-style:flat;animation:none;transition:none}
+.hero .seg button[aria-checked="true"]::after{opacity:1;transform:none}
+@media(hover:hover) and (pointer:fine){
+  .hero .seg button:hover{color:var(--scene-ink);flex-grow:1.55;background:var(--scene-bg)}
+  .hero .seg button:hover::after{opacity:1;transform:none}
+}
+.hero-word{position:absolute;z-index:0;left:-.08em;bottom:0;margin:0;color:var(--scene-ink);font:600 clamp(100px,20vw,340px)/.8 "Geist",sans-serif;letter-spacing:-.085em;white-space:nowrap;opacity:.1;pointer-events:none;transform:translateX(var(--word-x,0px));transition:transform .45s var(--ease),color .5s}
+.hero-stage{position:absolute;z-index:2;left:var(--scene-left);top:var(--scene-top);width:calc(var(--scene-width) - var(--scroll-inset,0px));min-width:0;display:block;perspective:none;transform:translate3d(var(--hover-x,0px),var(--stage-y,0px),0) rotate(var(--scene-angle));transform-origin:50% 40%;transition:left .7s var(--ease),top .7s var(--ease),width .7s var(--ease),transform .6s var(--ease)}
+.preview-caption{position:absolute;z-index:4;bottom:-24px;left:0;display:flex;gap:12px;margin:0;padding:0;background:none;color:var(--editor-accent);font-size:9px;line-height:1.5;letter-spacing:.05em}
+.preview-caption span:first-child{font-family:"Geist",sans-serif;letter-spacing:.1em;color:var(--editor-accent)}
+.preview-caption span:last-child{display:none}
+.hero-stage .tilt{transform:none;transform-style:flat;animation:none;transition:none}
 .hero-stage .floaty{animation:none}
-.hero .device{border:1px solid #CECEC6;border-radius:2px;background:#fff;box-shadow:0 18px 42px -30px rgba(37,37,33,.2)}
-.hero .device-bar{height:38px;background:#EEEDE7;border-color:#D9D9D1;gap:5px;padding:0 14px}
-.hero .device-bar .dt{width:5px;height:5px;background:#AAA99F}
-.hero .url{background:none;border-radius:0;color:#74746C;font-size:10px;height:24px}
-.hero .url svg{display:none}
-.hero .bar-sp{width:25px}
-.hero .device-screen{aspect-ratio:16/9.8}
-.hero .device-screen .site{--s-r:.15em}
+.hero .device{border:0;border-radius:0;background:none;box-shadow:none;overflow:visible;isolation:auto}
+.hero .device-bar{display:none}
+.hero .device-bar .dt,.hero .bar-sp,.hero .url svg{display:none}
+.hero .url{margin:0;padding:0;height:auto;min-width:0;background:none;border-radius:0;color:var(--scene-muted);font-size:10px}
+.hero .device-screen{aspect-ratio:16/9.7;border:1px solid #CFCFCF;box-shadow:0 32px 80px -45px rgba(0,0,0,.24)}
+.hero .device-screen .site{--s-bg:#F5F5F5;--s-card:#FFF;--s-ink:#171717;--s-sub:#777;--s-line:#DDD;--s-r:.12em;--s-acc:#FF4D2A;--s-acc-ink:#111}
+.hero .device-screen .site.t-food{--s-bg:#151515;--s-card:#222;--s-ink:#FAFAFA;--s-sub:#AAA;--s-line:#444}
 .hero .device-screen .s-btn{border-radius:.1em}
-.hero .gen{place-items:end center;padding:0 0 18px}
-.hero .gen-beam{display:none}
-.hero .gen-pill{border:1px solid #D9D9D1;border-radius:0;background:#F6F5F1;box-shadow:none;transform:none;padding:10px 14px;font-size:10px;font-weight:400;color:#55564F}
-.hero .spin{display:none}
+.hero .gen{place-items:end start;padding:0 0 16px 16px}
+.hero .gen-beam,.hero .spin{display:none}
+.hero .gen-pill{border:0;border-radius:0;background:#FF4D2A;color:#111;box-shadow:none;transform:none;padding:10px 14px;font-size:10px;font-weight:500}
 .hero .gen-text,.hero .gen-text.out{filter:none}
-.hero .device.is-gen .site{filter:none;transform:translateY(3px);opacity:.25}
-.hero .site.is-built [data-mod],.hero .site [data-mod].is-new{animation:editor-enter .45s var(--ease) both;animation-delay:0s}
+.hero .device.is-gen .site{filter:none;transform:translateY(6px);opacity:.3}
+.hero .site.is-built [data-mod],.hero .site [data-mod].is-new{animation:editor-enter .4s var(--ease) both;animation-delay:0s}
 .hero .site [data-mod].is-new::after{display:none}
-.hero .note{position:static;align-items:flex-start;gap:8px;padding:16px 0 0;margin-top:18px;border:0;border-top:1px solid var(--editor-rule);border-radius:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;animation:none;font-size:11px;font-weight:400;line-height:1.7;white-space:normal;color:var(--editor-muted);transition:opacity .25s}
+.hero-insights{position:relative;z-index:3;margin:32px 0 0;width:290px;pointer-events:none}
+.hero .note{position:static;display:flex;align-items:center;gap:8px;padding:9px 0;margin:0;border:0;border-top:1px solid var(--scene-rule);border-radius:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;animation:none;font-size:10px;font-weight:400;line-height:1.7;white-space:normal;color:var(--scene-muted);transition:opacity .2s}
 .hero .note.swap{opacity:0;filter:none}
-.hero .note i{width:13px;height:18px;border-radius:0;background:none}
-.hero .note i svg{width:11px;height:11px;stroke:var(--editor-accent);stroke-width:1.5}
-@media(min-width:1600px){.hero-grid{grid-template-columns:240px minmax(0,1fr);column-gap:88px}}
-@media(max-width:1180px){
-  .hero-copy{grid-template-columns:minmax(0,1fr) 300px;column-gap:40px}
-  .hero-grid{grid-template-columns:180px minmax(0,1fr);column-gap:40px}
-  .hero .hero-cta{gap:12px}
-  .hero .hero-cta .btn{font-size:12px;padding-inline:12px}
+.hero .note i{width:12px;height:16px;border-radius:0;background:none}
+.hero .note i svg{width:10px;height:10px;stroke:var(--editor-accent);stroke-width:1.5}
+.hero-footer{position:absolute;z-index:3;bottom:24px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:16px;border-top:1px solid var(--scene-rule);font-size:10px;color:var(--scene-muted)}
+.hero-footer a{text-decoration:none;color:var(--scene-ink)}
+.hero-footer a:hover{color:var(--editor-accent)}
+.hero :focus-visible{outline-color:var(--editor-accent)}
+@media(max-width:1180px) and (min-width:981px){
+  .hero{min-height:940px}.hero-grid{min-height:810px}
+  .hero-title{font-size:7.5vw}.hero-intro{width:290px;margin-top:46px}
+  .hero .seg button{font-size:17px;gap:12px}
 }
 @media(max-width:980px){
-  .hdr-in,.hdr.scrolled .hdr-in,.hero .wrap{width:calc(100% - 48px)}
-  .hdr-in,.hdr.scrolled .hdr-in{height:72px}
-  .hero{padding-top:120px;padding-bottom:56px}
-  .hero-copy{grid-template-columns:1fr;gap:24px;margin:0}
-  .hero .kicker{margin:0;font-size:11px}
-  .hero-title{font-size:clamp(34px,7.5vw,68px)}
-  .hero-intro{max-width:480px;padding:0}
-  .hero-sub{font-size:15px;margin-bottom:20px}
-  .hero-sub br{display:none}
-  .hero-grid{grid-template-columns:1fr;grid-template-areas:"copy" "pick" "stage";row-gap:40px}
-  .hero-pick{padding:0}
-  .hero .pick-heading{margin-bottom:8px;font-size:16px}
-  .hero .pick-label{margin-bottom:18px;font-size:11px}
-  .hero .seg{flex-direction:row;flex-wrap:nowrap;border-top:0;border-bottom:1px solid var(--editor-rule)}
-  .hero .seg button{flex:1 1 0;min-width:0;min-height:48px;justify-content:center;padding:0 4px;border-bottom:2px solid transparent;margin-bottom:-1px;font-size:13px;gap:0}
-  .hero .seg button::before,.hero .seg button::after{display:none}
-  .hero .seg button[aria-checked="true"]{border-bottom-color:var(--editor-ink)}
-  .hero-stage{gap:0 16px}
-  .hero .note{display:flex}
+  .hdr-in,.hdr.scrolled .hdr-in{width:calc(100% - 48px);height:72px}
+  .hero{padding-top:118px;min-height:0}
+  .hero .wrap{width:calc(100% - 48px)}
+  .hero-grid{display:grid;grid-template-columns:1fr;grid-template-areas:"copy" "pick" "stage" "insights" "footer";min-height:0;gap:36px}
+  .hero-copy{grid-area:copy;padding:0;margin:0;pointer-events:auto}
+  .hero .kicker{margin-bottom:22px;font-size:10px}
+  .hero-title{font-size:8.5vw;line-height:1.26;max-width:100%;transform:translateY(var(--type-y,0px))}
+  .hero-intro{width:100%;max-width:470px;margin-top:26px}
+  .hero-sub{font-size:14px;margin-bottom:20px}.hero-sub br{display:none}
+  .hero-pick{grid-area:pick;position:relative;top:auto;left:auto;gap:10px;margin:0}
+  .hero .pick-label .d{display:none}.hero .pick-label .m{display:inline}
+  .hero .seg button{justify-content:center;min-height:54px;padding:0 8px;gap:10px;font-size:16px}
+  .hero .seg button:first-of-type{padding-left:8px}
+  .hero .seg button::after{display:none}
+  .hero-stage{grid-area:stage;position:relative;top:auto;left:var(--mobile-left);width:calc(var(--mobile-width) - var(--scroll-inset,0px));margin-top:0;transform:translate3d(0,var(--stage-y,0px),0) rotate(var(--scene-angle))}
+  .hero .device-screen{aspect-ratio:16/10.6}
+  .hero-word{top:56%;bottom:auto;left:-24px;font-size:27vw;opacity:.14;line-height:1}
+  .hero-insights{grid-area:insights;display:flex;gap:20px;width:100%;margin:0;z-index:3}
+  .hero .note{flex:1 1 0;font-size:10px;align-items:flex-start}
+  .hero-footer{grid-area:footer;position:relative;bottom:auto;padding:20px 0 24px;margin-top:12px}
 }
 @media(max-width:520px){
-  .hdr-in,.hdr.scrolled .hdr-in,.hero .wrap{width:calc(100% - 40px)}
-  .hdr-in,.hdr.scrolled .hdr-in{height:68px;gap:12px}
+  .hdr-in,.hdr.scrolled .hdr-in{width:calc(100% - 40px);height:68px;gap:12px}
   .hdr .brand{font-size:14px;gap:9px;letter-spacing:.02em}
-  .hdr .brand-mark{width:18px;height:21px}
-  .hdr .brand-mark::after{inset:4px}
-  .hdr .btn{padding-left:12px;min-height:32px;font-size:11px;gap:5px}
-  .hdr .btn::after{font-size:15px}
-  .hero{padding-top:112px;padding-bottom:40px}
-  .hero-title{font-size:clamp(28px,8.4vw,43px);line-height:1.4;letter-spacing:-.055em}
-  .hero-copy{gap:20px}
-  .hero .kicker{font-size:9px;letter-spacing:.04em}
-  .hero-intro{max-width:100%}
-  .hero-sub{font-size:13px;line-height:1.95;max-width:25em}
-  .hero-grid{row-gap:32px}
-  .hero .hero-cta{gap:18px;flex-wrap:wrap}
-  .hero .hero-cta .btn{min-height:46px;font-size:12px;padding-inline:14px}
+  .hdr .brand-mark{width:18px;height:21px}.hdr .brand-mark::after{inset:4px}
+  .hdr .btn{padding-left:12px;min-height:32px;font-size:11px;gap:5px}.hdr .btn::after{font-size:15px}
+  .hero{padding-top:110px}.hero .wrap{width:calc(100% - 40px)}
+  .hero-grid{gap:30px}
+  .hero .kicker{margin-bottom:22px;font-size:9px;letter-spacing:0;gap:4px}
+  .hero .kicker::before{font-size:8px;letter-spacing:.02em;margin-right:4px}
+  .hero-title{font-size:clamp(28px,9.1vw,46px);line-height:1.36;letter-spacing:-.07em}
+  .hero-intro{margin-top:24px}
+  .hero-sub{font-size:13px;line-height:1.95;max-width:26em}
+  .hero .hero-cta{gap:18px;flex-wrap:wrap}.hero .hero-cta .btn{min-height:46px;font-size:12px;padding-inline:14px}
   .hero-note{font-size:10px;margin-top:12px}
+  .hero .pick-heading{font-size:10px}.hero .pick-label{font-size:9px;letter-spacing:0}
+  .hero .seg button{min-height:48px;font-size:13px;padding:0 4px;gap:4px}
+  .hero .seg button:first-of-type{padding-left:4px}.hero .seg button::before{font-size:8px}
+  .hero .seg button[aria-checked="true"]{flex-grow:1.2}
   .hero .device-screen{aspect-ratio:4/3.8}
-  .hero .device-bar{height:30px;padding-inline:10px}
-  .hero .url{font-size:9px;padding-inline:0}
-  .preview-caption{font-size:9px;margin-bottom:10px;letter-spacing:.01em}
-  .hero-stage{grid-template-columns:1fr;gap:0}
-  .hero .note{margin-top:0;padding:9px 0;font-size:10px;align-items:center}
-  .hero .note.n1{margin-top:18px}
+  .hero .device-bar{height:23px}.hero .url{font-size:9px}
+  .preview-caption{font-size:8px;margin-bottom:4px;letter-spacing:0}
+  .hero-word{top:57%;left:-20px;font-size:29vw}
+  .hero-insights{display:block}.hero .note{padding:8px 0;font-size:10px}
+  .hero-footer{font-size:9px;margin-top:0;gap:10px}
 }
+@media(prefers-reduced-motion:reduce){
+  .hero-title,.hero-stage,.hero-word{transform:none!important}
+  .hero-stage{width:var(--scene-width)}
+  .hero .seg button:hover{flex-grow:1.2}
+}
+@media(max-width:980px) and (prefers-reduced-motion:reduce){.hero-stage{width:var(--mobile-width)}}
 
 /* =========================================================
    Reveal + motion preferences
@@ -1034,7 +1061,7 @@ html.js .rv.in{opacity:1;transform:none;filter:none}
 <main id="top">
 
   <!-- ===================== HERO ===================== -->
-  <section class="hero" aria-labelledby="hero-title">
+  <section class="hero" data-scene="realestate" aria-labelledby="hero-title">
     <div class="glows" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="wrap hero-grid">
       <div class="hero-copy">
@@ -1054,18 +1081,23 @@ html.js .rv.in{opacity:1;transform:none;filter:none}
       </div>
 
       <div class="hero-pick">
-        <h2 class="pick-heading">業種から、はじめる。</h2>
-        <p class="pick-label"><span class="d">業種を選ぶと、右のサイトが変わります</span><span class="m">業種を選ぶと、下のサイトが変わります</span></p>
+        <h2 class="pick-heading">業種を切り替えてみる。</h2>
+        <p class="pick-label"><span class="d">ホバーで試す。クリックで選ぶ。</span><span class="m">タップで、景色を変える。</span></p>
         <div class="seg" role="radiogroup" aria-label="業種を選ぶ" id="hero-seg"><span class="seg-ind" aria-hidden="true"></span></div>
       </div>
 
+      <p class="hero-word" id="hero-word" aria-hidden="true">REAL ESTATE</p>
       <div class="hero-stage" id="hero-stage">
-        <p class="preview-caption"><span>LIVE PREVIEW</span><span>選択に合わせて、設計が変わります。</span></p>
+        <p class="preview-caption"><span id="hero-scene-label">01 / REAL ESTATE</span><span id="hero-current">不動産のサイト設計</span></p>
         <div class="tilt" id="tilt"><div class="floaty"><div id="pv-hero"></div></div></div>
+      </div>
+      <div class="hero-insights">
         <div class="note n1" aria-hidden="true"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span></span></div>
         <div class="note n2" aria-hidden="true"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span></span></div>
         <div class="note n3" aria-hidden="true"><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span></span></div>
       </div>
+      <div class="hero-footer"><span>あなたの選択が、デザインになる。</span><a href="#build">スクロールして、設計を始める ↓</a></div>
+      <span class="sr" id="hero-announcement" role="status" aria-live="polite"></span>
     </div>
   </section>
 
@@ -1739,10 +1771,67 @@ function moveSeg() {
 addEventListener('resize', moveSeg);
 document.fonts && document.fonts.ready.then(moveSeg);
 
+
+// Hero composition: hovering previews without changing the selected industry.
+const hero = $('.hero'), heroGrid = $('.hero-grid');
+const SCENES = { realestate:'REAL ESTATE', beauty:'BEAUTY', food:'FOOD', builder:'BUILD', pro:'LAW', ec:'COMMERCE', other:'YOUR BUSINESS' };
+let heroHover = null;
+function setHeroScene(k) {
+  hero.dataset.scene = k;
+  $('#hero-word').textContent = SCENES[k];
+  const i = HERO_INDS.includes(k) ? HERO_INDS.indexOf(k) + 1 : IND_ORDER.indexOf(k) + 1;
+  $('#hero-scene-label').textContent = `${String(i).padStart(2, '0')} / ${SCENES[k]}`;
+  $('#hero-current').textContent = `${INDUSTRIES[k].label}のサイト設計`;
+  syncNotes(k);
+}
+function restoreHeroSelection() {
+  if (!heroHover) return;
+  heroHover = null;
+  heroPv.token++;
+  heroPv.dev.classList.remove('is-gen');
+  heroPv.apply(spec());
+  setHeroScene(state.industry);
+}
+seg.addEventListener('pointerover', e => {
+  if (e.pointerType !== 'mouse' || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  const b = e.target.closest('button[data-k]');
+  if (!b || b.dataset.k === heroHover) return;
+  heroHover = b.dataset.k;
+  setHeroScene(heroHover);
+  heroPv.generate({ ...spec(), industry:heroHover }, { duration:REDUCE ? 240 : 540 });
+});
+seg.addEventListener('pointerleave', restoreHeroSelection);
+// Scroll changes the composition's width and position, without changing content.
+if (!REDUCE) {
+  let frame = 0, hoverX = 0;
+  function updateHeroLayout() {
+    frame = 0;
+    const rect = hero.getBoundingClientRect();
+    if (rect.bottom <= 0 || rect.top >= innerHeight) return;
+    const progress = Math.min(1, Math.max(0, -rect.top / (rect.height * .7)));
+    const mobile = innerWidth <= 980;
+    heroGrid.style.setProperty('--scroll-inset', `${progress * (mobile ? 22 : 110)}px`);
+    heroGrid.style.setProperty('--stage-y', `${-progress * (mobile ? 24 : 100)}px`);
+    heroGrid.style.setProperty('--type-y', `${-progress * 32}px`);
+    heroGrid.style.setProperty('--word-x', `${progress * (mobile ? -28 : -100)}px`);
+    heroGrid.style.setProperty('--hover-x', `${hoverX}px`);
+  }
+  const scheduleHeroLayout = () => { if (!frame) frame = requestAnimationFrame(updateHeroLayout); };
+  addEventListener('scroll', scheduleHeroLayout, { passive:true });
+  addEventListener('resize', scheduleHeroLayout, { passive:true });
+  hero.addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse' || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    hoverX = (e.clientX / innerWidth - .5) * 24;
+    scheduleHeroLayout();
+  }, { passive:true });
+  hero.addEventListener('pointerleave', () => { hoverX = 0; scheduleHeroLayout(); });
+  scheduleHeroLayout();
+}
+
 /* ---------- sync UI with state ---------- */
 const notes = $$('.note span');
-function syncNotes() {
-  const n = INDUSTRIES[state.industry].notes;
+function syncNotes(industry = state.industry) {
+  const n = INDUSTRIES[industry].notes;
   notes.forEach((el, i) => {
     const box = el.parentElement;
     if (el.textContent === n[i]) return;
@@ -1751,6 +1840,8 @@ function syncNotes() {
   });
 }
 function syncOptions() {
+  restoreHeroSelection();
+  setHeroScene(state.industry);
   $$('#hero-seg button').forEach(b => {
     const selected = b.dataset.k === state.industry;
     b.setAttribute('aria-checked', String(selected));
@@ -1814,7 +1905,13 @@ function toggleFeature(k) {
   notify(`${FEATURES[k].label}を${on ? '追加' : '外'}しました`);
 }
 
-seg.addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (b) setIndustry(b.dataset.k); });
+seg.addEventListener('click', e => {
+  const b = e.target.closest('button[data-k]');
+  if (!b) return;
+  restoreHeroSelection();
+  setIndustry(b.dataset.k);
+  $('#hero-announcement').textContent = `${INDUSTRIES[b.dataset.k].label}のサイト設計を選択しました。`;
+});
 // Keep the industry selector usable as a radio group with a keyboard.
 seg.addEventListener('keydown', e => {
   const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
@@ -1824,7 +1921,9 @@ seg.addEventListener('keydown', e => {
   const i = HERO_INDS.indexOf(b.dataset.k);
   const next = e.key === 'Home' ? 0 : e.key === 'End' ? HERO_INDS.length - 1 :
     (i + (e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 1) + HERO_INDS.length) % HERO_INDS.length;
+  restoreHeroSelection();
   setIndustry(HERO_INDS[next]);
+  $('#hero-announcement').textContent = `${INDUSTRIES[HERO_INDS[next]].label}のサイト設計を選択しました。`;
   $(`button[data-k="${HERO_INDS[next]}"]`, seg).focus();
 });
 
@@ -2041,32 +2140,8 @@ heroPv.apply(spec());
 goStepSilent(1);
 function goStepSilent(n) { state.step = n; steps.forEach(s => s.classList.toggle('is-active', +s.dataset.step === n)); syncNav(); }
 // 最初の生成演出
-setTimeout(() => heroPv.generate(spec(), { duration: 1000 }), REDUCE ? 0 : 650);
+setTimeout(() => { if (!heroHover) heroPv.generate(spec(), { duration: 800 }); }, REDUCE ? 0 : 650);
 
-// 業種を一巡して「変わる」ことを見せる。触る・スクロールする・一巡したら止まる
-const CYCLE = 4600;
-const tour = { on: false, i: 0, timer: 0 };
-function stopTour() {
-  if (!tour.on) return;
-  tour.on = false; clearTimeout(tour.timer); seg.classList.remove('auto');
-}
-function tourNext() {
-  if (!tour.on) return;
-  if (document.hidden || scrollY > innerHeight * .5) return stopTour();
-  tour.i++;
-  if (tour.i >= HERO_INDS.length) { setIndustry(HERO_INDS[0]); return stopTour(); }
-  setIndustry(HERO_INDS[tour.i]);
-  tour.timer = setTimeout(tourNext, CYCLE);
-}
-if (!REDUCE) {
-  seg.style.setProperty('--cycle', CYCLE + 'ms');
-  setTimeout(() => {
-    if (state.industry !== HERO_INDS[0] || scrollY > innerHeight * .5) return;
-    tour.on = true; seg.classList.add('auto');
-    tour.timer = setTimeout(tourNext, CYCLE);
-  }, 1800);
-  ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => addEventListener(ev, stopTour, { passive: true, once: false }));
-}
 })();
 </script>
 </body>
