@@ -588,7 +588,7 @@ h1,h2,h3,.hero-sub,.ot,.point b,.ways b,.r-name span{word-break:keep-all;overflo
 .c-copy h2{font-size:clamp(28px,3.4vw,44px);line-height:1.38;letter-spacing:-.01em;text-wrap:balance}
 .c-copy p{margin:20px 0 30px;color:var(--ink-2)}
 .c-copy small{display:block;margin-top:14px;font-size:13px;color:var(--ink-3)}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:18px;scroll-margin-top:calc(var(--header-h) + 24px)}
 .form .full{grid-column:1/-1}
 .form label{display:block;margin-bottom:8px;font-size:14px;font-weight:700}
 .form input,.form select,.form textarea{width:100%;font:inherit;font-size:16px;padding:14px 16px;border-radius:0;border:1px solid var(--line-2);background:var(--bg);color:var(--ink);transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
@@ -603,6 +603,7 @@ h1,h2,h3,.hero-sub,.ot,.point b,.ways b,.r-name span{word-break:keep-all;overflo
 .attach button{margin-left:auto;border:0;background:none;color:var(--ink-3);cursor:pointer;font-size:13px;white-space:nowrap;padding:4px}
 .status{min-height:1.6em;margin-top:12px;font-size:14px;color:var(--ink-2)}
 .form .btn{width:100%}
+.form .btn:disabled{cursor:wait;opacity:.65;transform:none}
 @media (max-width:980px){
   .contact{padding:100px 0 110px}
   .c-card{grid-template-columns:1fr;gap:36px;padding:32px 20px;border-radius:0}
@@ -1635,6 +1636,7 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
           <small>相談は無料です。しつこい営業はしません。</small>
         </div>
         <form class="form" id="form" novalidate>
+          <div hidden aria-hidden="true"><input name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
           <div class="attach full" id="attach">
             <span class="ai" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
             <div><b>体験したサイト構成を添付しています</b><p id="attach-text"></p></div>
@@ -1644,7 +1646,7 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
           <div><label for="f-mail">メールアドレス</label><input id="f-mail" name="mail" type="email" autocomplete="email" inputmode="email" required></div>
           <div class="full"><label for="f-ind">業種</label><select id="f-ind" name="industry"></select></div>
           <div class="full"><label for="f-body">ご相談内容</label><textarea id="f-body" name="body" placeholder="例：今のホームページから問い合わせが来ないので、作り直したいです。"></textarea></div>
-          <div class="full"><button class="btn btn-primary" type="submit">相談内容を送る</button><div class="status" id="status" role="status"></div></div>
+          <div class="full"><button class="btn btn-primary" type="submit" aria-describedby="status">相談内容を送る</button><div class="status" id="status" role="status" aria-live="polite" aria-atomic="true"></div></div>
         </form>
       </div>
     </div>
@@ -1673,7 +1675,8 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
    設定（公開前に変更してください）
    ========================================================= */
 const CONFIG = {
-  CONTACT_EMAIL: 'eye.eyu0806@gmail.com',
+  CONTACT_EMAIL: 'eyu.eyu0806@gmail.com',
+  CONTACT_SERVICE: 'https://formsubmit.co/ajax/',
   LINE_URL: 'https://line.me/R/ti/p/@your-line-id',
 };
 /* プラン制を導入するときはここに追加すると「費用と進め方」に表示されます
@@ -2368,7 +2371,16 @@ function updateBusinessName(e) {
 }
 $('#r-name').addEventListener('input', updateBusinessName);
 $('#hero-name').addEventListener('input', updateBusinessName);
-$('#r-consult').addEventListener('click', () => { attachResult(); $('#contact').scrollIntoView({ behavior: REDUCE ? 'auto' : 'smooth' }); setTimeout(() => $('#f-name').focus({ preventScroll: true }), REDUCE ? 0 : 700); });
+let contactFocusTimer;
+$('#r-consult').addEventListener('click', () => {
+  attachResult();
+  const form = $('#form');
+  form.scrollIntoView({ behavior: REDUCE ? 'auto' : 'smooth', block: 'start' });
+  clearTimeout(contactFocusTimer);
+  contactFocusTimer = setTimeout(() => {
+    if (!form.contains(document.activeElement)) $('#f-name').focus({ preventScroll: true });
+  }, REDUCE ? 0 : 700);
+});
 
 /* =========================================================
    Contact
@@ -2393,15 +2405,56 @@ function attachResult() {
   fInd.value = INDUSTRIES[s.industry].label;
 }
 $('#attach-x').addEventListener('click', () => { attached = null; $('#attach').classList.remove('on'); });
-$('#form').addEventListener('submit', e => {
+let contactSending = false;
+$('#form').addEventListener('submit', async e => {
   e.preventDefault();
+  if (contactSending) return;
   const f = e.target, st = $('#status');
-  const name = f.name.value.trim(), mail = f.mail.value.trim();
-  if (!name) { st.textContent = 'お名前を入力してください。'; f.name.focus(); return; }
-  if (!/^\S+@\S+\.\S+$/.test(mail)) { st.textContent = 'メールアドレスを正しい形式で入力してください。'; f.mail.focus(); return; }
-  const body = `お名前：${name}\nメール：${mail}\n業種：${f.industry.value || '未選択'}\n\nご相談内容：\n${f.body.value}\n\n${attached || ''}`;
-  location.href = `mailto:${CONFIG.CONTACT_EMAIL}?subject=${encodeURIComponent('【無料相談】' + name + '様')}&body=${encodeURIComponent(body)}`;
-  st.textContent = 'メールアプリが開きます。内容を確認して送信してください。';
+  const name = f.elements.namedItem('name').value.trim(), mail = f.elements.namedItem('mail').value.trim();
+  if (!name) { st.textContent = 'お名前を入力してください。'; f.elements.namedItem('name').focus(); return; }
+  if (!/^\S+@\S+\.\S+$/.test(mail)) { st.textContent = 'メールアドレスを正しい形式で入力してください。'; f.elements.namedItem('mail').focus(); return; }
+  if (f.elements.namedItem('_honey').value) return;
+  const payload = {
+    name, email: mail,
+    industry: f.elements.namedItem('industry').value || '未選択',
+    message: f.elements.namedItem('body').value,
+    site_plan: attached ? summaryText(true) : 'サイト構成の添付なし',
+    _subject: '【無料相談】' + name.replace(/[\r\n]/g, ' ') + '様',
+    _template: 'table', _captcha: 'false', _honey: '',
+  };
+  const button = $('button[type="submit"]', f), label = button.textContent;
+  const controls = $$('input, select, textarea, #attach-x', f).map(el => ({ el, disabled: el.disabled }));
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
+  contactSending = true;
+  button.disabled = true;
+  controls.forEach(({ el }) => { el.disabled = true; });
+  button.textContent = '送信中…';
+  f.setAttribute('aria-busy', 'true');
+  st.textContent = '相談内容を送信しています。';
+  try {
+    const response = await fetch(CONFIG.CONTACT_SERVICE + encodeURIComponent(CONFIG.CONTACT_EMAIL), {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload), signal: controller.signal,
+    });
+    const result = await response.json();
+    if (!response.ok || !(result.success === true || result.success === 'true')) throw new Error('Contact submission rejected');
+    st.textContent = 'お問い合わせを送信しました。ご連絡をお待ちください。';
+    f.reset();
+    attached = null;
+    $('#attach').classList.remove('on');
+  } catch (error) {
+    st.textContent = error.name === 'AbortError'
+      ? '送信結果を確認できませんでした。入力内容は残っています。しばらく待ってから再度お試しください。'
+      : '送信できませんでした。入力内容は残っています。通信環境を確認して、もう一度お試しください。';
+  } finally {
+    clearTimeout(timeout);
+    contactSending = false;
+    button.disabled = false;
+    controls.forEach(({ el, disabled }) => { el.disabled = disabled; });
+    button.textContent = label;
+    f.removeAttribute('aria-busy');
+  }
 });
 $$('[data-line]').forEach(a => { a.href = CONFIG.LINE_URL; a.target = '_blank'; a.rel = 'noopener'; });
 
