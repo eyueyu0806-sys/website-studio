@@ -1,0 +1,41 @@
+@font-face{font-family:"Studio Serif";src:url("fonts/studio-serif.woff") format("woff");font-weight:400 900;font-display:swap}
+:root{--paper:#F4F4F0;--ink:#111;--muted:#6F6F68;--rule:#C7C7BE;--accent:#526657;color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:24px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.9 "Hiragino Sans","Yu Gothic",Meiryo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:4px}
+a:hover{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+.wrap{width:min(1240px,100% - 64px);margin-inline:auto}
+.header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:28px;border-bottom:1px solid var(--rule)}
+.brand{display:inline-flex;align-items:center;gap:13px;text-decoration:none;font-weight:700;white-space:nowrap}
+.mark{position:relative;width:27px;height:27px;flex:none}
+.mark::before,.mark::after{content:"";position:absolute;width:19px;height:19px;border:2px solid var(--ink)}
+.mark::before{top:0;left:0;border-right:0;border-bottom:0}
+.mark::after{bottom:0;right:0;border-left:0;border-top:0}
+.header nav{display:flex;gap:24px;font-size:13px}
+.header nav a{text-decoration:none}
+main{max-width:1000px;padding-block:76px 100px}
+.caption{color:var(--muted);font:11px/1.5 system-ui,sans-serif;letter-spacing:.12em;margin:0 0 24px}
+h1{font-family:"Studio Serif","Hiragino Mincho ProN","Yu Mincho",serif;font-size:clamp(30px,4.2vw,58px);font-weight:500;line-height:1.45;letter-spacing:-.025em;margin:0 0 28px;word-break:keep-all;overflow-wrap:anywhere}
+.intro{max-width:44em;color:var(--muted);margin:0 0 48px}
+h2{font-size:22px;line-height:1.6;font-weight:600;margin:0 0 16px}
+section{border-top:1px solid var(--rule);padding-top:28px;margin-top:44px}
+p{margin:0 0 18px}
+ul,ol{padding-left:1.4em;margin:16px 0 24px}
+li+li{margin-top:10px}
+.facts{margin:0}
+.facts>div{display:grid;grid-template-columns:180px minmax(0,1fr);gap:32px;padding-block:22px;border-top:1px solid var(--rule)}
+dt{font-size:14px;color:var(--muted)}
+dd{margin:0;overflow-wrap:anywhere}
+dd p:last-child{margin-bottom:0}
+.disclosure{position:relative;padding:28px 32px;background:#FFF;margin-bottom:36px}
+.disclosure::before,.disclosure::after{content:"";position:absolute;width:24px;height:24px;border:1px solid var(--ink)}
+.disclosure::before{left:0;top:0;border-right:0;border-bottom:0}
+.disclosure::after{right:0;bottom:0;border-left:0;border-top:0}
+.disclosure p:last-child{margin-bottom:0}
+.updated{font-size:12px;color:var(--muted);margin-top:48px}
+.footer{border-top:1px solid var(--rule);padding-block:28px 36px;display:flex;justify-content:space-between;gap:24px;font-size:12px;color:var(--muted)}
+.footer nav{display:flex;flex-wrap:wrap;gap:12px 24px}
+.footer a{text-decoration:none}
+@media(max-width:640px){.wrap{width:calc(100% - 32px)}.header{padding-block:22px;gap:16px;align-items:flex-start}.brand{font-size:14px;gap:9px}.mark{width:23px;height:23px}.mark::before,.mark::after{width:16px;height:16px}.header nav{gap:8px;flex-direction:column;font-size:12px}main{padding-block:48px 64px}.intro{margin-bottom:32px}h2{font-size:20px}.facts>div{grid-template-columns:1fr;gap:8px;padding-block:20px}.disclosure{padding:22px 20px}.footer{flex-direction:column;gap:16px}.footer nav{gap:10px 20px}}
