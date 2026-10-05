@@ -12,7 +12,7 @@
 | `assets/` | 同梱フォント、ライセンス、プレビュー画像 |
 | `CNAME` | 独自ドメイン |
 | `robots.txt` / `sitemap.xml` | 検索エンジン向けの案内 |
-| `operator.html` / `commerce.html` / `privacy.html` | 運営者情報・取引条件・プライバシーのページ。現在は公開前の確認用ブランチにのみ作成済み |
+| `operator.html` / `commerce.html` / `privacy.html` | 運営者情報・取引条件・プライバシーのページ |
 | `assets/legal.css` | 上記3ページ共通のフレーム・罫線・タイポグラフィ |
 | `DEPLOYMENT.md` | 公開、メール受信、Search Consoleの設定記録 |
 | `design-preview/` | デザインの確認画像。公開ファイルには含めません |
@@ -33,7 +33,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 GitHub Pagesは `gh-pages` ブランチのルートを配信します。`main` に保存する操作と公開する操作は別です。
 
-公開対象は `index.html`、`assets/`、`CNAME`、`robots.txt`、`sitemap.xml`、`.nojekyll` です。運営者情報等の3ページを公開する際は `operator.html`、`commerce.html`、`privacy.html` も含めます。現在は開示対応の準備と外部サービスの取扱いの確認が未完了なので、確認用ブランチにのみ保存し、`main`・`gh-pages` にはまだ反映しません。公開前の条件は [drafts/legal/README.md](drafts/legal/README.md) を参照してください。Search ConsoleのHTMLファイルで確認する場合は、その確認用ファイルも公開します。確認画像や運用資料は配信に含めません。
+公開対象は `index.html`、`assets/`、`CNAME`、`robots.txt`、`sitemap.xml`、`.nojekyll` です。運営者情報等の3ページを公開する際は `operator.html`、`commerce.html`、`privacy.html` も含めます。運営者の正式情報そのものはリポジトリへ保存しません。開示対応と外部サービスの取扱いの記録は [drafts/legal/README.md](drafts/legal/README.md) を参照してください。Search ConsoleのHTMLファイルで確認する場合は、その確認用ファイルも公開します。確認画像や運用資料は配信に含めません。
 
 公開後は、HTTPS応答・同梱画像とフォント・シミュレーション・フォームを確認します。メール送信の検証は応答を差し替えた画面テストと、所有者による実受信確認を区別してください。
 
