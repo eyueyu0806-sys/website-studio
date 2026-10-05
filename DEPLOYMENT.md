@@ -2,6 +2,8 @@
 
 完成版の公開先は GitHub Pages、独自ドメインは `pageatelier.jp` です。
 
+編集用の最新版は `main` ブランチ、配信ファイルは `gh-pages` ブランチです。今後の編集は `main` から開始します。`main` への保存だけでは公開内容は更新されないため、確認後に公開対象のファイルを `gh-pages` へ反映します。
+
 公開ファイルは `gh-pages` ブランチにあります。ルートの `CNAME` に独自ドメインを指定しています。ドメインはお名前.comで取得済みです。2026年10月5日に独自ドメインのHTTPS応答、公開HTMLとテスト済み完成版の一致、`www.pageatelier.jp` から正規URLへの転送を確認しました。所有者が `Enforce HTTPS` を有効にし、HTTPからHTTPSへの301転送とHTTPSの200応答を確認済みです。GitHub PagesのAPIでも `https_enforced: true`、ルートと `www` の証明書が `approved` であることを確認しました。
 
 ## 問い合わせ
@@ -55,3 +57,18 @@ DNSレコード設定用ネームサーバーは `01.dnsv.jp`、`02.dnsv.jp`、`
 DNS、HTTPS証明書、ページ本体、同梱フォント・画像、業種選択、Builderの生成と相談添付を確認してから公開完了とします。
 
 公式手順: [GitHub Pagesの独自ドメイン管理](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
+
+## Google検索 / Search Console
+
+正規URLは `https://pageatelier.jp/` です。HTMLのcanonicalとWebSite構造化データに同じURLを指定しています。`robots.txt` はクロールを許可し、`sitemap.xml` を案内します。サイトマップには実在するトップページのみを掲載します。セクションのアンカーや、シミュレーション内の架空のサイトを別ページとして登録しません。`lastmod` はページ内容を実際に変更したときに更新してください。
+
+Search Consoleは所有者のGoogleアカウントで登録します。所有者から提供されたHTML確認タグを `index.html` に追加しています。Search Console画面での所有権確認・サイトマップ送信・インデックス登録リクエストは所有者の操作待ちです。
+
+1. [Google Search Console](https://search.google.com/search-console/welcome)へログインします。
+2. 「URLプレフィックス」に `https://pageatelier.jp/` を入力します。
+3. 所有権確認の「HTMLタグ」を開き、発行されたmetaタグを `index.html` のheadへ追加して公開します。確認タグは以後も削除しません。
+4. 公開反映後にSearch Consoleへ戻り、「確認」を押します。
+5. 「サイトマップ」に `sitemap.xml` を送信します。
+6. 「URL検査」に `https://pageatelier.jp/` を入力し、必要に応じて「公開URLをテスト」した後、「インデックス登録をリクエスト」を押します。
+
+所有権確認の完了と検索結果への掲載は別の状態です。Search Consoleでインデックス状況を確認します。
