@@ -1090,7 +1090,28 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
 .proc li::before{width:10px;height:10px;border-radius:0;border-width:1px;top:-37px}
 .proc b{font-weight:500;font-size:15px}
 .proc p{font-size:12px}
-.plan{border-radius:0;box-shadow:none;background:none}
+.plans{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:56px;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+.plan{display:flex;flex-direction:column;min-width:0;padding:30px 28px;border:0;border-right:1px solid var(--line-2);border-radius:0;box-shadow:none;background:none}
+.plan:first-child{padding-left:0}.plan:last-child{padding-right:0;border-right:0}
+.plan h3{font-family:var(--studio-display);font-size:27px;line-height:1.5;font-weight:400;letter-spacing:-.035em}
+.plan .plan-caption{margin:0 0 12px;color:var(--accent);font-size:10px;letter-spacing:.1em}
+.plan .pp{font:500 clamp(32px,3.5vw,46px)/1.2 "Geist",var(--font);letter-spacing:-.045em;margin:20px 0 8px;white-space:nowrap}
+.plan .pp small{font-size:12px;letter-spacing:0;margin-left:7px;font-weight:400}
+.plan .plan-tax{margin:0 0 16px;color:var(--ink-2);font-size:11px}
+.plan .plan-for{margin:0 0 24px;color:var(--ink-2);font-size:13px;line-height:1.9;min-height:4em}
+.plan ul{margin:0 0 28px;padding-left:1.2em;font-size:13px;line-height:1.9;color:var(--ink)}
+.plan li+li{margin-top:6px}
+.plan .btn{margin-top:auto;width:100%;font-size:13px}
+.pricing-details{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:36px}
+.pricing-details>div{min-width:0}
+.pricing-details h3{font-size:15px;font-weight:500;margin:0 0 12px}
+.pricing-details p,.pricing-details ul,.pricing-details dl{font-size:13px;line-height:1.9;color:var(--ink-2);margin:0}
+.pricing-details ul{padding-left:1.2em}.pricing-details li+li{margin-top:8px}
+.pricing-details dl>div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.pricing-details dt,.pricing-details dd{margin:0}.pricing-details dd{flex:none;color:var(--ink)}
+.pricing-footnote{padding-top:24px;margin:24px 0 0;border-top:1px solid var(--line);font-size:12px;line-height:1.9;color:var(--ink-2)}
+.pricing-footnote a{text-underline-offset:3px}
+@media(max-width:980px){.plans{grid-template-columns:1fr;margin-top:40px}.plan,.plan:first-child,.plan:last-child{padding:28px 0;border-right:0;border-bottom:1px solid var(--line-2)}.plan:last-child{border-bottom:0}.plan .plan-for{min-height:0}.plan .pp{font-size:40px}.plan .btn{width:auto;align-self:flex-start}.pricing-details{grid-template-columns:1fr;gap:28px;margin-top:28px}}
 .qa summary{font-size:16px;font-weight:500}
 .qa-a{font-size:14px;line-height:1.95}
 .c-card{padding:0;gap:80px;background:none;border:0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -1618,8 +1639,29 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
         <div class="point rv" style="--rd:.08s"><span class="pi"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><b>機能ごとにわかる<wbr>お見積もり</b><p>どの機能にいくらかかるのかを分けてお出しします。予算に合わせて、優先順位を一緒に決められます。</p></div>
         <div class="point rv" style="--rd:.16s"><span class="pi"><svg class="ico" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15.4-6.4L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.4 6.4L3 16M3 21v-5h5"/></svg></span><b>公開後も、<wbr>続けて相談できる</b><p>更新や改善は月額でお任せいただけます。作って終わりにはしません。</p></div>
       </div>
-      <!-- プラン制を導入する場合は、スクリプト内の PLANS に追加すると表示されます -->
+      <!-- 料金は PLANS と取引条件ページで揃えて管理します -->
       <div class="plans" id="plans"></div>
+      <div class="pricing-details">
+        <div>
+          <h3>基本料金に含まれるもの</h3>
+          <ul>
+            <li>構成の整理、デザイン、スマホ対応、公開設定、検索向けの基本設定。</li>
+            <li>お問い合わせフォーム1つ、地図の掲載、外部の予約サービスやSNSへのリンク。</li>
+            <li>確認案に対する軽微な修正2回。まとめていただいたご要望への対応を1回と数えます。制作ミスの修正はこの回数に含めません。</li>
+            <li>プライバシーポリシー1ページの掲載は、原稿をご支給いただく場合、制作ページ数とは別に料金内で対応します。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>追加費用の目安（税込）</h3>
+          <dl>
+            <div><dt>既存デザインでのページ追加</dt><dd>1ページ 16,500円〜</dd></div>
+            <div><dt>3回目以降の軽微な修正</dt><dd>1回 5,500円〜</dd></div>
+            <div><dt>CMS・決済・会員・検索システム</dt><dd>個別見積り</dd></div>
+          </dl>
+          <p style="margin-top:16px">大幅な構成・デザインの変更、文章の新規作成、撮影、独自の予約機能などは別途お見積りします。ドメイン・サーバー・有料サービス等の実費は制作費に含みません。</p>
+        </div>
+      </div>
+      <p class="pricing-footnote">表示はすべて税込の基本料金・目安です。文章・写真はご支給を基本とし、掲載量・制作範囲・追加費用・納期を見積書で確認してから契約します。仕様・素材・着手金が揃ってから、制作1週間が目安です。支払いは銀行振込で着手前50％、最終確認後・公開前50％。月額サポートは任意で、制作費とは別です。詳しくは<a href="commerce.html#pricing">お取引条件</a>をご確認ください。</p>
       <div class="proc" id="proc">
         <h3 class="rv">ご相談から公開まで</h3>
         <ol>
@@ -1642,8 +1684,8 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
         <details class="qa"><summary>今あるホームページの作り直しもできますか？</summary><div class="qa-a"><p>できます。今のサイトの何が問い合わせの妨げになっているかを整理するところから始めます。</p></div></details>
         <details class="qa"><summary>このページで作った構成は、そのまま使えますか？</summary><div class="qa-a"><p>ご相談のたたき台になります。お話を伺ったうえで、あなたの事業に合わせて調整します。</p></div></details>
         <details class="qa"><summary>AIで作るのですか？</summary><div class="qa-a"><p>設計とデザインの判断は人が行います。作業の効率化には新しい技術を積極的に使っていて、そのぶん費用と時間を抑えています。</p></div></details>
-        <details class="qa"><summary>費用はどのくらいかかりますか？</summary><div class="qa-a"><p>必要な機能によって変わります。無料相談で構成を決めたあと、機能ごとの内訳つきでお見積もりします。</p></div></details>
-        <details class="qa"><summary>公開後に自分で更新できますか？</summary><div class="qa-a"><p>文章や写真の差し替えは、やり方をお伝えします。難しい部分は月額の運用サポートでお任せいただけます。</p></div></details>
+        <details class="qa"><summary>費用はどのくらいかかりますか？</summary><div class="qa-a"><p>基本料金は1ページ55,000円、5ページまで110,000円です。いずれも税込で、必要な機能や掲載量に応じて追加費用を事前にご案内します。月5,500円の更新サポートは任意です。無料相談で構成を確認し、内訳つきでお見積もりします。</p></div></details>
+        <details class="qa"><summary>公開後に自分で更新できますか？</summary><div class="qa-a"><p>文章や写真の差し替え方法をご案内します。管理画面から記事やページを更新する機能（CMS）は別途お見積りです。更新を任せたい場合は、任意の月額サポートをご利用いただけます。</p></div></details>
       </div>
     </div>
   </section>
@@ -1705,9 +1747,12 @@ const CONFIG = {
   CONTACT_SERVICE: 'https://formsubmit.co/ajax/',
   LINE_URL: 'https://line.me/R/ti/p/@your-line-id',
 };
-/* プラン制を導入するときはここに追加すると「費用と進め方」に表示されます
-   例: { name:'スタンダード', price:'〇〇円〜', for:'…な方に', items:['…','…'] } */
-const PLANS = [];
+/* すべて税込。内容を変更するときは commerce.html の料金と条件も揃えます。 */
+const PLANS = [
+  { name:'1ページ制作', caption:'01 / ONE PAGE', price:'55,000', unit:'円', for:'サービスやお店の情報を、ひとつのページにまとめたい方へ。', items:['1ページ・8セクションまで','スマホ対応のデザインと公開設定','フォーム・地図・外部予約リンク','軽微な修正2回'], cta:'制作内容を無料で相談する' },
+  { name:'小規模サイト制作', caption:'02 / WEBSITE', price:'110,000', unit:'円', for:'サービス・会社案内・実績などを、分けて伝えたい方へ。', items:['トップページを含む5ページまで','スマホ対応のデザインと公開設定','フォーム・地図・外部予約リンク','軽微な修正2回'], cta:'制作内容を無料で相談する' },
+  { name:'更新サポート', caption:'03 / SUPPORT', price:'5,500', unit:'円／月', for:'公開後の文章・写真の差し替えを任せたい方へ。任意のサービスです。', items:['月2回・合計60分までの軽微な更新','既存ページの文章・写真の差し替え','新規ページ・大幅な変更は別途見積り','1か月単位・翌月から解約可能'], cta:'更新について無料で相談する' },
+];
 
 const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (s, r = document) => r.querySelector(s);
@@ -2493,7 +2538,7 @@ $$('[data-line]').forEach(a => { a.href = CONFIG.LINE_URL; a.target = '_blank'; 
    Plans（任意）
    ========================================================= */
 if (PLANS.length) {
-  $('#plans').innerHTML = PLANS.map(p => `<div class="plan"><b>${p.name}</b><div class="pp">${p.price}</div><p>${p.for || ''}</p><ul>${(p.items || []).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-glass" href="#contact">このプランで相談</a></div>`).join('');
+  $('#plans').innerHTML = PLANS.map(p => `<article class="plan"><p class="plan-caption">${esc(p.caption)}</p><h3>${esc(p.name)}</h3><div class="pp">${esc(p.price)}<small>${esc(p.unit)}</small></div><p class="plan-tax">税込${p.unit.includes('月') ? '・任意の更新サポート' : '・基本料金'}</p><p class="plan-for">${esc(p.for || '')}</p><ul>${(p.items || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul><a class="btn btn-glass" href="#form">${esc(p.cta)}</a></article>`).join('');
 }
 
 // FRAME / SHIFT: one viewfinder follows the existing content, without moving DOM.
