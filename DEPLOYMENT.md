@@ -2,7 +2,7 @@
 
 完成版の公開先は GitHub Pages、独自ドメインは `pageatelier.jp` です。
 
-公開ファイルは `gh-pages` ブランチにあります。ルートの `CNAME` に独自ドメインを指定しています。ドメインはお名前.comで取得済みです。2026年10月5日に独自ドメインのHTTPS応答、公開HTMLとテスト済み完成版の一致、`www.pageatelier.jp` から正規URLへの転送を確認しました。HTTPからHTTPSへの強制転送はまだ無効です。GitHub連携のAPIにはPages設定の更新権限がないため、所有者が下記Pages画面で `Enforce HTTPS` を有効にしてください。
+公開ファイルは `gh-pages` ブランチにあります。ルートの `CNAME` に独自ドメインを指定しています。ドメインはお名前.comで取得済みです。2026年10月5日に独自ドメインのHTTPS応答、公開HTMLとテスト済み完成版の一致、`www.pageatelier.jp` から正規URLへの転送を確認しました。所有者が `Enforce HTTPS` を有効にし、HTTPからHTTPSへの301転送とHTTPSの200応答を確認済みです。GitHub PagesのAPIでも `https_enforced: true`、ルートと `www` の証明書が `approved` であることを確認しました。
 
 ## 問い合わせ
 
