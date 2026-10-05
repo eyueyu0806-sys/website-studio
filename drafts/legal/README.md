@@ -58,6 +58,8 @@ FormSubmitの所在国・保存国・処理国は公式資料から特定でき�
 
 料金設定の運用記録は [../../PRICING.md](../../PRICING.md) を参照してください。
 
+正式な契約当事者情報・仕様・見積り・納期・支払期限を記入するための空欄ひな形を [../../business/README.md](../../business/README.md) に用意しました。見積書は2プランのExcel、制作契約書はWord、任意の月額サポートは別のWord申込書です。正式情報や署名済み書類はGitHubへ保存せず、案件ごとに非公開で保管します。
+
 ## 確認した公式資料
 
 - 消費者庁・通信販売: https://www.no-trouble.caa.go.jp/what/mailorder/

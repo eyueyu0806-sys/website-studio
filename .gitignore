@@ -1,0 +1,3 @@
+# Signed or filled documents must normally be kept outside this repository.
+business/private/
+business/__pycache__/
