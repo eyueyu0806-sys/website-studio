@@ -1,5 +1,5 @@
 @font-face{font-family:"Studio Serif";src:url("fonts/studio-serif.woff") format("woff");font-weight:400 900;font-display:swap}
-:root{--paper:#F4F4F0;--ink:#111;--muted:#6F6F68;--rule:#C7C7BE;--accent:#526657;color-scheme:light}
+:root{--paper:#F4F4F0;--ink:#111;--muted:#55554F;--rule:#C7C7BE;--accent:#526657;color-scheme:light}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:24px}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.9 "Hiragino Sans","Yu Gothic",Meiryo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
