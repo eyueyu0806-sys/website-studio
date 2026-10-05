@@ -15,6 +15,7 @@
 | `operator.html` / `commerce.html` / `privacy.html` | 運営者情報・取引条件・プライバシーのページ |
 | `assets/legal.css` | 上記3ページ共通のフレーム・罫線・タイポグラフィ |
 | `DEPLOYMENT.md` | 公開、メール受信、Search Consoleの設定記録 |
+| `PRICING.md` | 基本料金・標準範囲・追加費用・見積り時の確認事項 |
 | `design-preview/` | デザインの確認画像。公開ファイルには含めません |
 
 今後このチャットで編集を依頼する場合は、`eyueyu0806-sys/website-studio` の `main` を指定してください。GitHubには変更履歴が残るので、以前の状態を参照できます。
