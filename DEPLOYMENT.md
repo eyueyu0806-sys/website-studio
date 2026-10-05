@@ -62,7 +62,7 @@ DNS、HTTPS証明書、ページ本体、同梱フォント・画像、業種選
 
 正規URLは `https://pageatelier.jp/` です。HTMLのcanonicalとWebSite構造化データに同じURLを指定しています。`robots.txt` はクロールを許可し、`sitemap.xml` を案内します。サイトマップには実在するトップページのみを掲載します。セクションのアンカーや、シミュレーション内の架空のサイトを別ページとして登録しません。`lastmod` はページ内容を実際に変更したときに更新してください。
 
-Search Consoleは所有者のGoogleアカウントで登録します。所有者から提供されたHTML確認タグを `index.html` に追加しています。Search Console画面での所有権確認・サイトマップ送信・インデックス登録リクエストは所有者の操作待ちです。
+Search Consoleは所有者のGoogleアカウントで登録します。所有者から提供されたHTML確認タグを `index.html` に追加し、2026年10月5日に公開URLからタグを読めることを確認しました。`robots.txt` と `sitemap.xml` も公開URLで正常に取得でき、`main` の内容と一致することを確認済みです。Search Console画面での所有権確認・サイトマップ送信・インデックス登録リクエストは所有者の操作待ちです。
 
 1. [Google Search Console](https://search.google.com/search-console/welcome)へログインします。
 2. 「URLプレフィックス」に `https://pageatelier.jp/` を入力します。
