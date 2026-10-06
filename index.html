@@ -934,6 +934,9 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
 .pv-tag{padding:0 10px;border:0;border-right:1px solid var(--line-2);border-radius:0;background:none;font-size:11px;font-weight:400;color:var(--ink-2)}
 .pv-tag:first-child{padding-left:0}
 .pv-note{font-size:10px}
+.preview-disclosure{display:flex;flex-wrap:wrap;gap:4px 12px;margin:12px 0 0;color:var(--ink-2);font-size:11px;line-height:1.8}
+.preview-disclosure strong{color:var(--accent);font-weight:500}
+@media(min-width:981px){.hero-stage .preview-disclosure{order:2;margin-right:12%}}
 .bsteps li{padding:15px 0;border-radius:0;border-bottom:1px solid var(--line);font-size:12px;font-weight:400}
 .bsteps li.on{background:none;color:var(--accent)}
 .bsteps .st{border-radius:0;border:1px solid var(--line-2);width:16px;height:16px}
@@ -1055,6 +1058,11 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
 .story{gap:80px;margin-top:52px}
 .work-meta h3{font-size:18px;font-weight:500}
 .work-meta p{font-size:13px}
+.work-meta .work-kind{color:var(--accent);font-size:11px;letter-spacing:.04em;margin:0 0 12px}
+.work-meta .work-scope{font-size:12px;line-height:1.8;color:var(--ink-2)}
+.work-capture{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.story-screen-note{margin:14px 0 0;color:var(--ink-2);font-size:11px;line-height:1.8;text-align:center}
+.portfolio-policy{padding-top:20px;margin:24px 0 0;border-top:1px solid var(--line);color:var(--ink-2);font-size:12px;line-height:1.9}
 .tags{gap:0}
 .tags span{padding:0 10px;background:none;border-right:1px solid var(--line-2);border-radius:0;font-size:11px;font-weight:400}
 .tags span:first-child{padding-left:0}
@@ -1377,7 +1385,7 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
     <nav class="nav" aria-label="メインメニュー">
       <a href="#build">体験する</a>
       <a href="#think">考え方</a>
-      <a href="#works">制作実績</a>
+      <a href="#works">制作例</a>
       <a href="#price">費用と進め方</a>
       <a href="#faq">よくある質問</a>
     </nav>
@@ -1414,7 +1422,8 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
 
       <div class="hero-stage" id="hero-stage">
         <p class="preview-caption"><span id="hero-scene-label">01 / REAL ESTATE</span><span id="hero-current">不動産のサイト設計</span></p>
-        <div id="pv-hero"></div>
+        <div id="pv-hero" aria-describedby="hero-sample-note"></div>
+        <p class="preview-disclosure" id="hero-sample-note"><strong>制作サンプル</strong><span>写真・物件・事例・数値は架空のデモです。</span></p>
         <div class="hero-personalize"><label for="hero-name">屋号を入れて、あなたのサイトに。</label><input id="hero-name" maxlength="20" autocomplete="organization" placeholder="例：みなと不動産" aria-controls="pv-hero"></div>
       </div>
       <div class="hero-insights">
@@ -1503,9 +1512,10 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
         </div>
 
         <div class="build-preview rv" style="--rd:.12s" id="build-preview">
-          <div id="pv-build"></div>
+          <div id="pv-build" aria-describedby="builder-sample-note"></div>
           <div class="pv-phone" id="pv-phone" aria-hidden="true"></div>
           <div class="pv-meta" id="pv-meta"></div>
+          <p class="preview-disclosure" id="builder-sample-note"><strong>制作サンプル</strong><span>写真・物件・事例・数値は架空のデモです。受託案件の実績ではありません。</span></p>
         </div>
       </div>
     </div>
@@ -1551,15 +1561,17 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
     <div class="wrap">
       <div class="sec-head rv">
         <h2 id="works-title">一件ずつ、<wbr>課題から<wbr>設計しています。</h2>
-        <p>見た目を整える前に、まず「なぜ探しにくいのか」を考えます。</p>
+        <p>自ら制作・運営しているサイトをご紹介します。受託案件の制作実績とは区別して掲載しています。</p>
       </div>
 
-      <!-- 実績は .story を複製して追加できます -->
+      <!-- 自主制作・自社運営の制作例。受託案件は掲載許可と担当範囲を確認して区分を明記します。 -->
       <div class="story" data-work="garage-house-navi">
         <div class="story-text">
           <div class="work-meta rv">
+            <p class="work-kind">自主制作・自社運営</p>
             <h3>GARAGE HOUSE NAVI</h3>
-            <p>ガレージハウス専門の不動産検索サイト（自社運営）</p>
+            <p>ガレージハウス専門の不動産検索サイト</p>
+            <p class="work-scope">自社サイトとしての制作・運営例です。お客様からの受託案件ではありません。</p>
             <div class="tags"><span>不動産</span><span>条件検索</span><span>リクエスト導線</span></div>
           </div>
           <div class="beat" data-beat="1">
@@ -1606,24 +1618,20 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
                   <span class="bp-arrow a1"></span><span class="bp-arrow a2"></span><span class="bp-arrow a3"></span>
                 </div>
                 <div class="scene sc3" aria-hidden="true">
-                  <div class="g-nav"><b>GARAGE HOUSE NAVI</b><span><span>物件を探す</span><span>エリア</span><span>GARAGE LIFE</span></span></div>
-                  <div class="g-hero"><svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice"><use href="#ill-garage" width="400" height="240"/></svg>
-                    <div class="g-copy"><small>A HOME FOR YOU.</small><b>愛車と暮らす、<br>理想の住まいを。</b></div></div>
-                  <div class="g-search"><div><small>エリア</small>大阪府</div><div><small>賃料</small>上限なし</div><div><small>ガレージ</small>2台以上</div><span>検索</span></div>
-                  <div class="g-spec"><span class="k">幅 5,500mm</span><span class="k">奥行 6,200mm</span><span class="k">高さ 2,400mm</span><span>電動シャッター</span><span>EV充電</span><span>バイク可</span></div>
+                  <img class="work-capture" src="assets/images/garagehouse-navi-desktop.webp" width="1440" height="900" loading="lazy" alt="GARAGE HOUSE NAVIの公開サイト、PC表示">
                 </div>
               </div></div>
               <div class="base"></div>
             </div>
-            <div class="phone" aria-hidden="true"><div class="phone-screen"><div class="ph-g">
-              <div class="g-nav"><b>GARAGE HOUSE NAVI</b></div>
-              <div class="g-hero"><svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice"><use href="#ill-garage" width="400" height="240"/></svg><div class="g-copy"><b>愛車と暮らす、<br>理想の住まいを。</b></div></div>
-              <div class="g-stack"><div><small>エリア</small>大阪府</div><div><small>ガレージ</small>2台以上</div><div><small>幅</small>5,500mm以上</div><span>検索</span></div>
-            </div></div></div>
+            <div class="phone" aria-hidden="true"><div class="phone-screen">
+              <img class="work-capture" src="assets/images/garagehouse-navi-mobile.webp" width="390" height="844" loading="lazy" alt="GARAGE HOUSE NAVIの公開サイト、スマートフォン表示">
+            </div></div>
           </div>
           <div class="dots" aria-hidden="true"><span class="on">課題</span><span>設計</span><span>完成</span></div>
+          <p class="story-screen-note">課題・設計は説明図です。完成は公開サイトの実画面です（2026年10月6日撮影）。</p>
         </div>
       </div>
+      <p class="portfolio-policy">制作体験の架空サイトは「制作サンプル」、自社のサイトは「自主制作・自社運営」と表記しています。受託案件は、お客様の掲載許可を得たうえで担当範囲を明記して掲載します。</p>
     </div>
   </section>
 
@@ -1725,7 +1733,7 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
   <div class="wrap">
     <div class="ft-grid">
       <div><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>専門サイト工房</a><p>業種に合わせたWebサイトの設計と制作</p></div>
-      <nav aria-label="フッターメニュー"><a href="#build">体験する</a><a href="#think">考え方</a><a href="#works">制作実績</a><a href="#price">費用と進め方</a><a href="#faq">よくある質問</a><a href="#contact">お問い合わせ</a></nav>
+      <nav aria-label="フッターメニュー"><a href="#build">体験する</a><a href="#think">考え方</a><a href="#works">制作例</a><a href="#price">費用と進め方</a><a href="#faq">よくある質問</a><a href="#contact">お問い合わせ</a></nav>
     </div>
     <div class="ft-legal">
       <span>© <span id="year">2026</span> 専門サイト工房</span>
@@ -2249,7 +2257,7 @@ function syncOptions() {
   if (state.purpose) tags.push(PURPOSES[state.purpose].label);
   if (state.features.size) tags.push(`機能 ${state.features.size}つ`);
   if (state.done) return;
-  $('#pv-meta').innerHTML = tags.map(t => `<span class="pv-tag">${t}</span>`).join('') + '<span class="pv-note">プレビューはイメージです</span>';
+  $('#pv-meta').innerHTML = tags.map(t => `<span class="pv-tag">${t}</span>`).join('') + '<span class="pv-note">制作サンプル</span>';
 }
 function refresh(opts = {}) {
   syncOptions();
@@ -2419,7 +2427,7 @@ function showResult(focus) {
     $('#r-count').textContent = `全${res.pages.length + 1}ページ`;
     phonePv.apply(s);
     $('#build-preview').classList.add('done');
-    $('#pv-meta').innerHTML = [INDUSTRIES[s.industry].label, s.purpose && PURPOSES[s.purpose].label].filter(Boolean).map(t => `<span class="pv-tag">${t}</span>`).join('') + '<span class="pv-note">完成イメージ（PC・スマホ）</span>';
+    $('#pv-meta').innerHTML = [INDUSTRIES[s.industry].label, s.purpose && PURPOSES[s.purpose].label].filter(Boolean).map(t => `<span class="pv-tag">${t}</span>`).join('') + '<span class="pv-note">制作サンプル（PC・スマホ）</span>';
     $('#r-feats').innerHTML = res.features.map((f, i) => `<span class="chip" style="--i:${i}">${icon(FEATURES[f].icon)}${FEATURES[f].label}</span>`).join('');
     $('#r-why').textContent = res.reason;
     // res.design があれば #ai-slot に描画する（将来のAI生成用）
