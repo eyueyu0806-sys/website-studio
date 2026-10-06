@@ -2,6 +2,8 @@
 
 2026年10月7日版。編集できるWord3冊と、表示確認用のPDF3冊を`pageatelier-operations-kit.zip`にまとめています。顧客情報・正式な運営者情報・銀行情報・認証情報は未記入です。
 
+追加の比較結果は[集客方針の推奨・比較結果（Word）](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/operations/04-acquisition-recommendation.docx)と[PDF](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/operations/04-acquisition-recommendation.pdf)。業種・媒体・予算・接続の判断は、こちらを先に読んでください。既存の3冊のZIPには含めていません。
+
 ## ダウンロード
 
 [Word・PDF一式をダウンロード](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/operations/pageatelier-operations-kit.zip)
@@ -19,10 +21,10 @@ Wordのナビゲーションウィンドウを使うと各章・プロンプト�
 1. 受託の全体像は`02`の「01 今日から使う手順」「05 2週間の制作計画」を読む。
 2. 最初の相談が来たら、非公開の案件フォルダを作り、`03`の共通ルール・案件ブリーフ・P01/P02で整理する。
 3. 見積り・契約は、上位の`business/`にある最新の空欄ひな形をコピーして使う。2週間の目安と案件ごとの確定日を区別する。
-4. 集客自動化は`01`の「11 起床後に決めるもの」から、対象業種・SNS1媒体・月額許容額・記事/計測の追加範囲を決める。
+4. 集客方針は`04`の比較結果から、対象業種・SNS1媒体・月額許容額・記事/計測の追加範囲を決める。
 5. アカウント接続と初期ルールが揃ったら、`01`の「10 導入の順番」「13 実装担当者向けの設定表」で導入する。
 
-初期対象は、小規模な不動産会社の静的な会社紹介・相談獲得サイトという仮案です。物件検索DB等を標準料金に含めません。対象業種は所有者が変更できます。
+`01`は前夜の仮案です。追加の`04`では、小規模リフォーム・外構施工会社を主力候補、売却・管理特化の不動産会社を次点に推奨しています。自動化の本体もGitHub Actionsを先に検討し、n8nは業務連携が増えてから再評価します。どちらも未採用の提案で、対象業種・媒体・費用は所有者が判断できます。物件検索DB等を標準料金に含めません。
 
 ## 完了したもの・未導入のもの
 

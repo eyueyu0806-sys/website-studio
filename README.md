@@ -19,7 +19,7 @@
 | `PORTFOLIO.md` | 制作サンプル・自主制作・受託案件の区分、画面と許可の扱い |
 | `LAUNCH-CHECKLIST.md` | LINE接続、非公開書類、検索掲載、反響対応など残りの作業 |
 | `business/` | 個人情報未記入の見積書・制作契約書・任意サポート申込書。記入済み書類は非公開で別に保管 |
-| `business/operations/` | 集客自動化設計・受託から納品の手順・35本のAIプロンプト。Word/PDF一式付き |
+| `business/operations/` | 集客自動化設計・受託から納品の手順・35本のAIプロンプト・業種/媒体/予算/接続の比較結果。Word/PDF付き |
 | `design-preview/` | デザインの確認画像。公開ファイルには含めません |
 
 今後このチャットで編集を依頼する場合は、`eyueyu0806-sys/website-studio` の `main` を指定してください。GitHubには変更履歴が残るので、以前の状態を参照できます。
