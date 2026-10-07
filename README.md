@@ -22,7 +22,7 @@
 | `business/operations/` | 集客自動化設計・受託から納品の手順・35本のAIプロンプト・業種/媒体/予算/接続の比較結果。Word/PDF付き |
 | `for-builders.html` / `journal/` | 施工会社向けの制作案内と、依頼前の判断材料となる記事 |
 | `content/journal/` / `scripts/` | 確認済み記事の元原稿、生成・検査・公開・予約・SNS/AI接続の処理 |
-| `assets/site-config.js` / `assets/marketing.js` | 公開設定と、同意制の解析準備。GA4のIDは未設定 |
+| `assets/site-config.js` / `assets/marketing.js` | 公開設定と、同意制の解析準備。GA4の測定IDは取得済み。拡張計測のオフ確認まで停止 |
 | `.github/workflows/` | サイト検証、確認済み記事公開、Instagram投稿、AI下書き。外部接続前は配信しない |
 | `business/marketing/` | 接続手順、投稿文、LINE文案、広告草案、非公開コピーで使う空欄の相談管理Excel |
 | `design-preview/` | デザインの確認画像。公開ファイルには含めません |

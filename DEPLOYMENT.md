@@ -168,3 +168,7 @@ mainの169e7c6で、for-builders.html、制作の手引き4記事、元JSON、�
 GitHubのサイト検証run 37577697054はsuccess。記事公開run 37578053340はPUBLICATION_TOKEN未接続のため配信なし、SNS run 37578056161も接続不足のため投稿なしを確認しました。成功表示を実際の配信成功とは混同しません。GA4は本人が未作成と回答し、IDは空欄で停止しています。
 
 今後の操作はbusiness/marketing/connection-guide.md、実行結果と全作業の状態はbusiness/operations/05-launch-execution.mdを参照してください。初期記事は公開済みですが、週次自動公開・Instagram実投稿・AI生成・広告は接続前です。正式情報・顧客情報を記入した書類は非公開で保管します。
+
+## GA4測定ID取得（2026年10月7日）
+
+本人のタグ詳細画像でG-64G59Z1ERSを取得し、assets/site-config.jsへ設定しました。拡張計測機能オフの確認が未完了のためga4Enabledはfalseで停止。タグの重複設定スイッチと拡張計測機能は別です。1440px・1200px・390pxの既存機能、応答差替の同意/拒否/撤回、Googleの実タグによる送信直前データの非個人情報化を確認。GA4管理画面の実着信は未確認です。現在の状態はbusiness/marketing/ga4-status.mdを参照してください。

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const config = window.PAGE_ATELIER_CONFIG || {};
-  const validId = /^G-[A-Z0-9]{5,20}$/.test(config.ga4MeasurementId || '');
+  const validId = config.ga4Enabled !== false && /^G-[A-Z0-9]{5,20}$/.test(config.ga4MeasurementId || '');
   const sources = new Set(['instagram', 'google', 'line', 'journal', 'referral']);
   const media = new Set(['social', 'cpc', 'article', 'referral']);
   const campaigns = new Set(['builders_launch', 'builders_guide']);
