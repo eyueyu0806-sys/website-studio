@@ -1,0 +1,59 @@
+name: Create article draft (no publication)
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: '0=対応エリア / 1=会社紹介 / 2=外部予約'
+        type: choice
+        options: ['0', '1', '2']
+        default: '0'
+permissions:
+  contents: read
+concurrency:
+  group: pageatelier-marketing
+  cancel-in-progress: false
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ secrets.PUBLICATION_TOKEN }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+      DRAFT_TOPIC: ${{ inputs.topic }}
+    steps:
+      - name: Check required connections
+        id: connection
+        run: |
+          if [ -n "$GH_TOKEN" ] && [ -n "$OPENAI_API_KEY" ] && [ -n "$OPENAI_MODEL" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "AI/publication connections are incomplete. No API call or charge."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        if: steps.connection.outputs.ready == 'true'
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        if: steps.connection.outputs.ready == 'true'
+        with:
+          python-version: '3.12'
+      - name: Create a draft, never a published article
+        if: steps.connection.outputs.ready == 'true'
+        run: python3 scripts/generate_draft.py --topic "$DRAFT_TOPIC"
+      - name: Persist reserved API attempts and drafts
+        if: always() && steps.connection.outputs.ready == 'true'
+        run: |
+          set -e
+          git config user.name 'Page Atelier Automation'
+          git config user.email 'automation@users.noreply.github.com'
+          git config credential.helper '!gh auth git-credential'
+          if [ -d content/drafts ]; then
+            git add content/drafts
+            if ! git diff --cached --quiet; then
+              git commit -m 'Save unreviewed article draft or reserved API attempt'
+              git push origin HEAD:main
+            fi
+          fi

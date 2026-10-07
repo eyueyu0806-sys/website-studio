@@ -1,0 +1,50 @@
+name: Release reviewed content
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Monday 09:00 Asia/Tokyo; execution may be delayed
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pageatelier-marketing
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      GH_TOKEN: ${{ secrets.PUBLICATION_TOKEN }}
+    steps:
+      - name: Check required connection without exposing it
+        id: connection
+        run: |
+          if [ -n "$GH_TOKEN" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "PUBLICATION_TOKEN is not connected. Nothing is published."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        if: steps.connection.outputs.ready == 'true'
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        if: steps.connection.outputs.ready == 'true'
+        with:
+          python-version: '3.12'
+      - name: Release at most one approved article and publish checked files
+        if: steps.connection.outputs.ready == 'true'
+        run: |
+          set -e
+          git config user.name 'Page Atelier Automation'
+          git config user.email 'automation@users.noreply.github.com'
+          git config credential.helper '!gh auth git-credential'
+          python3 scripts/release_queue.py --publish-approved
+          python3 scripts/check_site.py
+          git add content/journal journal for-builders.html sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Release reviewed editorial article'
+            git push origin HEAD:main
+          fi
+          python3 scripts/publish_site.py --publish

@@ -1,0 +1,25 @@
+name: Verify public site
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - run: python3 scripts/build_content.py
+      - run: git diff --exit-code -- for-builders.html journal sitemap.xml
+      - run: python3 scripts/check_site.py
+      - run: python3 -m compileall -q scripts
+      - run: node --check assets/marketing.js && node --check assets/site-config.js
