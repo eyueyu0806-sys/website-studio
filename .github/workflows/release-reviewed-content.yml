@@ -40,6 +40,10 @@ jobs:
           git config user.name 'Page Atelier Automation'
           git config user.email 'automation@users.noreply.github.com'
           git config credential.helper '!gh auth git-credential'
+          # Authenticate the saved token and check push access even when nothing is due.
+          test "$(gh api "repos/$GITHUB_REPOSITORY" --jq '.permissions.push')" = 'true'
+          git push --dry-run origin HEAD:refs/heads/main
+          git push --dry-run origin refs/remotes/origin/gh-pages:refs/heads/gh-pages
           python3 scripts/release_queue.py --publish-approved
           python3 scripts/check_site.py
           git add content/journal journal for-builders.html sitemap.xml
