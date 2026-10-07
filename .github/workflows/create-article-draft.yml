@@ -21,6 +21,7 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
       DRAFT_TOPIC: ${{ inputs.topic }}
+      PERSIST_DRAFT_TO_GIT: 'true'
     steps:
       - name: Check required connections
         id: connection
@@ -42,7 +43,12 @@ jobs:
           python-version: '3.12'
       - name: Create a draft, never a published article
         if: steps.connection.outputs.ready == 'true'
-        run: python3 scripts/generate_draft.py --topic "$DRAFT_TOPIC"
+        run: |
+          set -e
+          git config user.name 'Page Atelier Automation'
+          git config user.email 'automation@users.noreply.github.com'
+          git config credential.helper '!gh auth git-credential'
+          python3 scripts/generate_draft.py --topic "$DRAFT_TOPIC"
       - name: Persist reserved API attempts and drafts
         if: always() && steps.connection.outputs.ready == 'true'
         run: |

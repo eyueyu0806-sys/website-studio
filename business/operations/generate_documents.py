@@ -16,6 +16,7 @@ LABELS = {
     '02-delivery-operations': ('02 / DELIVERY', '無料相談から、公開・引渡しまで。', '開始条件、2週間の工程、修正、承認、入金、納品を順番に進めます。'),
     '03-ai-prompts': ('03 / PROMPTS', '各工程で使う、35本のプロンプト。', '共通ルールと案件ブリーフを添えて、必要な工程だけコピーして使います。'),
     '04-acquisition-recommendation': ('04 / STRATEGY', '誰に、どこで、いくらで届けるか。', '業種・媒体・予算・接続の比較結果。外部サービスの最新料金・統計は未照合です。'),
+    '05-launch-execution': ('05 / LAUNCH', '公開できたものと、接続するもの。', '実装・表示・公開の検証記録と、本人のログインが必要な接続の手順。'),
 }
 
 def set_font(run, name=FONT, size=None, color=None, bold=None):

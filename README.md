@@ -20,6 +20,11 @@
 | `LAUNCH-CHECKLIST.md` | LINE接続、非公開書類、検索掲載、反響対応など残りの作業 |
 | `business/` | 個人情報未記入の見積書・制作契約書・任意サポート申込書。記入済み書類は非公開で別に保管 |
 | `business/operations/` | 集客自動化設計・受託から納品の手順・35本のAIプロンプト・業種/媒体/予算/接続の比較結果。Word/PDF付き |
+| `for-builders.html` / `journal/` | 施工会社向けの制作案内と、依頼前の判断材料となる記事 |
+| `content/journal/` / `scripts/` | 確認済み記事の元原稿、生成・検査・公開・予約・SNS/AI接続の処理 |
+| `assets/site-config.js` / `assets/marketing.js` | 公開設定と、同意制の解析準備。GA4のIDは未設定 |
+| `.github/workflows/` | サイト検証、確認済み記事公開、Instagram投稿、AI下書き。外部接続前は配信しない |
+| `business/marketing/` | 接続手順、投稿文、LINE文案、広告草案、非公開コピーで使う空欄の相談管理Excel |
 | `design-preview/` | デザインの確認画像。公開ファイルには含めません |
 
 今後このチャットで編集を依頼する場合は、`eyueyu0806-sys/website-studio` の `main` を指定してください。GitHubには変更履歴が残るので、以前の状態を参照できます。
@@ -33,6 +38,10 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 サイト制作体験はルールベースです。編集時は業種・目的・機能の選択、屋号、生成結果、プレビュー、相談への構成添付を維持してください。
+
+記事の元原稿を編集したら `python3 scripts/build_content.py` で生成し、`python3 scripts/check_site.py` でページ・リンク・素材・canonical・サイトマップを検査します。アプリの配信には引き続き依存パッケージの導入は不要です。
+
+現在の実行状況と本人の接続手順は [実行結果](business/operations/05-launch-execution.md) と [接続ガイド](business/marketing/connection-guide.md) を参照してください。GA4実着信、Instagram実投稿、記事の週次公開、AI生成・広告は接続完了前で、稼働済みとは扱いません。
 
 ## 公開
 

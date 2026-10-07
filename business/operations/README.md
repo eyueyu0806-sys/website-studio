@@ -4,6 +4,8 @@
 
 追加の比較結果は[集客方針の推奨・比較結果（Word）](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/operations/04-acquisition-recommendation.docx)と[PDF](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/operations/04-acquisition-recommendation.pdf)。業種・媒体・予算・接続の判断は、こちらを先に読んでください。既存の3冊のZIPには含めていません。
 
+その後の実装・公開・検証と、本人の接続が必要な残作業は[05 実行結果（Word）](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/operations/05-launch-execution.docx)と[PDF](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/operations/05-launch-execution.pdf)。現在の状態を知るときはこちらを優先します。[集客開始セット](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/marketing/pageatelier-launch-kit.zip)には画像、投稿文、接続手順、空欄管理表を含みます。
+
 ## ダウンロード
 
 [Word・PDF一式をダウンロード](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/operations/pageatelier-operations-kit.zip)
@@ -30,7 +32,7 @@ Wordのナビゲーションウィンドウを使うと各章・プロンプト�
 
 LINEへのリンクは公開サイトの全3ボタンに接続済みです。友だち追加・相談の実受信・返信・通知は本人のスマホで確認してください。
 
-この一式は設計と手順の作成です。記事の自動生成・公開、SNS配信、広告、解析、CRM・LINE APIの自動連携はまだ稼働していません。今回は外部への投稿・営業連絡・広告課金をしていません。導入には本人のアカウント接続、費用の設定、対象と公開ルールの確定が必要です。
+`01`〜`03`は設計と手順の書類です。その後、業種ページ・4記事の公開とワークフロー登録まで実施しました。GA4、週次記事公開、SNS配信、AI生成、広告は接続が残っています。通常の記事公開と未接続の自動配信を区別します。外部への営業連絡・SNS投稿・広告課金は実行していません。最新の実行状態は`05`を参照してください。
 
 通常の記事は合意した品質ゲートで予約公開でき、料金・顧客実績・契約・予算の変更等は確認へ送る設計です。受託の契約・実入金・公開承認はAIの推定で代用しません。
 
