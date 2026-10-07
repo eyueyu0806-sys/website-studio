@@ -41,7 +41,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 記事の元原稿を編集したら `python3 scripts/build_content.py` で生成し、`python3 scripts/check_site.py` でページ・リンク・素材・canonical・サイトマップを検査します。アプリの配信には引き続き依存パッケージの導入は不要です。
 
-現在の実行状況と本人の接続手順は [実行結果](business/operations/05-launch-execution.md) と [接続ガイド](business/marketing/connection-guide.md) を参照してください。GA4は測定ID設定済みで同意後のみ計測します。GA4管理画面でのアクセス受信は本人が確認済みです。各操作イベントの実受信、Instagram実投稿、記事の週次公開、AI生成・広告は未確認です。
+現在の実行状況と本人の接続手順は [実行結果](business/operations/05-launch-execution.md) と [接続ガイド](business/marketing/connection-guide.md) を参照してください。GA4は測定ID設定済みで同意後のみ計測します。GA4管理画面でのアクセス受信は本人が確認済みです。各操作イベントの実受信、Instagram実投稿、記事の日次公開、AI生成・広告は未確認です。
 
 ## 公開
 
@@ -52,3 +52,5 @@ GitHub Pagesは `gh-pages` ブランチのルートを配信します。`main` �
 公開後は、HTTPS応答・同梱画像とフォント・シミュレーション・フォームを確認します。メール送信の検証は応答を差し替えた画面テストと、所有者による実受信確認を区別してください。
 
 具体的なドメイン設定と受信確認状況は [DEPLOYMENT.md](DEPLOYMENT.md) を参照してください。
+
+毎日配信の14日分のテーマと継続方法は[毎日公開の運用計画](business/marketing/daily-publishing-plan.md)を参照してください。記事14本・投稿文14件・JPEG14点を準備済み。Instagramの実接続は別途必要です。

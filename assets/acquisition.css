@@ -31,7 +31,7 @@ body{background:#fff}
 .article-list{margin:0;padding:0;list-style:none}.article-list li{margin:0;border-top:1px solid var(--rule)}
 .article-list a{display:grid;grid-template-columns:100px 1fr 30px;gap:20px;padding:24px 0;text-decoration:none;align-items:start}.article-list time{font-size:12px;color:var(--muted)}
 .article-list h2,.article-list h3{font-size:21px;line-height:1.6;margin:0 0 10px}.article-list p{font-size:14px;color:var(--muted);margin:0}.article-list a:hover h2,.article-list a:hover h3{color:var(--accent)}
-.reading{max-width:850px}.reading h1{font-size:clamp(30px,4vw,49px)}.reading h2{font-family:'Studio Serif',serif;font-size:26px}.reading section{margin-top:38px;padding-top:28px}
+.reading{max-width:850px}.reading h1{font-size:clamp(30px,4vw,49px);word-break:normal;overflow-wrap:break-word;line-break:strict}.reading h2{font-family:'Studio Serif',serif;font-size:26px}.reading section{margin-top:38px;padding-top:28px}
 .reading .article-meta{font-size:12px;color:var(--muted);margin-bottom:25px}.reading .intro{font-size:17px;max-width:none}
 .reading aside{padding:24px;background:var(--paper);border-left:2px solid var(--accent);margin-top:38px}.reading aside h2{font-size:21px}
 .back{font-size:13px;display:inline-block;margin-bottom:30px}.breadcrumbs{font-size:12px;color:var(--muted);margin-bottom:25px}

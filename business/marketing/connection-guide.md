@@ -19,10 +19,10 @@
 3. 期限と失効時の交換日を非公開メモへ残す。期限切れのときは自動公開を止め、トークンの無期限運用を前提にしない。
 4. https://github.com/eyueyu0806-sys/website-studio/settings/secrets/actions を開き、New repository secretで名前 **PUBLICATION_TOKEN** として保存する。値はこの管理画面だけへ入力する。
 5. https://github.com/eyueyu0806-sys/website-studio/actions の `Release reviewed content` → Run workflowで初回確認する。公開日より前なら公開対象なしになる。
-6. 記事公開は月曜09:00日本時間の予約。GitHubの実行は遅延する場合がある。10月12日、19日の確認済み記事を各1本用意した。公開済みの4記事とは別。
+6. 記事公開は毎日09:00日本時間の予約、1日最大1本。GitHubの実行は遅延する場合がある。10月8日〜21日の確認済み記事14本を用意した。公開済みの4記事とは別。
 7. 処理はmainへ記事を保存し、公開対象のみgh-pagesへ反映する。Pagesのビルドと公開URLが正常かを確認する。公開済みの同じ記事は再度キューから出ない。
 
-2026年10月7日の[接続テストrun 37627676705](https://github.com/eyueyu0806-sys/website-studio/actions/runs/37627676705)はsuccess。トークンによる認証、main/gh-pagesへのpush dry-run、10 HTML・30公開ファイルの検査を確認した。当日は公開期日前のため予約キューを維持し、新記事の保存・本番pushは行っていない。初回の実予約公開は10月12日09:00日本時間の枠以降。GitHubの実行は遅れる場合がある。トークン期限は画面から本人が非公開で記録し、期限前に同じSecretの値を交換する。
+2026年10月7日の[接続テストrun 37627676705](https://github.com/eyueyu0806-sys/website-studio/actions/runs/37627676705)はsuccess。トークンによる認証、main/gh-pagesへのpush dry-run、10 HTML・30公開ファイルの検査を確認した。当日は公開期日前のため予約キューを維持し、新記事の保存・本番pushは行っていない。毎日運用に変更し、初回の実予約公開は10月8日09:00日本時間の枠以降。GitHubの実行は遅れる場合がある。トークン期限は画面から本人が非公開で記録し、期限前に同じSecretの値を交換する。
 
 このトークンはGitHub Actions側の設定です。クラウド環境設定に保存しただけではActionsへ移りません。現在のGitHub連携の認証情報を取り出して流用することもしません。
 
@@ -33,14 +33,14 @@
 3. https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-instagram-login の正式なアプリ設定・OAuth手順に従い、本人のアカウントを許可する。権限は `instagram_business_basic` と `instagram_business_content_publish`。標準／上位アクセス、アプリのモードや審査の要否は本人の利用形態で確認する。
 4. 自動投稿に必要なアカウントID、対象APIバージョン、アクセストークンを取得する。トークンとその期限は非公開で管理。
 5. 同じGitHub設定のSecretsに **INSTAGRAM_ACCESS_TOKEN**、Variablesに **INSTAGRAM_ACCOUNT_ID** と **INSTAGRAM_API_VERSION** を保存する。公式の取得済み公開資料の例は `v25.0`。これが常に最新だと決めつけず、アプリで利用可能な版を確認する。
-6. 投稿JPEGは `assets/marketing/`、投稿文は `business/marketing/social-posts.json`。確認済み4件を月曜／木曜09:00の枠へ用意した。公開可能日より前には送らない。
+6. 投稿JPEGは `assets/marketing/`、投稿文は `business/marketing/social-posts.json`。確認済み14件を10月8日〜21日の毎日枠へ用意した。10:00と18:00に準備を確認し、最大1日1件だけ送る。対応する記事が公開済みでなければ延期し、公開可能日より前には送らない。
 7. `Publish reviewed Instagram post` を初回実行して、投稿ID・画像・本文をInstagram本体で確認する。現在は実投稿未確認。送信結果不明の記録がある投稿を、確認せず再実行しない。
 
 Metaが画像を取得できる公開HTTPSのJPEGを使います。公式公開資料でJPEGのみ対応と確認したためPNGを送る実装にはしていません。権限・認証期限・画像取得・実投稿の全確認後に接続完了とします。
 
 ## 4. AI API：初期公開には必須ではない
 
-確認済み4記事と2本の予約記事にはAIのAPI接続は不要。原稿の追加生成を使う場合だけ接続します。
+公開済み4記事と14本の予約記事にはAIのAPI接続は不要。原稿の追加生成を使う場合だけ接続します。
 
 1. 本人のOpenAI APIアカウントでプロジェクト・請求設定・現在のモデル価格を確認する。ChatGPTの月額契約とは別の課金。
 2. GitHub Secretsに **OPENAI_API_KEY**、Variablesに **OPENAI_MODEL** を保存する。モデルは本人のアカウントで使える、構造化出力対応の文章用モデルを実単価から選ぶ。
@@ -57,3 +57,5 @@ Metaが画像を取得できる公開HTTPSのJPEGを使います。公式公開�
 Search Consoleでトップ・業種ページ・記事のURL検査、サイトマップ `https://pageatelier.jp/sitemap.xml` の送信状態を確認。リクエスト済みとインデックス済みは別です。
 
 広告は、実受信・GA4着信・有効相談の記録・業種ページが確認できてから。`google-ads-draft.md`に草案を保存。Google広告の本人の請求・期間・予算設定と実際の検索数・単価を確認するまで出稿しません。GA4から広告への計測連携は未実装・未検証です。
+
+毎日運用のテーマ・品質確認・継続方法は[daily-publishing-plan.md](daily-publishing-plan.md)を参照。

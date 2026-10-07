@@ -13,6 +13,24 @@ ROOT=Path(__file__).resolve().parents[1]
 LEDGER=ROOT/'business/marketing/publication-log.json'
 POSTS=ROOT/'business/marketing/social-posts.json'
 BASE='https://graph.instagram.com'
+JST=timezone(timedelta(hours=9))
+
+def article_ready(post):
+    path=post.get('article_path')
+    if not path:return True
+    assert re.fullmatch(r'/journal/[a-z0-9-]+\.html',path)
+    url='https://pageatelier.jp'+path
+    try:
+        with request.urlopen(url,timeout=20) as response:
+            return response.status==200 and response.headers.get_content_type()=='text/html' and ('<link rel="canonical" href="'+url+'">').encode() in response.read(256000)
+    except (error.HTTPError,error.URLError,TimeoutError):return False
+
+def posting_day(entry):
+    stamp=entry.get('published_at')
+    if not stamp and entry.get('posting_day'):return entry['posting_day']
+    stamp=stamp or entry.get('at')
+    if not stamp:raise RuntimeError('Publication ledger lacks a date; inspect before publishing.')
+    return datetime.fromisoformat(stamp.replace('Z','+00:00')).astimezone(JST).date().isoformat()
 
 def save(data):
     temp=LEDGER.with_suffix('.tmp');temp.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n');temp.replace(LEDGER)
@@ -44,6 +62,10 @@ def publish(post_id=None, dry_run=True):
         if post_id in ledger:print('Recorded post: '+post_id+'. Not publishing again.');return
         active=[p for p in active if p['id']==post_id]
     if not active:print('No due reviewed social post.');return
+    if any(entry.get('state') in {'creating','created','publishing'} for entry in ledger.values()):
+        raise RuntimeError('An unresolved Instagram attempt exists. Inspect its result before sending another post.')
+    if any(entry.get('state')=='published' and posting_day(entry)==today for entry in ledger.values()):
+        print('One Instagram post already published today. No additional post is sent.');return
     post=sorted(active,key=lambda p:(p['publish_after'],p['id']))[0]
     assert re.fullmatch(r'[a-z0-9-]{1,80}',post['id'])
     assert re.fullmatch(r'https://pageatelier\.jp/assets/marketing/[a-z0-9-]+\.jpg',post['image_url'])
@@ -53,10 +75,12 @@ def publish(post_id=None, dry_run=True):
     token=os.environ.get('INSTAGRAM_ACCESS_TOKEN');account=os.environ.get('INSTAGRAM_ACCOUNT_ID');version=os.environ.get('INSTAGRAM_API_VERSION')
     if not token or not account or not version:raise RuntimeError('Set INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_ACCOUNT_ID and INSTAGRAM_API_VERSION securely first.')
     assert re.fullmatch(r'\d+',account) and re.fullmatch(r'v\d+\.0',version)
+    if not article_ready(post):
+        print('Linked article is not publicly available yet. Defer Instagram post: '+post['id']);return
     with request.urlopen(post['image_url'],timeout=20) as response:
         assert response.status==200 and response.headers.get_content_type()=='image/jpeg'
         assert response.read(2)==b'\xff\xd8'
-    ledger[post['id']]={'state':'creating','at':datetime.now(timezone.utc).isoformat()};save(ledger)
+    ledger[post['id']]={'state':'creating','at':datetime.now(timezone.utc).isoformat(),'posting_day':today};save(ledger)
     try:
         container=api('/'+version+'/'+account+'/media',token,{'image_url':post['image_url'],'caption':post['caption']})['id']
         ledger[post['id']].update(state='created',container_id=container);save(ledger)

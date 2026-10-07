@@ -1,30 +1,408 @@
 [
   {
-    "id": "builder-website-checklist",
+    "id": "builder-first-view",
     "reviewed": true,
     "publish_after": "2026-10-08",
-    "image_url": "https://pageatelier.jp/assets/marketing/builder-website-checklist.jpg",
-    "caption": "工事の強みが、伝わるサイトへ。\n\n対応する工事・地域・施工例・会社情報・相談方法。制作前に揃える情報と、1ページ／複数ページの選び方を整理します。\n\n施工会社のサイトに必要な情報を、制作の手引きで整理しています。\n記事：https://pageatelier.jp/journal/builder-website-checklist.html\n\nリフォーム・外構・工務店向けの制作範囲と料金は、プロフィールのリンクから。税込55,000円から。必要条件が揃ってから2週間が目安です。相談・制作体験だけで有料契約は成立しません。\n\n#ホームページ制作 #リフォーム会社 #外構工事 #工務店 #PageAtelier"
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-first-view.jpg",
+    "article_path": "/journal/builder-first-view.html",
+    "caption": "施工写真がきれいでも、「何の工事を頼める会社か」が分からないと、相談先として判断しにくいことがあります。\n\n最初の画面を、次の3つから整理してみてください。\n① 主な工事：水まわり、内装、外構など、実際に対応する内容。\n② 対応地域：「近郊」だけでなく、通常対応する市区町村。\n③ 相談先：押した後にできることが分かるボタン。\n\n見出しの書き方の例は「A市の住まいに、水まわりのリフォームを。」です。仮の地域名なので、公開時は自社の対応地域へ置き換えます。\n\nスマホで開き、画面にある情報だけでこの3つを説明できるか、確認してみましょう。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「施工会社のトップページで、最初に伝える3つのこと」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "01",
+      "topic": "はじめの画面",
+      "layout": "notes",
+      "headline": "工事と地域を、\n最初の一画面に。",
+      "summary": "写真を選ぶ前に、伝える順番を決める。",
+      "points": [
+        {
+          "label": "何を頼めるか",
+          "text": "主な工事を、見出しの言葉に。"
+        },
+        {
+          "label": "どこへ対応するか",
+          "text": "市区町村を、写真とは別に読める形へ。"
+        },
+        {
+          "label": "どこから相談するか",
+          "text": "ボタンの言葉を、移動先と揃える。"
+        }
+      ]
+    }
   },
   {
-    "id": "one-page-or-multiple",
+    "id": "builder-service-scope",
+    "reviewed": true,
+    "publish_after": "2026-10-09",
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-service-scope.jpg",
+    "article_path": "/journal/builder-service-scope.html",
+    "caption": "「内装工事」と書くだけでは、自分の相談が対象か迷う人もいます。\n\nサービス紹介は、次の順番で整理できます。\n・相談者の困りごと：壁紙を張り替えたい、部屋の使い方を変えたい。\n・会社の対応：実際に受けられる工事と、確認が必要な条件。\n・相談の準備：場所や現況など、最初に分かる範囲で知らせてほしい情報。\n\n得意な工事と、関連する工事の説明量も分けてみてください。すべてを同じ長さで並べるより、受けたい相談を整理できます。\n\nまだ対応していない工事を、サイトの見栄えのために付け足す必要はありません。自社が実際に提供できる内容から始めましょう。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「対応する工事を、サイトで分かりやすく整理する方法」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "02",
+      "topic": "対応する工事",
+      "layout": "comparison",
+      "headline": "「何でも」を、\n頼める内容へ。",
+      "summary": "専門用語だけで終わらせない。",
+      "points": [
+        {
+          "label": "相談者の言葉",
+          "text": "壁紙を張り替えたい。収納を増やしたい。"
+        },
+        {
+          "label": "会社の対応",
+          "text": "実際に扱う工事名と、確認する条件。"
+        },
+        {
+          "label": "最初の一歩",
+          "text": "相談時に、何を知らせてほしいか。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "builder-service-area",
+    "reviewed": true,
+    "publish_after": "2026-10-10",
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-service-area.jpg",
+    "article_path": "/journal/builder-service-area.html",
+    "caption": "会社の所在地が分かっても、隣の市から相談できるかは分からないことがあります。\n\n対応エリアは、3つに分けて案内できます。\n① 通常対応する市区町村。\n② 工事内容などの条件で判断する地域。\n③ 対象外の場合の相談方法。\n\n小規模工事と長期間の工事で方針が違う場合は、社内で確認してから掲載してください。出張費などがある場合も、条件を揃えます。\n\n地図に加えて文字の一覧を置くと、スマホでも探しやすくなります。初回の地域確認だけなら、詳しい番地まで必要かも見直してみましょう。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「施工会社の対応エリアを、曖昧にせず伝えるための整理」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "03",
+      "topic": "対応エリア",
+      "layout": "checklist",
+      "headline": "「近郊」は、\nどこまでですか。",
+      "summary": "所在地の地図だけでは、伝わらないこと。",
+      "points": [
+        {
+          "label": "通常対応の地域",
+          "text": "市区町村を、文字で一覧にする。"
+        },
+        {
+          "label": "地域外の扱い",
+          "text": "条件による対応は、相談方法を添える。"
+        },
+        {
+          "label": "最初に聞く場所",
+          "text": "地域確認なら、市区町村から始める。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "builder-project-story",
+    "reviewed": true,
+    "publish_after": "2026-10-11",
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-project-story.jpg",
+    "article_path": "/journal/builder-project-story.html",
+    "caption": "完成写真に、工事の理由を一言添えてみてください。\n\n施工例の原稿は、4つの欄で整理できます。\n・工事内容：何を施工したか。\n・相談の背景：どんな困りごとがあったか。\n・対応したこと：何を確認し、どう工夫したか。\n・確認できる結果：完了後に確かめられたこと。\n\n費用や工期は記録と照合し、その案件の条件として記します。お客様の感想も、本人の言葉と掲載許可を確認してから。\n\n写真だけでは見えない工夫が、短い説明で伝わります。保存して、次の施工例を準備する際のメモにしてください。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「施工例に何を書く？写真と一緒に伝えたい4つの情報」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "04",
+      "topic": "施工例の説明",
+      "layout": "notes",
+      "headline": "写真の隣に、\n仕事の理由を。",
+      "summary": "完成写真を、依頼の判断材料へ。",
+      "points": [
+        {
+          "label": "どんな相談だったか",
+          "text": "個人情報を外し、背景を短く。"
+        },
+        {
+          "label": "どう対応したか",
+          "text": "実際に確認・工夫した点を説明する。"
+        },
+        {
+          "label": "何を確認できるか",
+          "text": "費用・工期・結果は、記録から確かめる。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "builder-inquiry-route",
     "reviewed": true,
     "publish_after": "2026-10-12",
-    "image_url": "https://pageatelier.jp/assets/marketing/one-page-or-multiple.jpg",
-    "caption": "1ページで足りる？分けた方がいい？\n\n会社紹介・施工例・サービスの説明量から、1ページと複数ページを比較。料金だけでなく更新方法と制作範囲も確認します。\n\n施工会社のサイトに必要な情報を、制作の手引きで整理しています。\n記事：https://pageatelier.jp/journal/one-page-or-multiple.html\n\nリフォーム・外構・工務店向けの制作範囲と料金は、プロフィールのリンクから。税込55,000円から。必要条件が揃ってから2週間が目安です。相談・制作体験だけで有料契約は成立しません。\n\n#ホームページ制作 #リフォーム会社 #外構工事 #工務店 #PageAtelier"
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-inquiry-route.jpg",
+    "article_path": "/journal/builder-inquiry-route.html",
+    "caption": "相談ボタンを目立たせる前に、その先まで一度通してみましょう。\n\n① ボタンの前で、対応する工事と地域が分かるか。\n② フォームの完了だけでなく、会社の受信先に届くか。\n③ LINEの友だち追加から、受信・返信まで進められるか。\n\n窓口を増やすほど、確認する場所も増えます。受信担当者、通知、不在時の対応を揃えることも導線づくりの一部です。\n\nLINEのクリック数は、メッセージや受注の数とは違います。実際の相談、返信、見積り、契約を分けて記録すると、どこを直すか判断しやすくなります。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「施工会社のサイトで、相談先を見つけやすくするための確認項目」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "05",
+      "topic": "相談への導線",
+      "layout": "steps",
+      "headline": "ボタンの先まで、\nつながっていますか。",
+      "summary": "クリックと、相談の到着は別の確認。",
+      "points": [
+        {
+          "label": "依頼できると分かる",
+          "text": "工事・地域・相談の条件を案内する。"
+        },
+        {
+          "label": "実際に届く",
+          "text": "フォームもLINEも、受信側まで試す。"
+        },
+        {
+          "label": "返信できる",
+          "text": "通知・担当者・不在時の対応を決める。"
+        }
+      ]
+    }
   },
   {
-    "id": "project-photo-permission",
+    "id": "builder-sample-labels",
+    "reviewed": true,
+    "publish_after": "2026-10-13",
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-sample-labels.jpg",
+    "article_path": "/journal/builder-sample-labels.html",
+    "caption": "実績がまだ少ないときも、サンプルはデザインや構成を伝える材料になります。\n\nそのときは、区分を画像の近くに示します。\n・実案件：依頼を受けた仕事と担当範囲。\n・自主制作：自分で制作・運営するサイト。\n・制作サンプル：架空の構成や素材を使った例。\n\n他社のサイトを少し変えただけで、自社の実績として紹介できるようになるわけではありません。画像・文章・ロゴの利用条件と、実際の関与を確認してください。\n\nPage Atelierの施工会社向けページも、架空の構成を使った制作サンプルと明記しています。施工した工事や受託実績の紹介ではありません。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「制作サンプルと施工実績を、サイトで正しく分ける方法」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "06",
+      "topic": "実績とサンプル",
+      "layout": "comparison",
+      "headline": "見せるものに、\n正しい名前を。",
+      "summary": "実案件・自主制作・架空の例を分ける。",
+      "points": [
+        {
+          "label": "実案件",
+          "text": "依頼された仕事と、自分の担当範囲。"
+        },
+        {
+          "label": "自主制作",
+          "text": "自分で制作・運営しているサイト。"
+        },
+        {
+          "label": "制作サンプル",
+          "text": "架空の構成や素材を使った例示。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "builder-mobile-check",
+    "reviewed": true,
+    "publish_after": "2026-10-14",
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-mobile-check.jpg",
+    "article_path": "/journal/builder-mobile-check.html",
+    "caption": "スマホ対応は、画面の幅に収まることに加えて、相談まで操作できることも確認します。\n\nトップ → サービス → 施工例 → 対応エリア → 相談、と進んでみてください。\n・文字は写真に埋もれていないか。\n・固定ヘッダーや案内が、ボタンを隠していないか。\n・入力を間違えたとき、直す場所が分かるか。\n・通信に失敗した場合、書いた文章が残るか。\n\nテスト送信は受信担当者と合わせ、実際の到着まで確認します。記録は「端末・ブラウザ・日付・問題・対応」の5項目から始められます。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「施工会社のサイトをスマホで確認する、公開前のチェック手順」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "07",
+      "topic": "スマホで確認",
+      "layout": "checklist",
+      "headline": "小さく見るより、\n最後まで触る。",
+      "summary": "公開前に、相談の経路を一度通す。",
+      "points": [
+        {
+          "label": "読む",
+          "text": "文字・写真・地域名が欠けていないか。"
+        },
+        {
+          "label": "押す",
+          "text": "メニュー・相談先・戻る操作を試す。"
+        },
+        {
+          "label": "送る",
+          "text": "入力エラー、失敗時の保持、実受信まで。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "builder-photo-selection",
     "reviewed": true,
     "publish_after": "2026-10-15",
-    "image_url": "https://pageatelier.jp/assets/marketing/project-photo-permission.jpg",
-    "caption": "施工写真を、載せるその前に。\n\n施主・撮影者への確認、住所や人物の写り込み、公開範囲の記録。施工写真を安全に準備する実務チェックです。\n\n施工会社のサイトに必要な情報を、制作の手引きで整理しています。\n記事：https://pageatelier.jp/journal/project-photo-permission.html\n\nリフォーム・外構・工務店向けの制作範囲と料金は、プロフィールのリンクから。税込55,000円から。必要条件が揃ってから2週間が目安です。相談・制作体験だけで有料契約は成立しません。\n\n#ホームページ制作 #リフォーム会社 #外構工事 #工務店 #PageAtelier"
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-photo-selection.jpg",
+    "article_path": "/journal/builder-photo-selection.html",
+    "caption": "施工例の写真は、枚数より役割から選べます。\n\n① 全景：何を施工したか。\n② 工夫した部分：相談にどう応えたか。\n③ 仕上がりの詳細：どこを見てほしいか。\n\n必ず3枚必要という意味ではありません。1枚で説明できるなら、同じ角度の重複を減らしても伝えられます。\n\n施工前後は、同じ案件・同じ場所かを確認し、段階の表示を添えます。制作会社へは、元画像、表示順、各写真の説明、使用できる範囲を一緒に渡してください。\n\n写真を選ぶことと、公開許可の確認は別の作業です。掲載前に両方を確かめましょう。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「施工写真の選び方：全景・工夫・仕上がりを一組にする」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "08",
+      "topic": "施工写真の選び方",
+      "layout": "notes",
+      "headline": "たくさんより、\n伝わる一組を。",
+      "summary": "同じ角度の写真を増やす前に。",
+      "points": [
+        {
+          "label": "全景",
+          "text": "何の工事か、仕上がりが分かる。"
+        },
+        {
+          "label": "工夫",
+          "text": "相談に応えた場所を、説明と一緒に。"
+        },
+        {
+          "label": "詳細",
+          "text": "見てほしい仕上がりを、必要な分だけ。"
+        }
+      ]
+    }
   },
   {
-    "id": "website-estimate-comparison",
+    "id": "builder-contact-fields",
+    "reviewed": true,
+    "publish_after": "2026-10-16",
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-contact-fields.jpg",
+    "article_path": "/journal/builder-contact-fields.html",
+    "caption": "初回の相談フォームは、工事を確定するための調査票と役割が違います。\n\n項目ごとに、次の3つを書いてみてください。\n・何を聞くか。\n・最初の返信で何に使うか。\n・必須か任意か、誰が確認するか。\n\n使い道を説明できない項目は、後から聞く方法も検討できます。詳しい住所や写真は、初回に必要か見直します。\n\n自由記入欄には「希望する工事、困っていること、希望時期を分かる範囲で」のように短い例を。送信後の案内は、会社が実際に返信できる運用と揃えてください。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「施工会社の相談フォームで、最初に聞く項目を決める方法」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "09",
+      "topic": "相談フォーム",
+      "layout": "comparison",
+      "headline": "最初に聞くことを、\n必要な分だけ。",
+      "summary": "初回相談と、現地調査を分ける。",
+      "points": [
+        {
+          "label": "返信に必要",
+          "text": "名前・返信先・相談の概要。"
+        },
+        {
+          "label": "対応の判断",
+          "text": "工事の種類・市区町村など。"
+        },
+        {
+          "label": "後から確認",
+          "text": "詳細住所・図面・写真が必要になる段階。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "builder-material-handoff",
+    "reviewed": true,
+    "publish_after": "2026-10-17",
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-material-handoff.jpg",
+    "article_path": "/journal/builder-material-handoff.html",
+    "caption": "原稿と写真がメールやLINEへ分散すると、どれを掲載するか迷いやすくなります。\n\n素材は、役割で分けて準備できます。\n① 会社情報とロゴ。\n② サービス・対応地域の原稿。\n③ 施工例ごとの写真と説明。\n④ 掲載する法務原稿。\n\n写真番号と説明文を対応させ、元画像も残します。原稿には日付や版、最終確認した担当者を記してください。\n\n足りない素材は「何が不足／誰が用意／いつ渡す」を一覧に。顧客情報やパスワードは、公開用素材へ混ぜないようにしましょう。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「ホームページ制作の素材を、迷わず渡すためのフォルダ整理」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "10",
+      "topic": "素材の準備",
+      "layout": "steps",
+      "headline": "素材が揃うと、\n制作が進みます。",
+      "summary": "最新版が、誰にでも分かる渡し方。",
+      "points": [
+        {
+          "label": "分ける",
+          "text": "会社情報・サービス・施工例・法務原稿。"
+        },
+        {
+          "label": "揃える",
+          "text": "写真番号、説明文、使用できる範囲。"
+        },
+        {
+          "label": "確認する",
+          "text": "最新版・担当者・不足分の支給予定。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "builder-domain-handoff",
+    "reviewed": true,
+    "publish_after": "2026-10-18",
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-domain-handoff.jpg",
+    "article_path": "/journal/builder-domain-handoff.html",
+    "caption": "完成URLを受け取ったあと、どこで編集するか分かりますか。\n\n制作の依頼前に、次を確認しておくと引き渡しが明確になります。\n・ドメインの所有者、更新期限、請求先。\n・サイトの公開先と管理アカウント。\n・受け取るデータと、編集・公開の手順。\n・フォームの受信先、LINEなど外部窓口の管理者。\n\n静的サイトとCMSでは更新方法が違います。自分で施工例を追加したい場合は、希望する操作を見積り時に伝えてください。\n\n管理情報は非公開で保管し、認証情報を公開リポジトリへ載せないようにします。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「サイト公開後に困らないための、ドメインとデータの引き渡し確認」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "11",
+      "topic": "公開後の管理",
+      "layout": "checklist",
+      "headline": "完成したあとも、\n自分のサイトに。",
+      "summary": "URLだけで終わらせない引き渡し。",
+      "points": [
+        {
+          "label": "所有者",
+          "text": "ドメインと公開先は、誰のアカウントか。"
+        },
+        {
+          "label": "データ",
+          "text": "何を受け取り、どこで編集・公開するか。"
+        },
+        {
+          "label": "問い合わせ",
+          "text": "会社側の窓口で、受信・返信できるか。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "builder-update-planning",
     "reviewed": true,
     "publish_after": "2026-10-19",
-    "image_url": "https://pageatelier.jp/assets/marketing/website-estimate-comparison.jpg",
-    "caption": "見積りは、範囲まで比べる。\n\n税込価格、ページ数、支給素材、追加作業、更新費、2週間の開始条件。見積書を比較するための具体的な確認項目をまとめました。\n\n施工会社のサイトに必要な情報を、制作の手引きで整理しています。\n記事：https://pageatelier.jp/journal/website-estimate-comparison.html\n\nリフォーム・外構・工務店向けの制作範囲と料金は、プロフィールのリンクから。税込55,000円から。必要条件が揃ってから2週間が目安です。相談・制作体験だけで有料契約は成立しません。\n\n#ホームページ制作 #リフォーム会社 #外構工事 #工務店 #PageAtelier"
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-update-planning.jpg",
+    "article_path": "/journal/builder-update-planning.html",
+    "caption": "公開後に施工例を追加したいなら、更新する頻度と担当者を依頼前に考えておきます。\n\n年に数回の内容修正なら、制作会社への依頼で対応しやすい場合があります。頻繁な追加には管理画面を検討できますが、写真の許可や原稿の確認はどちらでも必要です。\n\n更新依頼は「対象URL・変更箇所・新しい原稿・画像・希望日」を一組に。\n\nPage Atelierの任意サポートは税込月5,500円、既存ページの軽微な更新を月2回・合計60分まで。新規ページ、追加機能、大幅な変更などは別途見積りです。CMSは標準プランに自動で含まれません。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「施工例を追加したいとき、公開前に決めておく更新方法」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "12",
+      "topic": "更新の決め方",
+      "layout": "comparison",
+      "headline": "「追加したい」を、\n続けられる方法へ。",
+      "summary": "静的サイトと、管理画面の使い分け。",
+      "points": [
+        {
+          "label": "頻度",
+          "text": "年に数回か、施工例を頻繁に増やすか。"
+        },
+        {
+          "label": "担当者",
+          "text": "自分で更新する時間と、操作の希望。"
+        },
+        {
+          "label": "範囲",
+          "text": "文章の差し替えか、新しいページか。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "builder-production-timeline",
+    "reviewed": true,
+    "publish_after": "2026-10-20",
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-production-timeline.jpg",
+    "article_path": "/journal/builder-production-timeline.html",
+    "caption": "Page Atelierの制作期間は、仕様・必要素材・着手金が揃ってから2週間、14日間が目安です。実際の納期は案件ごとに合意します。\n\n相談した日が、そのまま制作開始日になるわけではありません。\n・ページと機能の範囲を決める。\n・掲載する文章と写真を揃える。\n・会社側の確認担当者を決める。\n・フォームの実受信や公開承認の時間も確保する。\n\n制作費は銀行振込で着手前50％、最終確認後・公開前50％。素材や範囲が変わる場合は、費用と納期も確認します。公開希望日がある場合は、最初の相談で知らせてください。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「サイト制作の「2週間」はいつから？開始条件と確認工程を整理する」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "13",
+      "topic": "制作の進め方",
+      "layout": "steps",
+      "headline": "2週間は、\nいつからですか。",
+      "summary": "問い合わせ日と、着手日を分ける。",
+      "points": [
+        {
+          "label": "開始条件",
+          "text": "仕様・必要素材・着手金が揃う。"
+        },
+        {
+          "label": "確認工程",
+          "text": "担当者を決め、要望をまとめる。"
+        },
+        {
+          "label": "公開前",
+          "text": "受信テスト・最終承認・残金確認。"
+        }
+      ]
+    }
+  },
+  {
+    "id": "builder-site-plan-review",
+    "reviewed": true,
+    "publish_after": "2026-10-21",
+    "image_url": "https://pageatelier.jp/assets/marketing/builder-site-plan-review.jpg",
+    "article_path": "/journal/builder-site-plan-review.html",
+    "caption": "ページ数や機能が決まっていなくても、サイト設計の体験から整理できます。\n\n業種・目的・機能を選んだら、構成を次の3つで見てみてください。\n① 実際に載せられる文章・写真があるか。\n② 今の目的に必要な情報か。\n③ 標準対応か、追加の相談が必要な機能か。\n\n生成結果は相談用のたたき台です。CMS・検索・独自予約・決済などを選んでも、基本料金へ自動的に含まれるわけではありません。\n\n体験した構成はフォームへ添付できます。希望と迷っている点を一緒に送ってください。体験や無料相談だけで有料契約は成立しません。\n\n詳しい手順は、プロフィールのリンク →「制作の手引き」→「制作体験でできたサイト構成を、見積り相談へつなげる確認方法」へ。\n\n#ホームページ制作 #工務店 #リフォーム会社 #外構工事 #PageAtelier",
+    "card": {
+      "number": "14",
+      "topic": "サイト設計の体験",
+      "layout": "notes",
+      "headline": "選んだ構成を、\n相談の入口に。",
+      "summary": "業種・目的・機能の3ステップから。",
+      "points": [
+        {
+          "label": "当てはめる",
+          "text": "構成に、用意できる原稿と写真を置く。"
+        },
+        {
+          "label": "分ける",
+          "text": "必要な機能と、追加相談する機能。"
+        },
+        {
+          "label": "伝える",
+          "text": "構成を添付し、迷っている点も送る。"
+        }
+      ]
+    }
   }
 ]

@@ -1,7 +1,7 @@
 name: Publish reviewed Instagram post
 on:
   schedule:
-    - cron: '0 0 * * 1,4' # Monday / Thursday 09:00 Asia/Tokyo
+    - cron: '0 1,9 * * *' # Daily 10:00 / 18:00 Asia/Tokyo; at most one post per day
   workflow_dispatch:
 permissions:
   contents: read
@@ -44,6 +44,7 @@ jobs:
           git config user.name 'Page Atelier Automation'
           git config user.email 'automation@users.noreply.github.com'
           git config credential.helper '!gh auth git-credential'
+          python3 scripts/check_daily_content.py
           python3 scripts/publish_instagram.py --publish
       - name: Persist even incomplete publication attempts to prevent duplicates
         if: always() && steps.connection.outputs.ready == 'true'

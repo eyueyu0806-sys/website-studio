@@ -12,11 +12,11 @@
 - [施工会社向けページ](https://pageatelier.jp/for-builders.html)、[制作の手引き4記事](https://pageatelier.jp/journal/)、サイトマップ・内部リンク・共有画像。
 - 1440px・1200px・390pxの表示、制作体験、構成添付、同意・送信成功/失敗を応答差替で確認。JavaScript例外なし。
 - GitHub Actionsのサイト検証を実行し成功。予約公開・SNS・AI下書きのワークフローを登録。
-- GitHub自動公開用PUBLICATION_TOKENを本人が保存。トークン認証・main/gh-pagesへのpush dry-run・公開ファイル検査が成功。初回の実予約公開は10月12日以降に確認する。
+- GitHub自動公開用PUBLICATION_TOKENを本人が保存。トークン認証・main/gh-pagesへのpush dry-run・公開ファイル検査が成功。初回の実予約公開は10月8日以降に確認する。
 
 ## 本人の接続待ち
 
-1. **Instagram**：本人のプロフェッショナルアカウント・公式OAuth・投稿権限・ID・トークンを接続。画像と投稿文4件は準備済み。実投稿は未確認。
+1. **Instagram**：本人のプロフェッショナルアカウント・公式OAuth・投稿権限・ID・トークンを接続。画像と投稿文14件は準備済み。実投稿は未確認。
 2. **LINE**：本人のスマホで友だち追加・あいさつ・受信・返信・通知を確認し、[初期文面](business/marketing/line-copy.md)を実際の返信時間に合わせて設定。
 3. **Search Console**：新しいページとサイトマップ、実際のインデックス状態を確認。所有権確認・リクエスト済みという報告と、実掲載を区別。
 
@@ -24,8 +24,8 @@
 
 ## 接続後に進める
 
-- 確認済みの記事2本を10月12日・19日以降に週1本公開。公開URL・Pages build・重複なしを実確認。
-- Instagramを週2枠で初回投稿し、画像・本文・投稿IDを本人の画面で確認。
+- 確認済みの記事14本を10月8日〜21日に1日1本の枠で公開。公開URL・Pages build・重複なしを実確認。
+- Instagramを毎日最大1件の設定で接続し、初回投稿の画像・本文・投稿IDを本人の画面で確認。
 - AIの追加下書きを使う場合のみAPIと実単価を確認。下書きは品質確認後に予約キューへ入れる。
 - [空欄相談管理Excel](business/marketing/lead-tracker-template.xlsx)を非公開で使い、実受信・有効相談・契約・工数・費用を記録。
 - Google検索広告は実受信・計測・本人の請求設定・実際の検索数と単価確認後。30日20,000円の検証枠。草案は[こちら](business/marketing/google-ads-draft.md)。未出稿。
