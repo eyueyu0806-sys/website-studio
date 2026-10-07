@@ -1,6 +1,7 @@
 /* Public configuration only. Never put API keys or customer information here. */
 window.PAGE_ATELIER_CONFIG = Object.freeze({
-  ga4MeasurementId: '', // Set the owner's G-... ID after disabling enhanced measurement.
+  ga4MeasurementId: 'G-64G59Z1ERS',
+  ga4Enabled: true, // Owner confirmed enhanced measurement is off on 2026-10-07.
   consentVersion: '2026-10-07',
   lineUrl: 'https://lin.ee/VZsDkE9'
 });
