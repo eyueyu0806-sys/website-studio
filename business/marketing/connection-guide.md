@@ -1,6 +1,6 @@
 # 本人の操作が必要な接続
 
-2026年10月7日。サイトと記事は公開済み。GA4作成と測定ID `G-64G59Z1ERS` は本人の画像で確認済み。本人から拡張計測機能オフの回答を受け、同意後のみの計測を有効にした。クラウド実行環境のAI/Instagram認証情報は未設定です。GitHubのSecrets/Variables一覧の参照は現連携がHTTP 403となり、本人のトークンも未提供のため、リポジトリ設定から本人が接続します。APIキーやトークンをチャットに貼らないでください。
+2026年10月7日。サイトと記事は公開済み。GA4作成と測定ID `G-64G59Z1ERS` は本人の画像で確認済み。本人から拡張計測機能オフの回答を受け、同意後のみの計測を有効にした。クラウド実行環境のAI/Instagram認証情報は未設定です。GitHubのSecrets/Variables一覧の参照は現連携がHTTP 403のため、本人がActionsへPUBLICATION_TOKENを保存した。2026年10月7日の手動テストで、トークンの認証とmain/gh-pagesへの変更なしのpush検査が成功。APIキーやトークンをチャットに貼らないでください。
 
 ## 1. GA4：最初に行う
 
@@ -12,7 +12,7 @@
 6. 公開サイトで解析への同意を選び、GA4のリアルタイムで閲覧を確認する。同意しない／同意撤回でも制作体験とフォームが使えることを確認する。コードの接続試験は応答を差し替えた検証。その後、本人からGA4管理画面でアクセスを確認できたと報告を受けた。操作イベントごとの管理画面受信は別途確認。
 7. `generate_lead` はフォームサービスの成功応答で送るイベント。GA4でキーイベントに指定する場合も、実受信や有効相談・契約とは別に扱う。`line_click` を問い合わせ完了として数えない。
 
-## 2. 自動公開用GitHub接続
+## 2. 自動公開用GitHub接続（接続テスト済み）
 
 1. https://github.com/settings/personal-access-tokens/new でFine-grained personal access tokenを作成。実際の画面で本人のResource ownerと `website-studio` のみを選ぶ。
 2. Repository permissionsの **Contents: Read and write** を設定する。Metadataは必要な読み取り。今回の公開処理にSecrets管理・顧客データ・他のリポジトリへの権限は不要。組織の承認が必要な場合はその正式な手順を使う。
@@ -21,6 +21,8 @@
 5. https://github.com/eyueyu0806-sys/website-studio/actions の `Release reviewed content` → Run workflowで初回確認する。公開日より前なら公開対象なしになる。
 6. 記事公開は月曜09:00日本時間の予約。GitHubの実行は遅延する場合がある。10月12日、19日の確認済み記事を各1本用意した。公開済みの4記事とは別。
 7. 処理はmainへ記事を保存し、公開対象のみgh-pagesへ反映する。Pagesのビルドと公開URLが正常かを確認する。公開済みの同じ記事は再度キューから出ない。
+
+2026年10月7日の[接続テストrun 37627676705](https://github.com/eyueyu0806-sys/website-studio/actions/runs/37627676705)はsuccess。トークンによる認証、main/gh-pagesへのpush dry-run、10 HTML・30公開ファイルの検査を確認した。当日は公開期日前のため予約キューを維持し、新記事の保存・本番pushは行っていない。初回の実予約公開は10月12日09:00日本時間の枠以降。GitHubの実行は遅れる場合がある。トークン期限は画面から本人が非公開で記録し、期限前に同じSecretの値を交換する。
 
 このトークンはGitHub Actions側の設定です。クラウド環境設定に保存しただけではActionsへ移りません。現在のGitHub連携の認証情報を取り出して流用することもしません。
 

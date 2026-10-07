@@ -12,13 +12,13 @@
 - [施工会社向けページ](https://pageatelier.jp/for-builders.html)、[制作の手引き4記事](https://pageatelier.jp/journal/)、サイトマップ・内部リンク・共有画像。
 - 1440px・1200px・390pxの表示、制作体験、構成添付、同意・送信成功/失敗を応答差替で確認。JavaScript例外なし。
 - GitHub Actionsのサイト検証を実行し成功。予約公開・SNS・AI下書きのワークフローを登録。
+- GitHub自動公開用PUBLICATION_TOKENを本人が保存。トークン認証・main/gh-pagesへのpush dry-run・公開ファイル検査が成功。初回の実予約公開は10月12日以降に確認する。
 
 ## 本人の接続待ち
 
-1. **GitHub自動公開**：Actions SecretsへPUBLICATION_TOKENを本人が設定。現在の連携はSecrets/Variables管理にHTTP 403。接続前の実行で、配信しないことを確認済み。
-2. **Instagram**：本人のプロフェッショナルアカウント・公式OAuth・投稿権限・ID・トークンを接続。画像と投稿文4件は準備済み。実投稿は未確認。
-3. **LINE**：本人のスマホで友だち追加・あいさつ・受信・返信・通知を確認し、[初期文面](business/marketing/line-copy.md)を実際の返信時間に合わせて設定。
-4. **Search Console**：新しいページとサイトマップ、実際のインデックス状態を確認。所有権確認・リクエスト済みという報告と、実掲載を区別。
+1. **Instagram**：本人のプロフェッショナルアカウント・公式OAuth・投稿権限・ID・トークンを接続。画像と投稿文4件は準備済み。実投稿は未確認。
+2. **LINE**：本人のスマホで友だち追加・あいさつ・受信・返信・通知を確認し、[初期文面](business/marketing/line-copy.md)を実際の返信時間に合わせて設定。
+3. **Search Console**：新しいページとサイトマップ、実際のインデックス状態を確認。所有権確認・リクエスト済みという報告と、実掲載を区別。
 
 パスワード・APIキー・トークンをチャットへ貼らない。GitHub Actions側の設定とクラウド環境設定は別。
 
