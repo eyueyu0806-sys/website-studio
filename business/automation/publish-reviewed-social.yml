@@ -1,0 +1,59 @@
+name: Publish reviewed Instagram post
+on:
+  schedule:
+    - cron: '0 0 * * 1,4' # Monday / Thursday 09:00 Asia/Tokyo
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pageatelier-marketing
+  cancel-in-progress: false
+jobs:
+  social:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      GH_TOKEN: ${{ secrets.PUBLICATION_TOKEN }}
+      INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+      INSTAGRAM_ACCOUNT_ID: ${{ vars.INSTAGRAM_ACCOUNT_ID }}
+      INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
+      PERSIST_LEDGER_TO_GIT: 'true'
+    steps:
+      - name: Check required connections
+        id: connection
+        run: |
+          if [ -n "$GH_TOKEN" ] && [ -n "$INSTAGRAM_ACCESS_TOKEN" ] && [ -n "$INSTAGRAM_ACCOUNT_ID" ] && [ -n "$INSTAGRAM_API_VERSION" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Instagram/publication connections are incomplete. No post is sent."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        if: steps.connection.outputs.ready == 'true'
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        if: steps.connection.outputs.ready == 'true'
+        with:
+          python-version: '3.12'
+      - name: Publish one due reviewed post
+        if: steps.connection.outputs.ready == 'true'
+        run: |
+          set -e
+          git config user.name 'Page Atelier Automation'
+          git config user.email 'automation@users.noreply.github.com'
+          git config credential.helper '!gh auth git-credential'
+          python3 scripts/publish_instagram.py --publish
+      - name: Persist even incomplete publication attempts to prevent duplicates
+        if: always() && steps.connection.outputs.ready == 'true'
+        run: |
+          set -e
+          git config user.name 'Page Atelier Automation'
+          git config user.email 'automation@users.noreply.github.com'
+          git config credential.helper '!gh auth git-credential'
+          git add business/marketing/publication-log.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record Instagram publication attempt'
+            git push origin HEAD:main
+          fi

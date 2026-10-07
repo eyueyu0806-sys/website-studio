@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pageatelier.jp/</loc>
@@ -14,6 +14,30 @@
   </url>
   <url>
     <loc>https://pageatelier.jp/privacy.html</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://pageatelier.jp/for-builders.html</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://pageatelier.jp/journal/</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://pageatelier.jp/journal/website-estimate-comparison.html</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://pageatelier.jp/journal/project-photo-permission.html</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://pageatelier.jp/journal/one-page-or-multiple.html</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://pageatelier.jp/journal/builder-website-checklist.html</loc>
+    <lastmod>2026-10-07</lastmod>
   </url>
 </urlset>

@@ -13,6 +13,13 @@
 <meta property="og:title" content="専門サイト工房 | まだ見えていない、あなたのサイトを。">
 <meta property="og:description" content="業種と目的を選ぶだけで、あなたに合うWebサイトの設計をその場で体験できます。業界を理解し、必要な導線と機能だけでつくるWebサイト制作。">
 <meta property="og:url" content="https://pageatelier.jp/">
+<meta property="og:image" content="https://pageatelier.jp/assets/images/pageatelier-share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="まだ見えていない、あなたのサイトを。Page Atelier">
+<meta name="twitter:card" content="summary_large_image">
+<script src="assets/site-config.js" defer></script>
+<script src="assets/marketing.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"専門サイト工房","url":"https://pageatelier.jp/","inLanguage":"ja"}</script>
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1733,7 +1740,7 @@ html.js .rv{filter:none;transform:translateY(12px);transition:opacity .65s var(-
   <div class="wrap">
     <div class="ft-grid">
       <div><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>専門サイト工房</a><p>業種に合わせたWebサイトの設計と制作</p></div>
-      <nav aria-label="フッターメニュー"><a href="#build">体験する</a><a href="#think">考え方</a><a href="#works">制作例</a><a href="#price">費用と進め方</a><a href="#faq">よくある質問</a><a href="#contact">お問い合わせ</a></nav>
+      <nav aria-label="フッターメニュー"><a href="#build">体験する</a><a href="#think">考え方</a><a href="#works">制作例</a><a href="#price">費用と進め方</a><a href="#faq">よくある質問</a><a href="#contact">お問い合わせ</a><a href="for-builders.html">施工会社のサイト制作</a><a href="journal/">制作の手引き</a></nav>
     </div>
     <div class="ft-legal">
       <span>© <span id="year">2026</span> 専門サイト工房</span>
@@ -2284,6 +2291,7 @@ function notify(msg) {
 function setIndustry(k) {
   if (k === state.industry) return;
   state.industry = k;
+  window.PageAtelier?.track('industry_selected', { industry:k });
   if (!state.touched && state.step >= 3) state.features = new Set(recommended(k, state.purpose));
   syncNotes();
   refresh();
@@ -2361,6 +2369,7 @@ function scrollPanelIntoView() {
 function goStep(n) {
   clearTimeout(advanceTimer);
   state.step = n;
+  window.PageAtelier?.track('builder_step', { step:n, industry:state.industry });
   state.done = false;
   if (n === 3 && !state.touched) state.features = new Set(recommended(state.industry, state.purpose));
   $('#result').classList.remove('on');
@@ -2416,6 +2425,7 @@ async function buildResult() {
   bld.classList.remove('on');
   state.result = res;
   state.done = true;
+  window.PageAtelier?.track('site_plan_created', { industry:state.industry, purpose:state.purpose });
   showResult(true);
 }
 function showResult(focus) {
@@ -2453,6 +2463,7 @@ $('#hero-name').addEventListener('input', updateBusinessName);
 let contactFocusTimer;
 $('#r-consult').addEventListener('click', () => {
   attachResult();
+  window.PageAtelier?.track('consultation_opened', { industry:state.industry, method:'form' });
   const form = $('#form');
   form.scrollIntoView({ behavior: REDUCE ? 'auto' : 'smooth', block: 'start' });
   clearTimeout(contactFocusTimer);
@@ -2500,8 +2511,9 @@ $('#form').addEventListener('submit', async e => {
     industry: f.elements.namedItem('industry').value || '未選択',
     message: f.elements.namedItem('body').value,
     site_plan: attached ? summaryText(true) : 'サイト構成の添付なし',
+    acquisition: window.PageAtelier?.attribution() || '直接アクセス・流入元未確認',
     privacy_consent: '個人情報の取扱いと、送信先への情報提供（国外での取扱いを含む）に同意済み',
-    privacy_policy_version: '2026-10-05',
+    privacy_policy_version: '2026-10-07',
     privacy_consent_at: new Date().toISOString(),
     _subject: '【無料相談】' + name.replace(/[\r\n]/g, ' ') + '様',
     _template: 'table', _captcha: 'false', _honey: '',
@@ -2523,11 +2535,13 @@ $('#form').addEventListener('submit', async e => {
     });
     const result = await response.json();
     if (!response.ok || !(result.success === true || result.success === 'true')) throw new Error('Contact submission rejected');
+    window.PageAtelier?.track('generate_lead', { method:'form' });
     st.textContent = 'お問い合わせを送信しました。ご連絡をお待ちください。';
     f.reset();
     attached = null;
     $('#attach').classList.remove('on');
   } catch (error) {
+    window.PageAtelier?.track('contact_error', { reason:error.name === 'AbortError' ? 'timeout' : 'network' });
     st.textContent = error.name === 'AbortError'
       ? '送信結果を確認できませんでした。入力内容は残っています。しばらく待ってから再度お試しください。'
       : '送信できませんでした。入力内容は残っています。通信環境を確認して、もう一度お試しください。';
@@ -2647,6 +2661,15 @@ $('#hero-start').addEventListener('click', () => setTimeout(() => $('.step.is-ac
    Init
    ========================================================= */
 $('#year').textContent = new Date().getFullYear();
+// Industry pages can start the existing experience with a valid industry/purpose.
+// Never read business names or arbitrary feature definitions from the URL.
+const entryQuery = new URLSearchParams(location.search);
+const entryIndustry = entryQuery.get('industry'), entryPurpose = entryQuery.get('purpose');
+if (Object.prototype.hasOwnProperty.call(INDUSTRIES, entryIndustry)) {
+  state.industry = entryIndustry;
+  fInd.value = INDUSTRIES[entryIndustry].label;
+}
+if (Object.prototype.hasOwnProperty.call(PURPOSES, entryPurpose)) state.purpose = entryPurpose;
 syncOptions();
 syncNotes();
 buildPv.apply(spec());
