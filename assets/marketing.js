@@ -31,7 +31,7 @@
   if (stored && stored.version === version && Date.now() - stored.at < 180 * 86400000 && ['granted', 'denied'].includes(stored.value)) consent = stored.value;
   if (protectedBrowser) consent = 'denied';
   function track(name, params = {}) {
-    if (!events.has(name) || !validId || consent !== 'granted' || protectedBrowser) return;
+    if (!events.has(name) || !validId || consent !== 'granted' || protectedBrowser || !loaded || typeof window.gtag !== 'function') return;
     const safe = {};
     if (['realestate', 'beauty', 'food', 'builder', 'pro', 'ec', 'other'].includes(params.industry)) safe.industry = params.industry;
     if (['inquiry', 'reserve', 'sell', 'trust', 'recruit', 'service'].includes(params.purpose)) safe.purpose = params.purpose;
@@ -41,8 +41,23 @@
     if (context && sources.has(context.source)) safe.campaign_source = context.source;
     window.gtag('event', name, { ...safe, page_location: cleanLocation(), page_referrer: '', page_title: document.title });
   }
+  function scrubLocation() {
+    // Google's automatic events may inspect location independently of page_location.
+    // Retain only the same fixed routing/campaign values already accepted by the site.
+    const clean = new URLSearchParams();
+    if (['realestate', 'beauty', 'food', 'builder', 'pro', 'ec', 'other'].includes(query.get('industry'))) clean.set('industry', query.get('industry'));
+    if (['inquiry', 'reserve', 'sell', 'trust', 'recruit', 'service'].includes(query.get('purpose'))) clean.set('purpose', query.get('purpose'));
+    if (incoming.source) clean.set('utm_source', incoming.source);
+    if (incoming.medium) clean.set('utm_medium', incoming.medium);
+    if (incoming.campaign) clean.set('utm_campaign', incoming.campaign);
+    const hash = /^#[a-zA-Z0-9_-]{1,64}$/.test(location.hash) && document.getElementById(location.hash.slice(1)) ? location.hash : '';
+    const target = location.pathname + (clean.size ? '?' + clean.toString() : '') + hash;
+    try { history.replaceState(history.state, '', target); return true; }
+    catch { return false; } // Do not load analytics if the URL cannot be made safe.
+  }
   function load() {
     if (!validId || consent !== 'granted' || protectedBrowser || loaded) return;
+    if (!scrubLocation()) return;
     loaded = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
