@@ -41,7 +41,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 記事の元原稿を編集したら `python3 scripts/build_content.py` で生成し、`python3 scripts/check_site.py` でページ・リンク・素材・canonical・サイトマップを検査します。アプリの配信には引き続き依存パッケージの導入は不要です。
 
-現在の実行状況と本人の接続手順は [実行結果](business/operations/05-launch-execution.md) と [接続ガイド](business/marketing/connection-guide.md) を参照してください。GA4は測定ID設定済みで同意後のみ計測します。管理画面での実着信、Instagram実投稿、記事の週次公開、AI生成・広告は未確認です。
+現在の実行状況と本人の接続手順は [実行結果](business/operations/05-launch-execution.md) と [接続ガイド](business/marketing/connection-guide.md) を参照してください。GA4は測定ID設定済みで同意後のみ計測します。GA4管理画面でのアクセス受信は本人が確認済みです。各操作イベントの実受信、Instagram実投稿、記事の週次公開、AI生成・広告は未確認です。
 
 ## 公開
 
