@@ -27,7 +27,7 @@ GARAGE HOUSE NAVIを自主制作・自社運営の制作例として紹介でき
 | --- | --- |
 | 公開サイト | https://pageatelier.jp/ |
 | LINE | https://lin.ee/VZsDkE9 ／ サイト工房 \| Page Atelier |
-| メール | eyu.eyu0806@gmail.com |
+| メール | yue.sadamatsu@gmail.com |
 | 1ページ制作 | 税込55,000円、8セクションまで |
 | 小規模サイト | 税込110,000円、トップを含む5ページまで |
 | 標準機能 | フォーム1つ・地図・外部予約やSNSへのリンク・スマホ対応・公開・検索向け基本設定 |

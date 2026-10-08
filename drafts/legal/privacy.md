@@ -8,7 +8,7 @@
 
 - サイト: https://pageatelier.jp/
 - 運営者の正式な氏名・住所: 本人の求めに応じて電子メールで遅滞なく回答。情報そのものはGitHubに保存しない。所有者が非公開の場所に準備済みと報告。
-- お問い合わせ: eyu.eyu0806@gmail.com
+- お問い合わせ: yue.sadamatsu@gmail.com
 
 ## 2. 取得する情報
 
