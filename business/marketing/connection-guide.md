@@ -14,6 +14,8 @@
 
 ## 2. 自動公開用GitHub接続（接続テスト済み）
 
+2026年10月8日追記：同日のrun 37733773555ではPUBLICATION_TOKENがなく公開をスキップしていたため、本人がRepository Secretへ再保存。[再確認run 37759574387](https://github.com/eyueyu0806-sys/website-studio/actions/runs/37759574387)で認証とmain/gh-pagesへのpush dry-runが成功。公開ファイルは既に最新で、新規投稿はなかった。今後はSecret欠落を成功扱いにせず、Actionsに失敗として表示する。
+
 1. https://github.com/settings/personal-access-tokens/new でFine-grained personal access tokenを作成。実際の画面で本人のResource ownerと `website-studio` のみを選ぶ。
 2. Repository permissionsの **Contents: Read and write** を設定する。Metadataは必要な読み取り。今回の公開処理にSecrets管理・顧客データ・他のリポジトリへの権限は不要。組織の承認が必要な場合はその正式な手順を使う。
 3. 期限と失効時の交換日を非公開メモへ残す。期限切れのときは自動公開を止め、トークンの無期限運用を前提にしない。
