@@ -7,6 +7,6 @@ window.PAGE_ATELIER_CONFIG = Object.freeze({
   // Enable only after Worker/Resend/Turnstile and privacy disclosures are verified.
   contactMode: 'formsubmit',
   contactEndpoint: '',
-  turnstileSiteKey: '',
+  turnstileSiteKey: '0x4AAAAAAFQ_Tj_daS5tMGDm',
   contactPolicyVersion: ''
 });
