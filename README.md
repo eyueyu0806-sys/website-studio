@@ -54,3 +54,7 @@ GitHub Pagesは `gh-pages` ブランチのルートを配信します。`main` �
 具体的なドメイン設定と受信確認状況は [DEPLOYMENT.md](DEPLOYMENT.md) を参照してください。
 
 毎日配信の14日分のテーマと継続方法は[毎日公開の運用計画](business/marketing/daily-publishing-plan.md)を参照してください。記事14本・投稿文14件・JPEG14点を準備済み。Instagramの実接続は別途必要です。
+
+## 集客方針の更新（2026-10-08）
+
+業種を限定しないサイト制作へ発信を統一。Instagramは `@pageatelier.jp`、外部リンクは総合トップ。最新のプロフィール・対象・予算・投稿方針は [all-industries-plan.md](business/marketing/all-industries-plan.md)、14日分の配信予定は [daily-publishing-plan.md](business/marketing/daily-publishing-plan.md) を参照。以前の施工会社集中案より、この方針を優先する。

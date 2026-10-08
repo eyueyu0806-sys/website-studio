@@ -1,8 +1,7 @@
 {
-  "slug": "builder-sample-labels",
-  "title": "制作サンプルと施工実績を、サイトで正しく分ける方法",
+  "slug": "portfolio-sample-labels",
+  "title": "制作サンプルと制作実績を、サイトで正しく分ける方法",
   "description": "実績が少ないときの見せ方。架空の構成、自主制作、実案件の違いを明示し、写真や事例から誤解を生まない掲載方法を整理します。",
-  "publish_after": "2026-10-13",
   "sections": [
     {
       "heading": "サンプルは、何を示すためのものか伝える",
@@ -45,11 +44,12 @@
       ]
     }
   ],
+  "publish_after": "2026-10-14",
   "status": "queued",
   "reviewed": true,
   "author": "Page Atelier",
   "editorial_review": {
-    "date": "2026-10-07",
-    "basis": "公開料金条件・制作範囲との照合、例示と実績の区別、テーマの重複と具体的な確認手順を確認"
+    "date": "2026-10-08",
+    "basis": "業種横断の方針、公開料金条件、機能別見積り、例示と実績の区別、具体的な確認手順を確認"
   }
 }

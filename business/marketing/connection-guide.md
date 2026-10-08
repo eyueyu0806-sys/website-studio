@@ -1,6 +1,6 @@
 # 本人の操作が必要な接続
 
-2026年10月7日。サイトと記事は公開済み。GA4作成と測定ID `G-64G59Z1ERS` は本人の画像で確認済み。本人から拡張計測機能オフの回答を受け、同意後のみの計測を有効にした。クラウド実行環境のAI/Instagram認証情報は未設定です。GitHubのSecrets/Variables一覧の参照は現連携がHTTP 403のため、本人がActionsへPUBLICATION_TOKENを保存した。2026年10月7日の手動テストで、トークンの認証とmain/gh-pagesへの変更なしのpush検査が成功。APIキーやトークンをチャットに貼らないでください。
+2026年10月8日更新。業種を限定しない方針へ変更。サイトと記事は公開済み。GA4作成と測定ID `G-64G59Z1ERS` は本人の画像で確認済み。本人から拡張計測機能オフの回答を受け、同意後のみの計測を有効にした。クラウド実行環境のAI/Instagram認証情報は未設定です。GitHubのSecrets/Variables一覧の参照は現連携がHTTP 403のため、本人がActionsへPUBLICATION_TOKENを保存した。2026年10月7日の手動テストで、トークンの認証とmain/gh-pagesへの変更なしのpush検査が成功。APIキーやトークンをチャットに貼らないでください。
 
 ## 1. GA4：最初に行う
 
@@ -28,7 +28,7 @@
 
 ## 3. Instagram：公式経路で接続
 
-1. 本人のInstagramを事業用のプロフェッショナルアカウントへ設定する。表示名候補は「サイト工房｜Page Atelier」。ハンドル `pageatelier_studio` の空きは未確認。プロフィールURLは `https://pageatelier.jp/for-builders.html?utm_source=instagram&utm_medium=social&utm_campaign=builders_launch`。
+1. 本人のInstagramを事業用のプロフェッショナルアカウントへ設定する。表示名候補は「サイト工房｜Page Atelier」。ユーザーネームは本人申告の `pageatelier.jp`。Instagramプロフィールは `https://www.instagram.com/pageatelier.jp/`、プロフィールの外部リンクは `https://pageatelier.jp/?utm_source=instagram&utm_medium=social&utm_campaign=studio_launch`。業種限定の紹介文は使わず、[最新プロフィール・集客方針](all-industries-plan.md)を参照。
 2. 自動投稿は **Instagram API with Instagram Login** を使用する案。公式資料ではBusinessまたはCreatorアカウントが対象。この経路と、Facebook Page連携が必要なFacebook Login経路を混同しない。
 3. https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-instagram-login の正式なアプリ設定・OAuth手順に従い、本人のアカウントを許可する。権限は `instagram_business_basic` と `instagram_business_content_publish`。標準／上位アクセス、アプリのモードや審査の要否は本人の利用形態で確認する。
 4. 自動投稿に必要なアカウントID、対象APIバージョン、アクセストークンを取得する。トークンとその期限は非公開で管理。
@@ -59,3 +59,7 @@ Search Consoleでトップ・業種ページ・記事のURL検査、サイトマ
 広告は、実受信・GA4着信・有効相談の記録・業種ページが確認できてから。`google-ads-draft.md`に草案を保存。Google広告の本人の請求・期間・予算設定と実際の検索数・単価を確認するまで出稿しません。GA4から広告への計測連携は未実装・未検証です。
 
 毎日運用のテーマ・品質確認・継続方法は[daily-publishing-plan.md](daily-publishing-plan.md)を参照。
+
+## 2026年10月8日の方針・原稿更新
+
+業種を限定しない記事・投稿14本へ置き換え。10月8日分1本を公開対象へ移し、残り13本を予約。Instagramは @pageatelier.jp と本人申告。プロフィールの外部リンクは総合トップへ変更する。アカウントのビジネス化・API接続・実投稿は未確認。

@@ -1,5 +1,7 @@
 # Page Atelier 運用ドキュメント一式
 
+> 2026-10-08更新：業種を限定しない方針へ変更。集客対象・Instagramプロフィール・リンク・投稿計画は [最新方針](../marketing/all-industries-plan.md) を優先。本書の施工会社集中案は旧案です。
+
 2026年10月7日版。編集できるWord3冊と、表示確認用のPDF3冊を`pageatelier-operations-kit.zip`にまとめています。顧客情報・正式な運営者情報・銀行情報・認証情報は未記入です。
 
 追加の比較結果は[集客方針の推奨・比較結果（Word）](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/operations/04-acquisition-recommendation.docx)と[PDF](https://github.com/eyueyu0806-sys/website-studio/raw/refs/heads/main/business/operations/04-acquisition-recommendation.pdf)。業種・媒体・予算・接続の判断は、こちらを先に読んでください。既存の3冊のZIPには含めていません。

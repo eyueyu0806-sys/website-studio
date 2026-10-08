@@ -8,7 +8,7 @@ from pathlib import Path
 from urllib import request, error
 
 ROOT=Path(__file__).resolve().parents[1]
-TOPICS=['施工会社のホームページに載せる対応エリアの整理','制作依頼前に、会社紹介文をまとめる方法','外部予約リンクと専用予約システムの違い']
+TOPICS=['事業用ホームページで、サービスの対象者と対応範囲を伝える方法','制作依頼前に、会社紹介文をまとめる方法','外部予約リンクと専用予約システムの違い']
 def save(path, article):
     path.write_text(json.dumps(article,ensure_ascii=False,indent=2)+'\n')
     if os.environ.get('PERSIST_DRAFT_TO_GIT')=='true':
@@ -31,7 +31,7 @@ def generate(topic=0):
     destination=folder/(key+'.json');save(destination,{'status':'attempt_reserved','reviewed':False,'topic':TOPICS[topic]})
     facts=(ROOT/'PRICING.md').read_text()
     schema={'type':'object','additionalProperties':False,'properties':{'title':{'type':'string'},'description':{'type':'string'},'sections':{'type':'array','items':{'type':'object','additionalProperties':False,'properties':{'heading':{'type':'string'},'paragraphs':{'type':'array','items':{'type':'string'}},'items':{'type':'array','items':{'type':'string'}}},'required':['heading','paragraphs','items']}}},'required':['title','description','sections']}
-    prompt='日本語の実務記事の下書きを作成。テーマ：'+TOPICS[topic]+'。事実は次の公開料金条件だけ。統計・受託実績・顧客名・成果・法的保証・未確認の工事費・順位保証を作らない。HTMLや外部リンク不要。4見出し、各2段落程度。\n'+facts
+    prompt='幅広い業種の会社・店舗・サービス運営者に向けた日本語の実務記事の下書きを作成。業種を施工会社だけに限定しない。EC・CMS・独自予約などは対応可否を個別確認し、標準料金や2週間を全種類に一律適用しない。テーマ：'+TOPICS[topic]+'。事実は次の公開料金条件だけ。統計・受託実績・顧客名・成果・法的保証・未確認の工事費・順位保証を作らない。HTMLや外部リンク不要。4見出し、各2段落程度。\n'+facts
     payload={'model':model,'store':False,'max_output_tokens':4500,'input':prompt,'text':{'format':{'type':'json_schema','name':'article_draft','strict':True,'schema':schema}}}
     req=request.Request('https://api.openai.com/v1/responses',headers={'Authorization':'Bearer '+token,'Content-Type':'application/json'},data=json.dumps(payload).encode())
     try:

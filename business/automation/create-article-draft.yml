@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       topic:
-        description: '0=対応エリア / 1=会社紹介 / 2=外部予約'
+        description: '0=サービスの対象・範囲 / 1=会社紹介 / 2=外部予約'
         type: choice
         options: ['0', '1', '2']
         default: '0'

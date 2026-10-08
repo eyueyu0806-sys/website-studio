@@ -17,7 +17,7 @@
 制作範囲と料金を確認してから、ご提案します。相談だけで有料契約は成立しません。
 パスワード、振込先、本人確認書類などの秘密情報は送らないでください。
 
-制作範囲・料金：https://pageatelier.jp/for-builders.html
+制作範囲・料金：https://pageatelier.jp/#price
 制作体験：https://pageatelier.jp/#build
 個人情報の取扱い：https://pageatelier.jp/privacy.html
 
@@ -30,7 +30,7 @@
 ## リッチメニュー候補
 
 ・制作体験 → https://pageatelier.jp/#build
-・制作範囲と料金 → https://pageatelier.jp/for-builders.html
+・制作範囲と料金 → https://pageatelier.jp/#price
 ・無料相談 → トークで上の①〜④を送る案内
 
 ## 料金の確認
