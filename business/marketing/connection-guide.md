@@ -70,4 +70,4 @@ Search Consoleでトップ・業種ページ・記事のURL検査、サイトマ
 
 ## 受付メール（準備済み・接続待ち）
 
-本人が自動返信文面を承認。Resendアカウントは作成済み、Cloudflareは未作成との回答。手順は [問い合わせ配信の接続](../../integrations/contact/README.md)。コード・PC/スマホでの応答差替テストは準備済み。現行FormSubmitを維持し、受付メールの実送信は未実施。
+本人が自動返信文面を承認。Resend・Cloudflareは作成済み。Turnstileウィジェットを作成し、Site Keyを保存。TURNSTILE_SECRET_KEYのGitHub保存は本人報告済み（接続は未検証）。手順は [問い合わせ配信の接続](../../integrations/contact/README.md)。コード・PC/スマホでの応答差替テストは準備済み。現行FormSubmitを維持し、受付メールの実送信は未実施。

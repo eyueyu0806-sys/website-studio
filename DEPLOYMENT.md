@@ -199,4 +199,4 @@ pageatelier-daily-kit.zipに運用計画・接続ガイド・投稿一覧・記�
 
 ## 受付メールの追加準備（2026-10-08）
 
-ユーザー承認の自動返信文面を実装。新しいフォーム処理はCloudflare Workers＋Resend＋Turnstile。Resendアカウントのみ作成済みとの回答、Cloudflareは未作成。検証・設定手順は [integrations/contact/README.md](integrations/contact/README.md)。現行はcontactMode=formsubmitを維持し、メール受信を止めない。受付メールの実送信・両方の受信確認・返信先確認は、認証情報とドメイン認証の接続後に行う。
+ユーザー承認の自動返信文面を実装。新しいフォーム処理はCloudflare Workers＋Resend＋Turnstile。Resend・Cloudflareアカウントは作成済み。Turnstileの公開用Site Keyを保存し、TURNSTILE_SECRET_KEYのGitHub保存は本人報告済み（接続は未検証）。検証・設定手順は [integrations/contact/README.md](integrations/contact/README.md)。現行はcontactMode=formsubmitを維持し、メール受信を止めない。受付メールの実送信・両方の受信確認・返信先確認は、認証情報とドメイン認証の接続後に行う。
