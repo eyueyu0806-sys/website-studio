@@ -3,3 +3,10 @@ business/private/
 business/__pycache__/
 __pycache__/
 *.pyc
+# Contact service secrets and local Cloudflare state.
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+.wrangler/
+node_modules/

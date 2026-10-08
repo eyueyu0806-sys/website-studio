@@ -16,7 +16,7 @@
 
 ## 本人の接続待ち
 
-**受信先変更：** `yue.sadamatsu@gmail.com` でFormSubmitの承認・承認後の再送信と実受信確認が必要です。サイトの送信先変更と、Gmailへの到着確認は別です。
+**受信先変更：** `yue.sadamatsu@gmail.com` への問い合わせ到着は本人確認済み。**受付メール：** 実装・応答差替テスト済み、Cloudflare・Resendの接続待ち。現行フォームは維持。手順は integrations/contact/README.md。
 
 1. **Instagram**：本人のプロフェッショナルアカウント・公式OAuth・投稿権限・ID・トークンを接続。画像と投稿文14件は準備済み。実投稿は未確認。
 2. **LINE**：本人のスマホで友だち追加・あいさつ・受信・返信・通知を確認し、[初期文面](business/marketing/line-copy.md)を実際の返信時間に合わせて設定。

@@ -1,0 +1,57 @@
+name: Deploy contact receipt service
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pageatelier-contact-deploy
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - name: Check account connections
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
+        run: |
+          python3 - <<'PY'
+          import os
+          names=['CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID','RESEND_API_KEY','TURNSTILE_SECRET_KEY']
+          missing=[n for n in names if not os.environ.get(n)]
+          if missing:raise SystemExit('Missing connections: '+', '.join(missing)+'. Nothing deployed.')
+          PY
+      - name: Verify email processing without sending email
+        run: node --test tests/contact/*.test.mjs
+      - name: Install locked deploy tooling
+        working-directory: integrations/contact
+        run: npm ci --no-audit --no-fund
+      - name: Build and deploy Worker
+        working-directory: integrations/contact
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npm run check
+          npm run deploy
+      - name: Store sending secrets in the Worker
+        working-directory: integrations/contact
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          python3 - <<'PY'
+          import os,json,subprocess
+          data={k:os.environ[k] for k in ['RESEND_API_KEY','TURNSTILE_SECRET_KEY']}
+          subprocess.run(['./node_modules/.bin/wrangler','secret','bulk'],input=json.dumps(data),text=True,check=True)
+          PY
+      - name: Report service deployment only
+        run: echo 'Worker deployed. Site transport is unchanged. Verify DNS, privacy disclosures, Turnstile and both inboxes before activation.'

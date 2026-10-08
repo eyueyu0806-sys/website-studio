@@ -20,6 +20,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <script src="assets/site-config.js" defer></script>
 <script src="assets/marketing.js" defer></script>
+<script src="assets/contact.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"専門サイト工房","url":"https://pageatelier.jp/","inLanguage":"ja"}</script>
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2513,7 +2514,7 @@ $('#form').addEventListener('submit', async e => {
     site_plan: attached ? summaryText(true) : 'サイト構成の添付なし',
     acquisition: window.PageAtelier?.attribution() || '直接アクセス・流入元未確認',
     privacy_consent: '個人情報の取扱いと、送信先への情報提供（国外での取扱いを含む）に同意済み',
-    privacy_policy_version: '2026-10-07',
+    privacy_policy_version: window.PAGE_ATELIER_CONFIG?.contactMode === 'resend' ? window.PAGE_ATELIER_CONFIG.contactPolicyVersion : '2026-10-07',
     privacy_consent_at: new Date().toISOString(),
     _subject: '【無料相談】' + name.replace(/[\r\n]/g, ' ') + '様',
     _template: 'table', _captcha: 'false', _honey: '',
@@ -2529,20 +2530,29 @@ $('#form').addEventListener('submit', async e => {
   f.setAttribute('aria-busy', 'true');
   st.textContent = '相談内容を送信しています。';
   try {
-    const response = await fetch(CONFIG.CONTACT_SERVICE + encodeURIComponent(CONFIG.CONTACT_EMAIL), {
-      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(payload), signal: controller.signal,
-    });
-    const result = await response.json();
-    if (!response.ok || !(result.success === true || result.success === 'true')) throw new Error('Contact submission rejected');
+    const useReceipt = window.PAGE_ATELIER_CONFIG?.contactMode === 'resend';
+    let result;
+    if (useReceipt) {
+      if (!window.PageAtelierContact) throw new Error('Contact transport unavailable');
+      result = await window.PageAtelierContact.send(payload, controller.signal);
+    } else {
+      const response = await fetch(CONFIG.CONTACT_SERVICE + encodeURIComponent(CONFIG.CONTACT_EMAIL), {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload), signal: controller.signal,
+      });
+      result = await response.json();
+      if (!response.ok || !(result.success === true || result.success === 'true')) throw new Error('Contact submission rejected');
+    }
     window.PageAtelier?.track('generate_lead', { method:'form' });
-    st.textContent = 'お問い合わせを送信しました。ご連絡をお待ちください。';
+    st.textContent = useReceipt
+      ? 'お問い合わせを受け付けました。自動返信メールをご確認ください。見当たらない場合は迷惑メールフォルダもご確認ください。'
+      : 'お問い合わせを送信しました。ご連絡をお待ちください。';
     f.reset();
     attached = null;
     $('#attach').classList.remove('on');
   } catch (error) {
     window.PageAtelier?.track('contact_error', { reason:error.name === 'AbortError' ? 'timeout' : 'network' });
-    st.textContent = error.name === 'AbortError'
+    st.textContent = error.contactCode ? error.message : error.name === 'AbortError'
       ? '送信結果を確認できませんでした。入力内容は残っています。しばらく待ってから再度お試しください。'
       : '送信できませんでした。入力内容は残っています。通信環境を確認して、もう一度お試しください。';
   } finally {

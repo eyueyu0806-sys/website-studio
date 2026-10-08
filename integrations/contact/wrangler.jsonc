@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pageatelier-contact",
+  "main": "entry.mjs",
+  "compatibility_date": "2026-10-08",
+  "workers_dev": true,
+  "observability": { "enabled": false },
+  "durable_objects": {
+    "bindings": [
+      { "name": "INQUIRIES", "class_name": "Inquiry" },
+      { "name": "QUOTA", "class_name": "ContactQuota" }
+    ]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Inquiry", "ContactQuota"] }],
+  "ratelimits": [{ "name": "CONTACT_RATE", "namespace_id": "814062", "simple": { "limit": 5, "period": 60 } }]
+}

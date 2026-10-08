@@ -14,7 +14,7 @@
 
 ### 受信先の初回承認（必須）
 
-2026年10月8日に受信先を `yue.sadamatsu@gmail.com` へ変更しました。新アドレスでのFormSubmit承認・実受信は未確認です。旧アドレスでの承認は新アドレスの受信確認には引き継がれません。
+2026年10月8日に受信先を `yue.sadamatsu@gmail.com` へ変更しました。本人から、新アドレスに問い合わせが届くことを確認できたと報告を受けました。旧アドレスでの承認は新アドレスの受信確認には引き継がれません。
 
 1. 公開サイトから自分の名前とメールアドレスでテスト問い合わせを送信します。
 2. `yue.sadamatsu@gmail.com` に届くFormSubmitの確認メールを開き、受信先を承認します。迷惑メールフォルダも確認してください。
@@ -196,3 +196,7 @@ Googleの実タグでフォーム操作を検証したところ、自動イベ�
 pageatelier-daily-kit.zipに運用計画・接続ガイド・投稿一覧・記事14原稿・投稿文14件・JPEG14点を同梱。毎日運用は14日分の確認済みキューに対するもので、AIの未確認出力を日々自動承認するものではない。Instagram認証は未接続・実投稿未確認。記事の初回実公開は10月8日以降に別途確認する。
 
 ソースmain `c67d7adbbae1586cc3642ccabd921f54ad284200`。GitHub Actionsサイト検証run `37631497811`はsuccess。日次公開run `37631520695`もsuccessで、本人が保存したPUBLICATION_TOKENを使って画像14点と記事CSSをgh-pagesへ実反映した。公開コミット `ad80e469e3b3edd2d8fe0702e59f06510f1c3e8b` のPages buildはbuilt・エラーなし。公開HTTPSでJPEG14点とCSSの200応答・画像MIME・ソースとのバイト一致を確認。予約記事の初回日は翌日なので当日は記事を追加していない。Instagram run `37631525841`は接続不足の検知が成功し、投稿処理はskipped。success表示を実投稿とは扱わない。日次セットZIPはGitHubの公開ダウンロードから取得し、保存したソースとの一致を確認した。
+
+## 受付メールの追加準備（2026-10-08）
+
+ユーザー承認の自動返信文面を実装。新しいフォーム処理はCloudflare Workers＋Resend＋Turnstile。Resendアカウントのみ作成済みとの回答、Cloudflareは未作成。検証・設定手順は [integrations/contact/README.md](integrations/contact/README.md)。現行はcontactMode=formsubmitを維持し、メール受信を止めない。受付メールの実送信・両方の受信確認・返信先確認は、認証情報とドメイン認証の接続後に行う。
