@@ -37,6 +37,7 @@
     if (['inquiry', 'reserve', 'sell', 'trust', 'recruit', 'service'].includes(params.purpose)) safe.purpose = params.purpose;
     if ([1, 2, 3].includes(params.step)) safe.step = params.step;
     if (['form', 'line'].includes(params.method)) safe.method = params.method;
+    if (['hero', 'header', 'pricing', 'builder', 'navigation'].includes(params.placement)) safe.placement = params.placement;
     if (['network', 'timeout'].includes(params.reason)) safe.reason = params.reason;
     if (context && sources.has(context.source)) safe.campaign_source = context.source;
     window.gtag('event', name, { ...safe, page_location: cleanLocation(), page_referrer: '', page_title: document.title });
