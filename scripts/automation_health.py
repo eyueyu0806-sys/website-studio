@@ -41,7 +41,7 @@ def inventory(root, today):
 def fetch(url, token=None):
     headers = {'User-Agent': 'PageAtelier-Automation-Health'}
     if token:
-        if not url.startswith('https://api.github.com/'):
+        if not url.startswith(('https://api.github.com/', 'https://api.cloudflare.com/')):
             raise RuntimeError('Authentication destination rejected')
         headers['Authorization'] = 'Bearer ' + token
     try:
@@ -102,6 +102,16 @@ def report(root=ROOT, now=None, live=False, env=None, get=fetch):
             add('ok', '記事公開の認証', 'GitHub認証とリポジトリ書き込み権限の応答を確認。')
         except (RuntimeError, ValueError, AssertionError):
             add('error', '記事公開の認証', 'トークンの有効性・対象リポジトリ・Contents権限を確認してください。')
+    cf_token, cf_account = env.get('CLOUDFLARE_API_TOKEN'), env.get('CLOUDFLARE_ACCOUNT_ID', '')
+    if cf_token and re.fullmatch(r'[a-fA-F0-9]{32}', cf_account):
+        try:
+            account = json.loads(get('https://api.cloudflare.com/client/v4/accounts/' + cf_account + '/workers/scripts', token=cf_token))
+            assert account.get('success') is True and isinstance(account.get('result'), list)
+            add('ok', 'Cloudflare公開用接続', '対象アカウントのWorker一覧取得に成功。実際の公開・メール配信は別途確認。')
+        except (RuntimeError, ValueError, AssertionError):
+            add('error' if active else 'warning', 'Cloudflare公開用接続', '対象アカウントのWorker一覧を取得できません。アカウントID・トークンの対象と権限を確認。')
+    else:
+        add('error' if active else 'waiting', 'Cloudflare公開用接続', '接続情報が未設定またはアカウントIDの形式を確認できません。')
     latest = max(data['published'], key=lambda a: (a['published'], a['slug']), default=None)
     paths = [('', 'トップページ')]
     if latest:

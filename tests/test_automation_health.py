@@ -88,4 +88,18 @@ class AutomationHealth(unittest.TestCase):
         (self.root/'assets/site-config.js').write_text("contactMode: 'resend'")
         self.assertTrue(any(r['name']=='自動返信接続' and r['state']=='error' for r in self.rows()))
 
+    def test_cloudflare_token_only_goes_to_cloudflare_and_is_not_in_report(self):
+        calls=[]
+        def get(url,token=None):
+            calls.append((url,token))
+            if 'api.cloudflare.com' in url:return '{"success":true,"result":[]}'
+            if 'api.github.com' in url:return '{"permissions":{"push":true}}'
+            if 'dns.google' in url:return '{"Status":3}'
+            return '<link rel="canonical" href="'+url+'">'
+        env={'GH_TOKEN':'synthetic-git','CLOUDFLARE_API_TOKEN':'synthetic-cf','CLOUDFLARE_ACCOUNT_ID':'a'*32}
+        rows=health.report(self.root,now=self.now,env=env,live=True,get=get)
+        self.assertTrue(any(r['name']=='Cloudflare公開用接続' and r['state']=='ok' for r in rows))
+        self.assertTrue(all('api.cloudflare.com' in url for url,token in calls if token=='synthetic-cf'))
+        self.assertNotIn('synthetic-cf',health.markdown(rows,self.now))
+
 if __name__=='__main__':unittest.main()
