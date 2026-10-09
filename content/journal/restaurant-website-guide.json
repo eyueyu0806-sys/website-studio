@@ -45,11 +45,12 @@
     }
   ],
   "publish_after": "2026-10-09",
-  "status": "queued",
+  "status": "published",
   "reviewed": true,
   "author": "Page Atelier",
   "editorial_review": {
     "date": "2026-10-08",
     "basis": "業種横断の方針、公開料金条件、機能別見積り、例示と実績の区別、具体的な確認手順を確認"
-  }
+  },
+  "published": "2026-10-09"
 }
