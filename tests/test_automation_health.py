@@ -102,4 +102,18 @@ class AutomationHealth(unittest.TestCase):
         self.assertTrue(all('api.cloudflare.com' in url for url,token in calls if token=='synthetic-cf'))
         self.assertNotIn('synthetic-cf',health.markdown(rows,self.now))
 
+    def test_invalid_cloudflare_account_id_is_actionable_without_exposing_value(self):
+        calls=[]
+        def get(url,token=None):
+            calls.append(url)
+            if 'dns.google' in url:return '{"Status":3}'
+            return '<link rel="canonical" href="'+url+'">'
+        env={'CLOUDFLARE_API_TOKEN':'synthetic-cf','CLOUDFLARE_ACCOUNT_ID':'private-account-label'}
+        rows=health.report(self.root,now=self.now,env=env,live=True,get=get)
+        row=next(r for r in rows if r['name']=='Cloudflare公開用接続')
+        self.assertEqual(row['state'],'waiting')
+        self.assertIn('32桁',row['detail'])
+        self.assertNotIn('private-account-label',health.markdown(rows,self.now))
+        self.assertFalse(any('api.cloudflare.com' in url for url in calls))
+
 if __name__=='__main__':unittest.main()

@@ -111,7 +111,9 @@ def report(root=ROOT, now=None, live=False, env=None, get=fetch):
         except (RuntimeError, ValueError, AssertionError):
             add('error' if active else 'warning', 'Cloudflare公開用接続', '対象アカウントのWorker一覧を取得できません。アカウントID・トークンの対象と権限を確認。')
     else:
-        add('error' if active else 'waiting', 'Cloudflare公開用接続', '接続情報が未設定またはアカウントIDの形式を確認できません。')
+        detail = ('CLOUDFLARE_ACCOUNT_IDの形式が一致しません。メールアドレスやアカウント名ではなく、Cloudflareの32桁のAccount IDをGitHub ActionsのVariablesへ保存してください。'
+                  if cf_token and cf_account else 'Cloudflareの接続情報が未設定です。')
+        add('error' if active else 'waiting', 'Cloudflare公開用接続', detail)
     latest = max(data['published'], key=lambda a: (a['published'], a['slug']), default=None)
     paths = [('', 'トップページ')]
     if latest:
