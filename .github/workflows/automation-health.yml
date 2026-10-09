@@ -1,0 +1,32 @@
+name: Check automation health
+on:
+  schedule:
+    - cron: '30 6 * * *' # Daily 15:30 Japan time; GitHub may delay execution
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pageatelier-health
+  cancel-in-progress: false
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Check reviewed content and ledger inputs
+        run: python3 scripts/check_daily_content.py
+      - name: Report queue, publication, connection and DNS health without sending messages
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.PUBLICATION_TOKEN }}
+          HAS_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN != '' }}
+          HAS_INSTAGRAM_ACCOUNT_ID: ${{ vars.INSTAGRAM_ACCOUNT_ID != '' }}
+          HAS_INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION != '' }}
+          HAS_CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+          HAS_CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID != '' }}
+          HAS_RESEND_API_KEY: ${{ secrets.RESEND_API_KEY != '' }}
+          HAS_TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY != '' }}
+        run: python3 scripts/automation_health.py --live

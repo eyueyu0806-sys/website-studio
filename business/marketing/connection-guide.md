@@ -21,7 +21,7 @@
 3. 期限と失効時の交換日を非公開メモへ残す。期限切れのときは自動公開を止め、トークンの無期限運用を前提にしない。
 4. https://github.com/eyueyu0806-sys/website-studio/settings/secrets/actions を開き、New repository secretで名前 **PUBLICATION_TOKEN** として保存する。値はこの管理画面だけへ入力する。
 5. https://github.com/eyueyu0806-sys/website-studio/actions の `Release reviewed content` → Run workflowで初回確認する。公開日より前なら公開対象なしになる。
-6. 記事公開は毎日09:00日本時間の予約、1日最大1本。GitHubの実行は遅延する場合がある。10月8日〜21日の確認済み記事14本を用意した。公開済みの4記事とは別。
+6. 記事公開は毎日09:00日本時間の予約と12:00の再確認、1日最大1本。GitHubの実行は遅延する場合がある。10月8日〜21日の確認済み記事14本を用意した。公開済みの4記事とは別。
 7. 処理はmainへ記事を保存し、公開対象のみgh-pagesへ反映する。Pagesのビルドと公開URLが正常かを確認する。公開済みの同じ記事は再度キューから出ない。
 
 2026年10月7日の[接続テストrun 37627676705](https://github.com/eyueyu0806-sys/website-studio/actions/runs/37627676705)はsuccess。トークンによる認証、main/gh-pagesへのpush dry-run、10 HTML・30公開ファイルの検査を確認した。当日は公開期日前のため予約キューを維持し、新記事の保存・本番pushは行っていない。毎日運用に変更し、初回の実予約公開は10月8日09:00日本時間の枠以降。GitHubの実行は遅れる場合がある。トークン期限は画面から本人が非公開で記録し、期限前に同じSecretの値を交換する。
@@ -73,3 +73,9 @@ Search Consoleでトップ・業種ページ・記事のURL検査、サイトマ
 ## 受付メール（準備済み・接続待ち）
 
 本人が自動返信文面を承認。Resend・Cloudflareは作成済み。Turnstileウィジェットを作成し、Site Keyを保存。TURNSTILE_SECRET_KEYのGitHub保存は本人報告済み（接続は未検証）。手順は [問い合わせ配信の接続](../../integrations/contact/README.md)。コード・PC/スマホでの応答差替テストは準備済み。現行FormSubmitを維持し、受付メールの実送信は未実施。
+
+## 自動点検（2026年10月9日追加）
+
+[Check automation health](https://github.com/eyueyu0806-sys/website-studio/actions/workflows/automation-health.yml) が日本時間15:30に点検します。実行はGitHubの都合で遅れる場合があります。各実行のSummaryで、翌日から7日間の原稿在庫、当日記事、Instagram未確定記録、GitHubの認証・書き込み権限、公開ページ、接続設定の有無、Resend用DNSを確認できます。
+
+原稿不足・期限切れ等の認証失敗・公開不備は失敗として表示します。まだ設定していないInstagramと、未有効化の自動返信は「接続待ち」と表示し、他の作業を止めません。Instagramの設定が存在するだけで実投稿成功とは判定しません。実メール・SNS投稿はこの点検では送信しません。失敗通知の受信は本人のGitHub通知設定に依存します。

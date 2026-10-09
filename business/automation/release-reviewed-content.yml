@@ -1,7 +1,7 @@
 name: Release reviewed content
 on:
   schedule:
-    - cron: '0 0 * * *' # Daily 09:00 Asia/Tokyo; execution may be delayed
+    - cron: '0 0,3 * * *' # 09:00 plus 12:00 Japan-time backup; still at most one article/day
   workflow_dispatch:
 permissions:
   contents: read

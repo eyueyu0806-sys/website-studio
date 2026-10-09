@@ -25,7 +25,8 @@ jobs:
           if [ -n "$GH_TOKEN" ] && [ -n "$INSTAGRAM_ACCESS_TOKEN" ] && [ -n "$INSTAGRAM_ACCOUNT_ID" ] && [ -n "$INSTAGRAM_API_VERSION" ]; then
             echo "ready=true" >> "$GITHUB_OUTPUT"
           else
-            echo "Instagram/publication connections are incomplete. No post is sent."
+            echo "::notice::Instagram/publication connections are incomplete. No post is sent."
+            echo "Instagram is waiting for account connection. No post was sent; this successful check does not mean publication succeeded." >> "$GITHUB_STEP_SUMMARY"
             echo "ready=false" >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
