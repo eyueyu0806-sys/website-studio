@@ -82,5 +82,32 @@ jobs:
           data={k:os.environ[k] for k in ['RESEND_API_KEY','TURNSTILE_SECRET_KEY']}
           subprocess.run(['./node_modules/.bin/wrangler','secret','bulk'],input=json.dumps(data),text=True,check=True)
           PY
+      - name: Verify public endpoint without sending email
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, time, urllib.request, urllib.error
+          account=os.environ['CLOUDFLARE_ACCOUNT_ID']
+          req=urllib.request.Request('https://api.cloudflare.com/client/v4/accounts/'+account+'/workers/subdomain', headers={'Authorization':'Bearer '+os.environ['CLOUDFLARE_API_TOKEN']})
+          with urllib.request.urlopen(req, timeout=30) as response: subdomain=json.load(response)['result']['subdomain']
+          endpoint='https://pageatelier-contact.'+subdomain+'.workers.dev/contact'
+          for attempt in range(10):
+              try:
+                  req=urllib.request.Request(endpoint, method='OPTIONS', headers={'Origin':'https://pageatelier.jp'})
+                  with urllib.request.urlopen(req, timeout=15) as response:
+                      assert response.status==204 and response.headers.get('Access-Control-Allow-Origin')=='https://pageatelier.jp'
+                  break
+              except Exception:
+                  if attempt==9: raise SystemExit('Public endpoint not ready. Website transport remains unchanged.')
+                  time.sleep(5)
+          req=urllib.request.Request(endpoint, method='POST', data=b'{}', headers={'Origin':'https://pageatelier.jp','Content-Type':'application/json'})
+          try: urllib.request.urlopen(req, timeout=15)
+          except urllib.error.HTTPError as response:
+              assert response.code==400 and json.load(response).get('code')=='invalid'
+          else: raise SystemExit('Invalid request was unexpectedly accepted.')
+          print('Public endpoint ready; invalid request rejected without sending email: '+endpoint)
+          PYTHON
       - name: Report service deployment only
         run: echo 'Worker deployed. Site transport is unchanged. Verify DNS, privacy disclosures, Turnstile and both inboxes before activation.'

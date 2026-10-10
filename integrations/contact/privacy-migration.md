@@ -38,4 +38,18 @@ https://resend.com/legal/dpa
 - https://resend.com/legal/dpa （取得成功、冒頭・国際移転・Exhibit Aを照合）
 - https://resend.com/legal/subprocessors （取得成功。個別委託先の国・用途は有効化前の最終照合対象）
 
-Cloudflareのプライバシーポリシー・Customer DPA・Turnstile Privacy Addendumは、この環境からの取得がHTTP 403。文面を取得できていないため、確認済みと扱わない。独立した開発・自動点検は進め、自動返信の有効化前に公開説明の根拠を揃える。
+## Cloudflare公式資料との照合（2026年10月10日）
+
+以下の公式資料を取得して確認した。前日の取得制限は解消済み。
+
+- Cloudflare, Inc.は米国を拠点とする。プライバシーポリシー第7節では主な保存場所を米国・EEAとし、世界各地でのアクセス・移転があり得ると説明する。日本だけで処理されるとは案内しない。
+- TurnstileではIPアドレス、TLS fingerprint、User-Agent、Site Keyと関連するorigin等を処理する。不正送信の検知・防止に加え、サービスの検知能力改善にも利用する旨を説明する。
+- Customer DPAはアクセス制限、秘密保持、安全管理、処理終了時の削除・返却を定める。個別契約の締結状況や独立した監査を確認したという意味ではない。
+- 提供者側の保持は目的・法的義務等に応じる。アプリの受付記録30日・制限用ハッシュ2日とは区別する。
+
+出典：
+- https://www.cloudflare.com/privacypolicy/ （第6・7・11節）
+- https://www.cloudflare.com/cloudflare-customer-dpa/ （Version 6.4）
+- https://www.cloudflare.com/turnstile-privacy-policy/ （収集情報・利用目的）
+
+公開時はフォームの短い案内、privacy.html、送信経路の設定を同時に変更する。実際のメール到達は別途テストし、API受付成功だけで到達確認済みとは表示しない。
