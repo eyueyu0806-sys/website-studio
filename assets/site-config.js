@@ -5,8 +5,8 @@ window.PAGE_ATELIER_CONFIG = Object.freeze({
   consentVersion: '2026-10-07',
   lineUrl: 'https://lin.ee/VZsDkE9',
   // Enable only after Worker/Resend/Turnstile and privacy disclosures are verified.
-  contactMode: 'formsubmit',
-  contactEndpoint: '',
+  contactMode: 'resend',
+  contactEndpoint: 'https://pageatelier-contact.pageatelier-020acba5.workers.dev/contact',
   turnstileSiteKey: '0x4AAAAAAFQ_Tj_daS5tMGDm',
-  contactPolicyVersion: ''
+  contactPolicyVersion: '2026-10-08-resend'
 });
