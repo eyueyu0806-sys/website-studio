@@ -95,14 +95,14 @@ jobs:
           endpoint='https://pageatelier-contact.'+subdomain+'.workers.dev/contact'
           for attempt in range(10):
               try:
-                  req=urllib.request.Request(endpoint, method='OPTIONS', headers={'Origin':'https://pageatelier.jp'})
+                  req=urllib.request.Request(endpoint, method='OPTIONS', headers={'Origin':'https://pageatelier.jp','User-Agent':'PageAtelier-Deployment-Check/1.0'})
                   with urllib.request.urlopen(req, timeout=15) as response:
                       assert response.status==204 and response.headers.get('Access-Control-Allow-Origin')=='https://pageatelier.jp'
                   break
               except Exception:
                   if attempt==9: raise SystemExit('Public endpoint not ready. Website transport remains unchanged.')
                   time.sleep(5)
-          req=urllib.request.Request(endpoint, method='POST', data=b'{}', headers={'Origin':'https://pageatelier.jp','Content-Type':'application/json'})
+          req=urllib.request.Request(endpoint, method='POST', data=b'{}', headers={'Origin':'https://pageatelier.jp','Content-Type':'application/json','User-Agent':'PageAtelier-Deployment-Check/1.0'})
           try: urllib.request.urlopen(req, timeout=15)
           except urllib.error.HTTPError as response:
               assert response.code==400 and json.load(response).get('code')=='invalid'

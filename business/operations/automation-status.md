@@ -11,12 +11,12 @@
 - 記事公開：毎日09:00＋12:00再確認、1日最大1本。GitHubによる遅延あり。10月9日の飲食店記事を [run 37890168118](https://github.com/eyueyu0806-sys/website-studio/actions/runs/37890168118) で公開し、HTTPS 200とcanonicalを確認。予約記事は10月10日〜21日の12本。
 - 自動点検：毎日15:30。7日間の原稿在庫、当日記事、未確定投稿、公開URL、GitHub認証、接続設定、DNSを確認。読み取り専用で投稿・メール送信は行わない。点検が失敗しても記事公開ワークフローを止めない。
 - [点検run 37890726169](https://github.com/eyueyu0806-sys/website-studio/actions/runs/37890726169)：記事在庫、公開ページ、GitHub書き込み権限の応答は正常。Instagramと自動返信は接続待ち。
-- サイト：料金・プラン相談・構成添付・失敗時の別窓口を改善済み。1440/1200/390pxで検証。現行のFormSubmit窓口を維持。
+- サイト：料金・プラン相談・構成添付・失敗時の別窓口を改善済み。1440/1200/390pxで検証。Resend受付に切り替え。送信失敗時はLINE・メール窓口を表示し入力を維持。
 
 ## 本人操作待ち（他の作業の停止理由にしない）
 
 1. **自動返信の接続状態**：pageatelier.jpのDNS3レコード、Resend APIキー、Cloudflare Account ID、Turnstileの設定はそろった。Worker公開と秘密情報2件の登録は [run 38051445785](https://github.com/eyueyu0806-sys/website-studio/actions/runs/38051445785) で成功。公開URLは `https://pageatelier-contact.pageatelier-020acba5.workers.dev/contact`。
-2. **HTTPS接続待ち**：新規workers.devアドレスを登録済み。ただし公開エンドポイントの接続確認は [run 38051542545](https://github.com/eyueyu0806-sys/website-studio/actions/runs/38051542545) で失敗。このため公開フォームはFormSubmitを維持。メールの実受信・自動返信到達は未確認。接続が回復したらOPTIONS 204、無効POST 400を確認し、公開説明と経路を同時に切り替えて本人の実受信テストへ進む。
+2. **受付経路の切り替え**：新規workers.devアドレスのHTTPS接続が復旧し、OPTIONS 204・無効POST 400を確認。公開説明とフォーム経路をResendへ同時に切り替える。運営者通知と受付メールの実受信は本人のテスト待ち。メール配信APIの成功だけで受信箱への到達確認済みとは扱わない。
 3. **実装検証**：Workerの11テストに合格。模擬受付サービスを使い1440/1200/390pxでプラン、構成添付、入力保持、再送、JavaScriptエラー・横はみ出しを確認。模擬テストは実メールを送らない。
 4. **Instagram**：本人のMetaアプリ設定とInstagram Loginの接続。Secret `INSTAGRAM_ACCESS_TOKEN`、Variables `INSTAGRAM_ACCOUNT_ID` / `INSTAGRAM_API_VERSION`が未設定。画像・文章14件を用意済み。実投稿・アクセストークン有効性は未確認。
 
