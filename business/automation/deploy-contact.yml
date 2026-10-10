@@ -30,6 +30,35 @@ jobs:
       - name: Install locked deploy tooling
         working-directory: integrations/contact
         run: npm ci --no-audit --no-fund
+      - name: Register initial workers.dev address when absent
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, urllib.request, urllib.error
+          account=os.environ['CLOUDFLARE_ACCOUNT_ID']
+          url='https://api.cloudflare.com/client/v4/accounts/'+account+'/workers/subdomain'
+          def request(method, body=None):
+              req=urllib.request.Request(url, data=json.dumps(body).encode() if body else None,
+                  headers={'Authorization':'Bearer '+os.environ['CLOUDFLARE_API_TOKEN'], 'Content-Type':'application/json'}, method=method)
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as response: return json.load(response)
+              except urllib.error.HTTPError as error:
+                  return json.load(error)
+          existing=request('GET')
+          if existing.get('success'):
+              print('Existing workers.dev address preserved.')
+          elif any(e.get('code')==10007 for e in existing.get('errors', [])):
+              result=request('PUT', {'subdomain':'pageatelier-'+account[:8]})
+              if not result.get('success'):
+                  codes=[e.get('code') for e in result.get('errors', [])]
+                  raise SystemExit('Initial address registration requires account-owner action. API error codes: '+str(codes))
+              print('Initial workers.dev address registered.')
+          else:
+              codes=[e.get('code') for e in existing.get('errors', [])]
+              raise SystemExit('Could not inspect account address. API error codes: '+str(codes))
+          PYTHON
       - name: Build and deploy Worker
         working-directory: integrations/contact
         env:
