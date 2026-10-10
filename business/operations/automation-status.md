@@ -1,6 +1,6 @@
 # 自動化の進行管理
 
-最終確認：2026年10月9日、日本時間14:53。最新の稼働状況は [毎日の点検](https://github.com/eyueyu0806-sys/website-studio/actions/workflows/automation-health.yml) のSummaryを参照。
+最終確認：2026年10月10日、日本時間21:21。最新の稼働状況は [毎日の点検](https://github.com/eyueyu0806-sys/website-studio/actions/workflows/automation-health.yml) のSummaryを参照。
 
 ## 進め方
 
@@ -15,14 +15,14 @@
 
 ## 本人操作待ち（他の作業の停止理由にしない）
 
-1. **Resend DNS**：登録先は `pageatelier.jp`。直近のスクリーンショットは `garagehouse-navi.com`、その前は `pageatelier.online`。対象ドメインを再確認し、TXT `resend._domainkey`、CNAME `rsend` / `send` を設定。10月9日点検でも指定の公開レコードは未確認。
-2. **Resend APIキー**：ドメインVerified後、pageatelier.jpに限定したSending accessキーをRepository Secret `RESEND_API_KEY`へ。現状は未設定。ドメイン認証、公開説明の照合、実受信確認後に自動返信を有効化する。
-3. **Cloudflare Account ID**：Variable `CLOUDFLARE_ACCOUNT_ID`は存在するが、保存値を使った点検で32桁の16進数形式を確認できなかった。アカウント名・メールアドレスではなく、管理画面のAccount IDをVariablesへ保存する。`CLOUDFLARE_API_TOKEN`と`TURNSTILE_SECRET_KEY`の存在は確認したが、Worker公開・メール送信は未実施。
+1. **自動返信の接続状態**：pageatelier.jpのDNS3レコード、Resend APIキー、Cloudflare Account ID、Turnstileの設定はそろった。Worker公開と秘密情報2件の登録は [run 38051445785](https://github.com/eyueyu0806-sys/website-studio/actions/runs/38051445785) で成功。公開URLは `https://pageatelier-contact.pageatelier-020acba5.workers.dev/contact`。
+2. **HTTPS接続待ち**：新規workers.devアドレスを登録済み。ただし公開エンドポイントの接続確認は [run 38051542545](https://github.com/eyueyu0806-sys/website-studio/actions/runs/38051542545) で失敗。このため公開フォームはFormSubmitを維持。メールの実受信・自動返信到達は未確認。接続が回復したらOPTIONS 204、無効POST 400を確認し、公開説明と経路を同時に切り替えて本人の実受信テストへ進む。
+3. **実装検証**：Workerの11テストに合格。模擬受付サービスを使い1440/1200/390pxでプラン、構成添付、入力保持、再送、JavaScriptエラー・横はみ出しを確認。模擬テストは実メールを送らない。
 4. **Instagram**：本人のMetaアプリ設定とInstagram Loginの接続。Secret `INSTAGRAM_ACCESS_TOKEN`、Variables `INSTAGRAM_ACCOUNT_ID` / `INSTAGRAM_API_VERSION`が未設定。画像・文章14件を用意済み。実投稿・アクセストークン有効性は未確認。
 
 ## 次にこちらで進める作業
 
 - 次の7〜14日分の原稿・投稿素材の制作と内容確認。原稿残数だけでなく配信可能日を確認する。未確認のAI下書きを自動承認しない。
-- 自動返信用の公開説明を公式資料と照合。Resendの主体・米国処理・保持の基準を確認済み。Cloudflare資料は取得時403のため未確認。詳細は `integrations/contact/privacy-migration.md`。
+- 自動返信用の公開説明を公式資料と照合。Resendの主体・米国処理・保持の基準を確認済み。Cloudflareのプライバシーポリシー・Customer DPA・Turnstile方針も10月10日に取得して照合済み。詳細は `integrations/contact/privacy-migration.md`。
 - 本人の接続設定が届いたら毎日の点検を再実行し、該当箇所の実接続を確認。既存の作業・確認を最初からやり直さない。
 - 実際の流入・相談数が蓄積したら、固定ラベルの計測と実受信を照合して改善。架空の口コミ・実績・受注件数を追加しない。顧客情報を公開GitHubへ保存しない。
